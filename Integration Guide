@@ -1,0 +1,36 @@
+Adding new boxes
+
+Define new sections in a file under gamedata\configs\items\items\lootbox_[custom].ltx
+Make sure you do not use any existing sections. Lootboxes that come with this mod all use numbers, so mix some letters in your naming convention.
+
+Breakdown of lootbox fields:
+- Difficulty: How much % of lockpick set is used to open the box
+- Contents: Corresponds to a drop pool - consult loot_pools for info
+- Loot_type: This is one of two types, either weapon or grab. Weapon means the box holds a single gun with ammo and attachments. Grab means it holds multiple items that are picked randomly.
+- 'Weapon' loot types refer to a contents pool directly. 'Grab' goes through one layer of loot pool, then picks items.
+- Unique contents: There is a 1/10 chance a given box will spawn with unique loot. This is usually story-based stuff. Once spawned, it will never roll again. TODO is to implement multiple variants of unique boxes.
+
+Adding loot to your boxes
+
+Lootboxes use two layers of randomization to populate their contents.
+Pool: This is a template of the 'contents' of a lootbox. A pool looks like this:
+
+handguns,1,ammo_mix,3,ammo_grenades,1
+
+This means the box will pick one item from the 'handguns' category of items, 1 from the 'ammo_grenades', and up to 3 from 'ammo_mix'.
+A lootbox can pick from multiple such templates, rolled uniformly randomly.
+To add pools to an existing lootbox, use the script function custom_loot.add_pool
+
+Contents: These are categories of items. They look like the following:
+
+[lootbox_handguns]
+wpn_pm
+wpn_pm|1
+wpn_pmm
+wpn_pb
+
+This means that when a lootbox picks its contents from the 'handguns' category, it will randomly select one of these items. Note that 'wpn_pm' has two entries - you can use | to denote multiple entries in one section.
+To add items to an existing contents category, use the script function custom_loot.add_contents
+
+Adding boxes to drops
+You can add boxes to drop by using the custom_loot.add_to_map function.

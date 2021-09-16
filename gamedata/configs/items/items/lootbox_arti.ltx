@@ -1,0 +1,199 @@
+[lootbox_1]:lootbox ; locked toolbox
+description			                                   = st_lootbox_small_bad_descr
+inv_name			                                   = st_lootbox_small_bad
+inv_name_short			                               = st_lootbox_small_bad
+inv_grid_width			                               = 2
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 0
+cost				                                   = 1997
+inv_weight			                                   = 3.60
+difficulty                                             = 5
+contents                                               = bad
+loot_type                                              = grab
+unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
+
+[lootbox_11]:lootbox_1 ; locked toolbox, alt appearance
+inv_grid_x			                                   = 2
+inv_grid_y			                                   = 0
+unique_contents                                        = af_glass,1,picture_woman,1,lootbox_note_dad,1
+
+[lootbox_2]:lootbox ; lockbox
+description			                                   = st_lootbox_small_ok_descr
+inv_name			                                   = st_lootbox_small_ok
+inv_name_short			                               = st_lootbox_small_ok
+inv_grid_width			                               = 2
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 4
+inv_grid_y			                                   = 0
+cost				                                   = 4341
+inv_weight			                                   = 4.85
+difficulty                                             = 15
+contents                                               = good
+loot_type                                              = grab
+unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1
+
+
+[lootbox_3]:lootbox ; secure container alpha
+description			                                   = st_lootbox_small_good_descr
+inv_name			                                   = st_lootbox_small_good
+inv_name_short			                               = st_lootbox_small_good
+inv_grid_width			                               = 2
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 1
+cost				                                   = 16010
+inv_weight			                                   = 5.26
+difficulty                                             = 55
+contents                                               = secure
+loot_type                                              = grab
+weapon_condition                                       = 60
+unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,ammo_5.56x45_ap,3,ammo_7.62x51_ap,3,stimpack_scientic,1
+
+[lootbox_31]:lootbox_3 ; secure container epsilon, don't use
+inv_grid_x			                                   = 3
+inv_grid_y			                                   = 5
+difficulty = 5
+contents = test
+
+[lootbox_4]:lootbox ; arti box
+description			                                   = st_lootbox_small_artifact_descr
+inv_name			                                   = st_lootbox_small_artifact
+inv_name_short			                               = st_lootbox_small_artifact
+inv_grid_width			                               = 2
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 6
+inv_grid_y			                                   = 1
+cost				                                   = 15625
+inv_weight			                                   = 7.5
+difficulty                                             = 50
+contents                                               = box_artifacts
+loot_type                                              = grab
+unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
+
+[lootbox_41]:lootbox_4 ; arti box, dull metal
+inv_grid_x			                                   = 8
+inv_grid_y			                                   = 1
+unique_contents                                        = lootbox_note_transmute,1,af_empty,2
+
+
+[lootbox_5]:lootbox ;BRIEFCASE
+description			                                   = st_lootbox_small_briefcase_descr
+inv_name			                                   = st_lootbox_small_briefcase
+inv_name_short			                               = st_lootbox_small_briefcase
+inv_grid_width			                               = 2
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 5
+inv_grid_y			                                   = 5
+cost				                                   = 5211
+inv_weight			                                   = 2.1
+
+difficulty                                             = 25
+contents                                               = briefcase
+loot_type                                              = grab
+weapon_condition                                       = 50
+unique_contents                                        = money,15000,itm_pda_rare,2,cocaine,1,lootbox_note_bandit,1
+
+[lootbox_51]:lootbox_5 ;BRIEFCASE 2
+inv_grid_x			                                   = 7
+inv_grid_y			                                   = 5
+contents = briefcase_alt
+unique_contents = lootbox_note_spankbank,1,porn,5,porn2,5
+
+
+[lootbox_6]:lootbox ;survival box
+description			                                   = st_lootbox_survival_descr
+inv_name			                                   = st_lootbox_survival
+inv_name_short			                               = st_lootbox_survival
+inv_grid_width			                               = 2
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 6
+inv_grid_y			                                   = 3
+cost				                                   = 8005
+inv_weight			                                   = 11.1
+weapon_condition                                       = 70
+difficulty                                             = 40
+contents                                               = cache
+loot_type                                              = grab
+unique_contents                                        = lootbox_note_vodka,1,vodka,14
+
+[lootbox_61]:lootbox_6 ;survival box camo
+inv_grid_x			                                   = 8
+inv_grid_y			                                   = 3
+unique_contents                                        = ied_new,2,money,5000,novice_outfit,1,cs_novice_outfit,1,lootbox_note_orders,1
+
+[lootbox_7]:lootbox ; shotty box
+description			                                   = st_lootbox_large_shotgun_descr
+inv_name			                                   = st_lootbox_large_shotgun
+inv_name_short			                               = st_lootbox_large_shotgun
+inv_grid_width			                               = 3
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 6
+cost				                                   = 13149
+inv_weight			                                   = 15.1
+weapon_condition                                       = 75
+difficulty                                             = 50
+contents                                               = shotguns_case
+loot_type                                              = weapon
+snd_open                                               = Wood_Picks
+snd_open_key                                           = Wood_Key
+can_smash = true
+unique_contents = wpn_toz34_mark4,0_0_70,ammo_12x70_buck,2,lootbox_note_tourist,1
+
+[lootbox_71]:lootbox ; ak box
+description			                                   = st_lootbox_large_surplus_descr
+inv_name			                                   = st_lootbox_large_surplus
+inv_name_short			                               = st_lootbox_large_surplus
+inv_grid_width			                               = 3
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 5
+cost				                                   = 25021
+inv_weight			                                   = 15.05
+weapon_condition                                       = 75
+difficulty                                             = 75
+contents                                               = surplus_case
+loot_type                                              = weapon
+snd_open                                               = Wood_Picks
+snd_open_key                                           = Wood_Key
+can_smash = true
+unique_contents = lootbox_note_grenade,1,grenade_rgd5,15,grenade_f1,5
+
+[lootbox_8]:lootbox ; merc pelican box
+description			                                   = st_lootbox_large_rifle_descr
+inv_name			                                   = st_lootbox_large_rifle
+inv_name_short			                               = st_lootbox_large_rifle
+inv_grid_width			                               = 3
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 3
+inv_grid_y			                                   = 3
+cost				                                   = 33010
+inv_weight			                                   = 12.05
+weapon_condition                                       = 80
+difficulty                                             = 90
+contents                                               = rifles_case
+loot_type                                              = weapon
+unique_contents                                        =  wpn_svd_nimble,0_6_90,ammo_7.62x54_ap,2,cigar,1,lootbox_note_birthday,1
+
+[lootbox_81]:lootbox_8 ; merc pelican box 2
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 3
+contents                                               = rifles_case_alt
+unique_contents                                        = wpn_trg,0_0_100,ammo_magnum_300,2,lootbox_note_sniper,1
+
+[lootbox_9]:lootbox ;monoloot box
+description			                                   = st_lootbox_large_monolith_descr
+inv_name			                                   = st_lootbox_large_monolith
+inv_name_short			                               = st_lootbox_large_monolith
+inv_grid_width			                               = 2
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 9
+inv_grid_y			                                   = 5
+cost				                                   = 54010
+inv_weight			                                   = 19.86
+weapon_condition                                       = 95
+difficulty                                             = 101
+contents                                               = monoloot
+loot_type                                              = grab
+unique_contents = af_death_lamp,1,lootbox_note_deathlamp,1

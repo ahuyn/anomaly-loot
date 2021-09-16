@@ -1,0 +1,39 @@
+Adds lootboxes to the game.
+
+Lootboxes have a chance to spawn in stashes and on dead stalkers. Each lootbox will generally describe its contents, but it is randomized.
+
+To open lootboxes, you need to use a lockpick set. Lockpick sets are sold by mechanics. Drag and drop the lockpick set onto the lootbox to open it. Each lootbox has a difficulty rating - this is the condition of the lockpick set that will be consumed when the box is opened. To repair the lockpick set, drag lockpicks onto the set that can be acquired from traders or from drops in the world.
+
+Quick box opening tutorial:
+1. You found a box. Hooray!
+2. Buy a lockpick set from the mechanic.
+3. Note the difficulty on the box. For example, say the box difficulty is 10%.
+4. Drag your lockpick set over the box.
+5. Enjoy your loot!
+6. To fix your lockpick set up, drag and drop lockpicks or lockpick bundles onto your lockpick set.
+
+No conflicts with anything, but not really balanced with Artefact Renovation. I have a tweak to address this. 
+
+New game not required, as everything is handled dynamically. MCM support present. If you want to uninstall get rid of all the boxes and picks you have.
+
+Other mod makers can integrate with lootboxes, adding items they have created into lootboxes. Consult custom_loot for usage information.
+
+Changelog
+1.1.7 - Expanded API for custom items, now allowing for custom boxes and loot pools.
+1.1.6 - Reduced amount of loot in boxes (guarantee of one). Added weapon attachments and misc drugs to loot pool. Added API for custom items.
+1.1.5 - Added lockpick sets to a binder, because I can't figure out what's causing the bug otherwise
+1.1.4.2 - Nerfed artifacts boxes (sorry Maid!). Adjusted drop rate of skeleton keys in lootboxes. Adjusted drop rates.
+1.1.4.1 - Fix for weapon crates again having skewed drop chances.
+1.1.4 - Regulated amount of ammo dropped to not have a ridiculous distribution, increased difficulty of rifle crate and removed medical packages from dropping until I figure out how to greatly reduce their chances.
+1.1.3.2 - Fix for weapon crates having skewed drop chances.
+1.1.3.1 - Tidied the drop message.
+1.1.3 - Fix rare boxes not dropping. RUS translation thanks to mrstarman59
+1.1.3 - Fix cost of lockpick bundle. Adjusted low-end box contents and made skeleton keys rarer. Fix for DX8 plebeians (thanks Cr3pis)
+1.1.2 - Fix for missing section, made skeleton keys little more rare in lockboxes.
+1.1.1 - Right-click box open feature available (with lockpick in inventory). Animations toggleable.
+1.1 - Fixes for PDA crash, possible weapons crash, and looting stashes in places that don't have lootboxes. Block eating of picks when pickset is full condition.
+
+Special credits:
+- cakes for sounds and playtesting
+- Cr3pis for icons
+- Grok for 'borrowed' code from his stash addon

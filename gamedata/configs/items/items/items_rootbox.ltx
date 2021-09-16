@@ -1,0 +1,9 @@
+; Adding lootboxes:
+; Extend lootbox_base and add the appropriate fields.
+; Difficulty: How much % of lockpick set is used to open the box
+; Contents: Corresponds to a drop pool - consult loot_pools for info
+; Loot_type: This is one of two types, either weapon or grab. Weapon means the box holds a single gun with ammo and attachments. Grab means it holds multiple items that are picked randomly.
+; 'Weapon' loot types refer to a contents pool directly. 'Grab' goes through one layer of loot pool, then picks items.
+; Unique contents: There is a 1/10 chance a given box will spawn with unique loot. This is usually story-based stuff. Once spawned, it will never roll again. TODO is to implement multiple variants of unique boxes.
+
+#include "lootbox_*.ltx"

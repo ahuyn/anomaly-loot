@@ -1,0 +1,109 @@
+; loot templates for grab-bag boxes
+; junk, repairjunk, trash - low tier stuff
+; ammo_mix is ammo_bad
+; basic_supplies - one can of food or drink of water, basic meds
+; survfood - good military ass food
+; smokes - recreational smokes, no food
+; treasure - just attachments i guess
+[lootbox_bad] ; 2000, 5
+trash,3,repairjunk,3,food,1,ammo_mix,2
+trash,2,repairjunk,2,ammo_mix,1
+food,1,basic_supplies,2
+repairjunk,5
+repairjunk,3,basic_supplies,1,food,1
+junk,5,basic_supplies,1
+junk,3,ammo_mix,2,basic_supplies,1
+trash,8,repairjunk,1,meds_misc,1
+repairjunk,3,basic_supplies,1,devices_low,1
+handguns,1,repairjunk,3,ammo_bad,2,basic_supplies,1
+artifacts_low,1,junk,2
+money,1000,junk,3
+devices_low,1,repairjunk,3,basic_supplies,1
+handguns,1,junk,2,ammo_bad,3
+[lootbox_good] ;4000, 15
+junk,5,repairjunk,3
+repairjunk,4,ammo_mix,2
+repairjunk,10
+treasure,1,junk,5
+junk,5,money,3000,meds_misc,1
+handguns,1,ammo_mix,3,ammo_grenades,1
+junk,5,basic_supplies,3
+devices_low,2,junk,3,basic_supplies,2,meds_misc,1
+artifacts_low,1,basic_supplies,2
+money,2000,basic_supplies,2,ammo_mix,2,treasure,1
+devices_low,1,handguns_case,1,basic_supplies,2
+money,1000,devices,1,treasure,1
+[lootbox_secure] ; 10000, 60
+repairjunk,4,meds_advanced,3,survfood,1
+repairjunk,3,treasure,1,meds_military,1
+money,5000,treasure2,1,docs,1,survfood,1,meds_military,1
+money,4000,repairjunk,3,meds_advanced,2,survfood,1
+ammo_rare,3,meds_advanced,2,ammo_grenades,3,devices,1,survfood,1
+treasure2,1,survfood,3,artifacts,1
+artifacts,2,devices,1,ammo,2
+docs,2,meds_advanced,2,ammo_rare,2,treasure2,1
+artifacts_low,2,docs,2,survfood,1,repairjunk,1
+docs,2
+[lootbox_briefcase] ; 5k. 25%
+money,2000,smokes,2
+money,1000,smokes,4
+money,2000,devices_low,1
+money,1000,handguns_case,1
+money,1000,handguns_case,1
+money,7500,docs_low,2
+money,6500,docs_low,2
+money,8500
+artifacts_low,1
+
+[lootbox_briefcase_alt]
+docs,4
+docs_low,1,devices,1
+docs_low,4,devices_low,1
+docs_low,3,devices_low,1
+docs,2,devices_low,1
+docs,3
+docs,3|1
+docs_high,1
+docs_high,1,docs_low,2
+devices_high,1
+[lootbox_cache]; 8000, 40
+handguns_case,1,survfood,5,smokes,2,knives,1,meds_military,4
+handguns_case,1,survfood,3,smokes,2,meds_military,3,repairjunk,6
+ammo,6,ammo_grenades,2,survfood,4,smokes,2,meds_military,3,meds_misc,1
+ammo,4,ammo_grenades,2,survfood,2,meds_military,4,meds_advanced,1
+ammo,4,ammo_grenades,2,survfood,2,meds_military,2,devices,1
+ammo,4,ammo_grenades,2,survfood,2,meds_military,2,treasure2,1,meds_misc,1
+
+[lootbox_monoloot]
+artifacts_high,4
+artifacts,2,treasure2,3,rifles_monolith,1
+artifacts_high,2,devices_high,1,treasure2,1
+money,200000
+rifles_monolith,1,artifacts_high,1,ammo_rare,4
+treasure2,3,rifles_monolith,1,ammo_rare,4
+ammo_rare,5,meds_advanced,3,rifles_monolith,1
+
+[lootbox_box_artifacts]
+artifacts_low,1
+artifacts_low,1|1
+artifacts_low,1|2
+artifacts_low,1|3
+artifacts_low,1|4
+artifacts_low,1|5
+artifacts,1
+artifacts,1|1
+artifacts,1|2
+artifacts,1|3
+artifacts,1|4
+artifacts_low,2
+artifacts_low,2|1
+artifacts_low,3
+artifacts_low,1,artifacts_high,1
+artifacts_high,1
+; sink
+[lootbox_default]
+junk,1; test purposes
+[lootbox_test]
+test_stuff,5
+[lootbox_test_stuff]
+bolt

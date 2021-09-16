@@ -1,0 +1,74 @@
+
+pickset_cond = {}
+-- class
+function bind(obj)
+    obj:bind_object(pickset_binder(obj))
+end
+
+class "pickset_binder" (object_binder)
+
+function pickset_binder:__init(obj) super(obj)
+	self.first_update = nil
+end
+
+function pickset_binder:update(delta)
+    local obj  = self.object
+    local id = obj:id()
+    if not self.first_update then
+        self.first_update = true
+        if pickset_cond[id] then
+            obj:set_condition(pickset_cond[id])
+        end
+    end
+    pickset_cond[id] = obj:condition()
+end
+
+function pickset_binder:reload(section)
+    object_binder.reload(self, section)
+end
+
+function pickset_binder:reinit()
+    object_binder.reinit(self)
+end
+
+function pickset_binder:net_spawn(se_abstract)
+    if not(object_binder.net_spawn(self, se_abstract)) then
+        return false
+    end
+    return true
+end
+
+function pickset_binder:net_destroy()
+	--print_dbg("[%s] destroyed: %s", self.object:name())
+	object_binder.net_destroy(self)
+end
+
+function pickset_binder:save(stpk)
+end
+
+function pickset_binder:load(stpk)
+end
+
+local function save_state(mdata) 
+	mdata.pickset_cond = pickset_cond
+end
+
+local function load_state(mdata) 
+	pickset_cond = mdata.pickset_cond or {}
+end
+
+local function se_device_on_unregister(se_obj, typ)
+	--local sec = se_obj:section_name()
+	--if ini_sys:r_string_ex(sec,"script_binding") == "item_device.bind" then
+		local id = se_obj.id
+		pickset_cond[id] = nil
+	--end
+end
+
+function on_game_start()
+	if (USE_MARSHAL) then 
+		RegisterScriptCallback("save_state",save_state)
+		RegisterScriptCallback("load_state",load_state)
+	end
+	RegisterScriptCallback("server_entity_on_unregister",se_device_on_unregister)
+end

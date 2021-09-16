@@ -1,0 +1,291 @@
+; -- Lockpicks 
+[lockpick]:tch_part
+visual				                                   = dynamics\equipments\trade\ammo.ogf
+description			                                   = st_lockpick_descr
+inv_name			                                   = st_lockpick
+inv_name_short			                               = st_lockpick
+icons_texture							 		= ui\ui_icon_lootboxes
+inv_grid_width			                               = 1
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 8
+inv_grid_y			                                   = 0
+cost				                                   = 1102
+inv_weight			                                   = 0.05
+attach_angle_offset		                               = -0.287979, 1.560923, 1.544060
+attach_position_offset		                           = 0.096910, -0.013594, 0.107925
+attach_bone_name		                               = bip01_r_hand
+auto_attach				                               = false
+snd_on_take								 		       = part
+tier                                                   = 1
+replacement = 0.05
+use1_functor                = arti_lootboxes.try_bundle
+use1_action_functor         = arti_lootboxes.bundle_picks
+[bundle_lockpick]:tch_part
+visual				                                   = dynamics\equipments\trade\ammo.ogf
+description			                                   = st_lockpick_bundle_descr
+inv_name			                                   = st_lockpick_bundle
+inv_name_short			                               = st_lockpick_bundle
+icons_texture							 		= ui\ui_icon_lootboxes
+inv_grid_width			                               = 1
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 9
+inv_grid_y			                                   = 0
+cost				                                   = 5510
+inv_weight			                                   = 0.5
+attach_angle_offset		                               = -0.287979, 1.560923, 1.544060
+attach_position_offset		                           = 0.096910, -0.013594, 0.107925
+attach_bone_name		                               = bip01_r_hand
+auto_attach				                               = false
+snd_on_take								 		       = part
+tier                                                   = 1
+replacement = 0.25
+use1_functor                = arti_lootboxes.try_split
+use1_action_functor         = arti_lootboxes.split_picks
+
+[skeleton_key]:tch_part
+visual				                                   = dynamics\equipments\trade\ammo.ogf
+description			                                   = st_skelekey_descr
+inv_name			                                   = st_skelekey
+inv_name_short			                               = st_skelekey
+icons_texture							 		= ui\ui_icon_lootboxes
+inv_grid_width			                               = 1
+inv_grid_height			                               = 2
+inv_grid_x			                                   = 10
+inv_grid_y			                                   = 0
+cost				                                   = 11014
+inv_weight			                                   = 0.05
+
+
+[lockpick_set]:tch_part
+visual				                                   = dynamics\part\prt_o_fabrics_1.ogf
+description			                                   = st_lockpick_set_descr
+inv_name			                                   = st_lockpick_set
+inv_name_short		                                   = st_lockpick_set
+icons_texture							 		       = ui\ui_icon_lootboxes
+inv_grid_width			                               = 2
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 6
+inv_grid_y			                                   = 0
+inv_weight			                                   = 1.14
+cost                                                   = 23392 
+allow_repair                             		       = false
+snd_on_take								 		       = outfit
+use_condition                            		       = true
+script_binding                                         = pickset_binder.bind
+
+
+;-- Lootbox base item
+[lootbox]:identity_immunities
+GroupControlSection                                    = spawn_group 
+discovery_dependency                                   = 
+$spawn                                                 = "food and drugs\harmonica_a"
+cform                                                  = skeleton 
+class                                                  = II_ATTCH 
+kind			                                       = i_part
+visual				                                   = dynamics\equipments\blue_box.ogf
+description			                                   = st_wpn_spareparts_descr
+inv_name			                                   = st_wpn_spareparts
+inv_name_short		                                   = st_wpn_spareparts
+icons_texture							 		= ui\ui_icon_lootboxes
+inv_grid_width			                               = 1
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 46
+cost				                                   = 14010
+inv_weight			                                   = 0.05
+difficulty                                             = 1
+contents                                               = bad
+attach_angle_offset		                               = -0.287979, 1.560923, 1.544060
+attach_position_offset		                           = 0.096910, -0.013594, 0.107925
+attach_bone_name		                               = bip01_r_hand
+auto_attach				                               = false
+snd_on_take								 		       = other
+tier                                                   = 3
+unique_contents                                        = underwear,10
+weapon_condition                                       = 40
+snd_open                                               = Plastic_Small_Pick
+snd_open_key                                           = Plastic_Small_Key
+snd_open_axe = Wood_Axe
+use1_functor                = arti_lootboxes.try_pick
+use1_action_functor         = arti_lootboxes.pick_box
+
+
+
+; Lore notes
+[lootbox_lore]:identity_immunities
+$spawn 				                     = "devices\roubles"
+$prefetch 			                     = 16
+kind			                     = i_letter
+class				                     = II_ATTCH
+cform				                     = skeleton
+visual				                     = dynamics\equipments\quest\notes_writing_book_2.ogf
+description			                     = st_memoirs_2_of_2_desc
+inv_name			                     = st_memoirs_2_of_2_name
+inv_name_short			                 = st_memoirs_2_of_2_name
+inv_grid_width		                     = 2
+inv_grid_height		                     = 1
+inv_grid_x			                     = 0
+inv_grid_y			                     = 15
+cost				                     = 140
+inv_weight			                     = 0.018
+attach_angle_offset		                 = -0.287979, 1.560923, 1.544060
+attach_position_offset		             = 0.096910, -0.013594, 0.107925
+attach_bone_name		                 = bip01_r_hand
+auto_attach				                 = false
+letter									 = true
+snd_on_take								 = paper
+
+[lootbox_note_dad]:lootbox_lore
+description			                     = st_lootbox_note_dad_descr
+inv_name			                     = st_lootbox_note_dad
+inv_name_short			                 = st_lootbox_note_dad
+[lootbox_note_tarkov]:lootbox_lore
+description			                     = st_lootbox_note_tarkov_descr
+inv_name			                     = st_lootbox_note_tarkov
+inv_name_short			                 = st_lootbox_note_tarkov
+[lootbox_note_bandit]:lootbox_lore
+description			                     = st_lootbox_note_bandit_descr
+inv_name			                     = st_lootbox_note_bandit
+inv_name_short			                 = st_lootbox_note_bandit
+[lootbox_note_sniper]:lootbox_lore
+description			                     = st_lootbox_note_sniper_descr
+inv_name			                     = st_lootbox_note_sniper
+inv_name_short			                 = st_lootbox_note_sniper
+[lootbox_note_digger]:lootbox_lore
+description			                     = st_lootbox_note_digger_descr
+inv_name			                     = st_lootbox_note_digger
+inv_name_short			                 = st_lootbox_note_digger
+[lootbox_note_birthday]:lootbox_lore
+description			                     = st_lootbox_note_birthday_descr
+inv_name			                     = st_lootbox_note_birthday
+inv_name_short			                 = st_lootbox_note_birthday
+[lootbox_note_mikhail]:lootbox_lore
+description			                     = st_lootbox_note_mikhail_descr
+inv_name			                     = st_lootbox_note_mikhail
+inv_name_short			                 = st_lootbox_note_mikhail
+[lootbox_note_transmute]:lootbox_lore
+description			                     = st_lootbox_note_transmute_descr
+inv_name			                     = st_lootbox_note_transmute
+inv_name_short			                 = st_lootbox_note_transmute
+[lootbox_note_orders]:lootbox_lore
+description			                     = st_lootbox_note_orders_descr
+inv_name			                     = st_lootbox_note_orders
+inv_name_short			                 = st_lootbox_note_orders
+[lootbox_note_spooky]:lootbox_lore
+description			                     = st_lootbox_note_spooky_descr
+inv_name			                     = st_lootbox_note_spooky
+inv_name_short			                 = st_lootbox_note_spooky
+[lootbox_note_spankbank]:lootbox_lore
+description			                     = st_lootbox_note_spankbank_descr
+inv_name			                     = st_lootbox_note_spankbank
+inv_name_short			                 = st_lootbox_note_spankbank
+[lootbox_note_deathlamp]:lootbox_lore
+description			                     = st_lootbox_note_deathlamp_descr
+inv_name			                     = st_lootbox_note_deathlamp
+inv_name_short			                 = st_lootbox_note_deathlamp
+[lootbox_note_grenade]:lootbox_lore
+description			                     = st_lootbox_note_grenade_descr
+inv_name			                     = st_lootbox_note_grenade
+inv_name_short			                 = st_lootbox_note_grenade
+[lootbox_note_vodka]:lootbox_lore
+description			                     = st_lootbox_note_vodka_descr
+inv_name			                     = st_lootbox_note_vodka
+inv_name_short			                 = st_lootbox_note_vodka
+[lootbox_note_tourist]:lootbox_lore
+description			                     = st_lootbox_note_tourist_descr
+inv_name			                     = st_lootbox_note_tourist
+inv_name_short			                 = st_lootbox_note_tourist
+
+; loot documents
+
+[lootbox_docs_folder]:lootbox_lore ; folder
+description			                     = st_lootbox_docs_folder_descr
+inv_name			                     = st_lootbox_docs_folder
+inv_name_short			                 = st_lootbox_docs_folder
+inv_grid_x			                     = 2
+inv_grid_y			                     = 15
+cost                                     = 25000
+
+[lootbox_docs_sheet_1]:lootbox_lore ; sheet
+description			                     = st_lootbox_docs_sheet_descr
+inv_name			                     = st_lootbox_docs_sheet
+inv_name_short			                 = st_lootbox_docs_sheet
+inv_grid_x			                     = 0
+inv_grid_y			                     = 15
+cost                                     = 2500
+[lootbox_docs_sheet_2]:lootbox_lore
+description			                     = st_lootbox_docs_sheets_descr
+inv_name			                     = st_lootbox_docs_sheets
+inv_name_short			                 = st_lootbox_docs_sheets
+inv_grid_x			                     = 4
+inv_grid_y			                     = 15
+cost                                     = 2375
+[lootbox_docs_sheet_3]:lootbox_lore
+description			                     = st_lootbox_docs_sheet_descr
+inv_name			                     = st_lootbox_docs_sheet
+inv_name_short			                 = st_lootbox_docs_sheet
+inv_grid_x			                     = 6
+inv_grid_y			                     = 15
+cost                                     = 2250
+[lootbox_docs_sheet_4]:lootbox_lore
+description			                     = st_lootbox_docs_sheet_descr
+inv_name			                     = st_lootbox_docs_sheet
+inv_name_short			                 = st_lootbox_docs_sheet
+inv_grid_x			                     = 16
+inv_grid_y			                     = 15
+cost                                     = 3000
+[lootbox_docs_sheet_5]:lootbox_lore
+description			                     = st_lootbox_docs_sheet_descr
+inv_name			                     = st_lootbox_docs_sheet
+inv_name_short			                 = st_lootbox_docs_sheet
+inv_grid_x			                     = 18
+inv_grid_y			                     = 15
+cost                                     = 3750
+[lootbox_docs_notebook_1]:lootbox_lore ; notebook
+description			                     = st_lootbox_docs_notebook_descr
+inv_name			                     = st_lootbox_docs_notebook
+inv_name_short			                 = st_lootbox_docs_notebook
+inv_grid_x			                     = 8
+inv_grid_y			                     = 15
+cost                                     = 12000
+[lootbox_docs_notebook_2]:lootbox_lore
+description			                     = st_lootbox_docs_notebook_descr
+inv_name			                     = st_lootbox_docs_notebook
+inv_name_short			                 = st_lootbox_docs_notebook
+inv_grid_x			                     = 10
+inv_grid_y			                     = 15
+cost                                     = 11000
+[lootbox_docs_notebook_3]:lootbox_lore
+description			                     = st_lootbox_docs_notebook_descr
+inv_name			                     = st_lootbox_docs_notebook
+inv_name_short			                 = st_lootbox_docs_notebook
+inv_grid_x			                     = 12
+inv_grid_y			                     = 15
+cost                                     = 13500
+[lootbox_docs_notebook_4]:lootbox_lore
+description			                     = st_lootbox_docs_notebook_descr
+inv_name			                     = st_lootbox_docs_notebook
+inv_name_short			                 = st_lootbox_docs_notebook
+inv_grid_x			                     = 14
+inv_grid_y			                     = 15
+cost                                     = 12875
+
+[lootbox_docs_usb_1]:lootbox_lore
+description			                     = st_lootbox_docs_usb_descr
+inv_name			                     = st_lootbox_docs_usb
+inv_name_short			                 = st_lootbox_docs_usb
+inv_grid_width		                     = 1
+inv_grid_height		                     = 1
+inv_grid_x                                             = 8
+inv_grid_y                                             = 3
+cost                                     = 18625
+[lootbox_docs_usb_2]:lootbox_lore
+description			                     = st_lootbox_docs_usb_descr
+inv_name			                     = st_lootbox_docs_usb
+inv_name_short			                 = st_lootbox_docs_usb
+inv_grid_width		                     = 1
+inv_grid_height		                     = 1
+inv_grid_x                                             = 9
+inv_grid_y                                             = 3
+cost                                     = 20000
+

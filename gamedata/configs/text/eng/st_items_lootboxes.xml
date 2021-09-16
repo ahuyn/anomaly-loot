@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+
+	<string id="st_lootbox_small_bad">
+		<text>Padlocked toolbox</text>
+	</string>
+	<string id="st_lootbox_small_bad_descr">
+		<text>
+            A medium sized toolbox secured with a simple padlock. Boxes of this nature are the most cost-efficient way to store a stalker's personal possessions, but the box offers little protection from the elements and is easy to force into. As a result, only the poorest stalkers will dare to leave anything valuable inside. The padlock is low-quality and can be bypassed with little effort.\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_small_ok">
+		<text>Padlocked steel box</text>
+	</string>
+	<string id="st_lootbox_small_ok_descr">
+		<text>
+            Simple steel box with a padlock. Unlike toolboxes, this box is designed specifically to hold contents securely, and offers some degree of protection against tampering. These types of boxes are commonly used by stalkers to deter would-be thieves from looting their personal possessions. The padlock is of decent quality and shouldn't be too difficult to break into.\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_small_good">
+		<text>Secured Container</text>
+	</string>
+	<string id="st_lootbox_small_good_descr">
+		<text>
+            Fancy-looking yellow hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to tampering and the elements. Such boxes of this nature originate from outside the Zone and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_small_artifact">
+		<text>Locked Lead-lined box</text>
+	</string>
+	<string id="st_lootbox_small_artifact_descr">
+		<text>
+            Professionaly made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and quite difficult to bypass.\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_small_briefcase">
+		<text>Locked Briefcase</text>
+	</string>
+	<string id="st_lootbox_small_briefcase_descr">
+		<text>
+            Locked fireproof briefcase. Quite light and portable. Briefcases like these are commonly used by scientists and military members to transport sensitive documents, or criminal organizations to transport large amounts of paper money. As befitting a transport container of such sensitive items, the lock on this case is reasonably secure.\n \n
+		</text>
+	</string>
+    
+	<string id="st_lootbox_survival">
+		<text>Survival Cache</text>
+	</string>
+	<string id="st_lootbox_survival_descr">
+		<text>
+			Locked weatherproof box containing a variety of useful field supplies. These specialized dead-drop style caches are used primarily by paramilitaries and covert task forces to resupply their agents in the field while maintaining a low operational profile. However, there are no identifying marks in either the outside of the box or the inside, so it is usually hard to distinguish if cases like these belong to spies or simply well-heeled stalkers. Due to the inherent danger of burying things in the irradiated soil of the Zone, these caches are well-hidden with a strong enough lock to discourage thieves. \n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_large_shotgun">
+		<text>Wooden rifle case</text>
+	</string>
+	<string id="st_lootbox_large_shotgun_descr">
+		<text>
+            Wooden case used to hold hunting rifles and shotguns. A stylish way to carry your arms out into the field for duck and deer hunts. These types of cases are usually brought in by tourists looking to bag a few mutant trophies to bring home to the Great Land. Such tourists usually don't view the Zone as anything much beyond a radioactive safari, and often meet unfortunate ends in anomalous fields or the jaws of more dangerous mutants.\n \n
+		</text>
+	</string>
+	<string id="st_lootbox_large_surplus">
+		<text>Army weapon crate</text>
+	</string>
+	<string id="st_lootbox_large_surplus_descr">
+		<text>
+           Army crate with a padlock, commonly used to transport rifles and ordnance. In responses to frequent thefts and 'shortages' of military equipment, the Ukrainian military has stepped up its security measures and protocols concerning ordnance and other military hardware. As a result, the lock on this crate is unusually strong - it'd be a lot of effort to pick through the lock, so perhaps it'd be easier to simply smash through the wood with an axe...\n \n
+		</text>
+	</string>
+	<string id="st_lootbox_large_rifle">
+		<text>Pelican Rifle case</text>
+	</string>
+	<string id="st_lootbox_large_rifle_descr">
+		<text>
+            Hard waterproof case often used to transport long rifles. The only people in the Zone who can afford to care for their shooters with such luxury are Mercenaries or other similarly dangerous people, so cases like these are very rare and extremely dangerous to possess.\n \n
+		</text>
+	</string>
+	<string id="st_lootbox_large_monolith">
+		<text>Monolith Cache</text>
+	</string>
+	<string id="st_lootbox_large_monolith_descr">
+		<text>
+            Heavy ornate box with the symbol of the Monolith embossed onto the lid. These boxes are purportedly brought into existence by the Wish Granter itself, and fulfill the wishes of the Monolith for gear and supplies. The lock is nigh-impossible to open by mortal means, and the case is practically impregnable. Such a rare find, however, is likely to catch the eye of a trader or collector.\n \n
+		</text>
+	</string>
+    <string id="st_box_difficulty">
+        <text>Lock difficulty:</text>
+    </string>
+    <string id="st_lootbox_get">
+        <text>Found </text>
+    </string>
+    <string id="st_cant_unlock">
+        <text>Your picks are insufficient to open this box.</text>
+    </string>
+
+    <string id="st_restore_pick">
+        <text>Successfully replaced lockpicks.</text>
+    </string>
+	
+    <string id="st_pick_bundle">
+        <text>bundle picks</text>
+    </string>
+    <string id="st_pick_split">
+        <text>separate picks </text>
+    </string>
+    <string id="st_try_pick">
+        <text>pick lock</text>
+    </string>
+    <string id="st_loot_ammo">
+        <text>box of </text>
+    </string>
+    <string id="st_loot_ammos">
+        <text>boxes of </text>
+    </string>
+    <string id="st_weapon_3">
+        <text>a nice </text>
+    </string>
+    <string id="st_weapon_2">
+        <text>a nice </text>
+    </string>
+    <string id="st_weapon_1">
+        <text>a decent </text>
+    </string>
+    <string id="st_weapon_0">
+        <text>a crappy </text>
+    </string>
+
+    <string id="st_money">
+        <text> roubles</text>
+    </string>
+
+	<string id="st_lockpick">
+		<text>Lockpick</text>
+	</string>
+	<string id="st_lockpick_descr">
+		<text>Individual lockpick. Not too good by itself, but can be used to replace worn or broken lockpicks in a lockpick set. You can bundle some of these together to save space. To use, drag this lockpick onto a lockpick set.\n \n
+		</text>
+	</string>
+
+	<string id="st_lockpick_bundle">
+		<text>Lockpick bundle</text>
+	</string>
+	<string id="st_lockpick_bundle_descr">
+		<text>A bundle of five lockpicks. There's enough here to pick a lock, but you still need a torsion wrench from a lockpick set. You can replace multiple picks in one go with this bundle. To use, drag this bundle onto a lockpick set.\n \n
+		</text>
+	</string>
+    
+	<string id="st_skelekey">
+		<text>Skeleton key</text>
+	</string>
+	<string id="st_skelekey_descr">
+		<text>A strange key that looks like it was exposed to an anomalous field. The blade is bent unnaturally, while the teeth glow ominously and look to be constantly changing shape and size.\n \n</text>
+	</string>
+	<string id="st_lockpick_set">
+		<text>Set of lockpicks</text>
+	</string>
+	<string id="st_lockpick_set_descr">
+		<text>A small case containing several lockpicks and torsion wrenches. Lockpicks are normally used by honest folk to get back in their houses after accidentally locking themselves out, or by dishonest folk to break into homes and containers. In the Zone, lockpicks like these are used by the latter party to break into containers that do not belong to them. The lockpicks like these should be able to get through any lock, but are susceptible to wear and breakage. Frequent replacement of the lockpicks will be necessary if you plan to use this often.\n \n
+		</text>
+	</string>
+
+	<string id="st_spooky_1">
+		<text>OPEN THE BOX DAMMIT</text>
+	</string>
+	<string id="st_spooky_2">
+		<text>HEY OPEN THIS BOX</text>
+	</string>
+	<string id="st_spooky_3">
+		<text>HEY LET ME OUTTA HERE</text>
+	</string>
+	<string id="st_spooky_4">
+		<text>OPEN UP I HAVE VODKA</text>
+	</string>
+	<string id="st_spooky_free">
+		<text>HAHAHAHAHA I AM FREE</text>
+	</string>
+
+	<string id="st_lootbox_note_dad">
+		<text>Note in a lockbox</text>
+	</string>
+	<string id="st_lootbox_note_dad_descr">
+		<text>Mischa,\n \n
+			I won't be making it back home. Take this artifact and give it to Sakharov mentioning my name; he will arrange for the treatment to be given to mama. Finch's gang have me cornered - one way or another, I have to end this.\n \nI'm sorry, brother. Give my love to Zlata when you see her.\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_tarkov">
+		<text>Note in a secure case</text>
+	</string>
+	<string id="st_lootbox_note_tarkov_descr">
+		<text>Curse this place! Today Eagle stumbled into one of those damn anomalies when we were fighting off a pack of dogs, a piece of his thigh hit me square in the face! We couldn't find his dogtag, parts of him were scattered in a twenty yard radius at least. Jackal is starting to lose it too, I've been hearing him rambling in his sleep. I hope those TerraGroup bastards we're chasing down are rotting in some radioactive ditch somewhere, I signed up to shoot looters and capitalists, not deal with this bizarre shit. Let's hope I get the fuck out of here soon. \n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_bandit">
+		<text>Note in a briefcase</text>
+	</string>
+	<string id="st_lootbox_note_bandit_descr">
+		<text>Flea, if you're reading this, don't take the habar to Chief's men like we planned, he tried to fucking kill us! Only Vor and I made it out - he thinks because Borov gave him control of the Cemetary he his the big boss now and can backstab his brothers! Take this loot and go to Sultan, hire some hitters so we can teach that bitch his place. I'll meet you at the bridge. \n \n- Worm\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_sniper">
+		<text>Note in a rifle case</text>
+	</string>
+	<string id="st_lootbox_note_sniper_descr">
+		<text>Voron,\n \nOnce you find this, post up in the water tower. The snitch is currently hiding in with Freedom; at 2200 we will flush the rat out and he'll try to sneak his way past the checkpoint. Take him out before he does and make sure you get the flash drive off his body; I don't care what happens to the rest of him.\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_digger">
+		<text>Note in a case</text>
+	</string>
+	<string id="st_lootbox_note_digger_descr">
+		<text>Yuri, I finally hit pay dirt! I got your tip about the cache in the Swamps, I grabbed what I could and managed to make it back to safety. There's still a shit ton of stuff there so I'm going to make a return trip - saw some of those bandits snooping around so I'm going to take the SVT. Here's your cut for now. Hope it brings you luck! \n \n Viktor\n \n
+		</text>
+	</string>
+	
+	<string id="st_lootbox_note_birthday">
+		<text>Note in a rifle case</text>
+	</string>
+	<string id="st_lootbox_note_birthday_descr">
+		<text>Hey bro!\n \n The boys and I wanted to say thank you for pulling our ass out of the fire so many times. We heard your birthday was coming up, so we called in some favors and pulled some strings to get you this fancy new toy. I know you keep complaining that your old SVU is a piece of shit, inaccurate, this and that, so we got you a real sniper's weapon. Enjoy it bro! We'll be back in the Warehouses whenever you want to stop by for a drink.\n \n- Pasha\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_mikhail">
+		<text>Note in a toolbox</text>
+	</string>
+	<string id="st_lootbox_note_mikhail_descr">
+		<text>Konstantin,\n \n Take these tools and bring them to Mangun. We're running low on tools and there's only so much a man can do with duct tape and fishing line.\n \n - Mikhail\n \n
+		</text>
+	</string>
+	
+	<string id="st_lootbox_note_orders">
+		<text>Note in a survival cache</text>
+	</string>
+	<string id="st_lootbox_note_orders_descr">
+		<text>
+			Patriot,\n \nYour orders are as follows:\n \nMeet with Shinobi at rendezvous point Beta Rho Niner Two Five.\nUse the supplies disguises to infiltrate Point of Interest Kappa Oscar. There is usually a warrant officer situated outside to control access; use the provided money to bribe your way past.\nGive one package to Shinobi. Take the other package and deliver it to the fuel tanks located at Position Charlie. Set the timer for 22 hours.\nOnce you are done, rendezvous with Shinobi and exfiltrate to rendezvous point Alpha 4 for debrief.\n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_vodka">
+		<text>Note in a survival cache</text>
+	</string>
+	<string id="st_lootbox_note_vodka_descr">
+		<text>
+			\nVodka! You're feeling stronger!
+			\nVodka! No more feeling bad!
+			\nVodka! Your eyes are shiny!
+			\nVodka! You are the real man!
+			\nVodka! Wipes away your tears!
+			\nVodka! Removes your fears!
+			\nVodka! Everyone is gorgeous!
+			\nYeah Vodka!\n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_transmute">
+		<text>Note in an artifact case</text>
+	</string>
+	<string id="st_lootbox_note_transmute_descr">
+		<text>Senior Researcher Pavel,\n \nWe experienced some limited success with the transmutation of the 'Hourglass' artifact. While the application of artifacts in the Fruit Punch anomaly reacted as expected, subsequent addition of the Flash artifact into the field caused an unexpected and drastic surge in energy. Intern Andreychuk was knocked on his back and one of the field computers suffered liquid damage, but thankfully little harm came to our personnel or equipment overall. However, regretfully, our suits and field equipment have been mired in some horrid stench that refuses to go away! We will be requisitioning new equipment and selling our old suits on the black market. I am storing one ingredient for transmutation here; until we fine-tune the recipe I do not want to risk another incident. \n \nStaff Researcher Nikolai \n \n
+		</text>
+	</string>
+	<string id="st_lootbox_note_spooky">
+		<text>Note in an artifact case</text>
+	</string>
+	<string id="st_lootbox_note_spooky_descr">
+		<text>Head Professor Sakharov,\n\Yesterday a stalker by the name of Windy visited the Mobile Lab and sold us this very strange artifact. He claims it is the 'essence of a poltergeist'. We are uncertain where the origin of this artifact is - when we pressed the seller for questions, he refused to speak. The composition resembles that of a chunk of quartz, yet is as amorphous as wet sand. Sample floats at rest and exhibits mild gravitational anomalies to small objects nearby, such as rocks. As we lack the proper equipment in our lab, we are sending you this sample for further analysis.\n \nStaff Researcher Nikolai \n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_spankbank">
+		<text>Note in a briefcase</text>
+	</string>
+	<string id="st_lootbox_note_spankbank_descr">
+		<text>Hey, when you're done with your 'business' please close the damn case and clean up after yourself! If I find the damn pages stuck together I'm going to shove a Fireball up your ass!\n \n 
+		</text>
+	</string>
+	
+	<string id="st_lootbox_note_grenade">
+		<text>Note in a munitions box</text>
+	</string>
+	<string id="st_lootbox_note_grenade_descr">
+		<text>Andrey,\n \nI filched this box from Spooner's store. With the way he's always smoking on duty, it's inevitable that the munitions warehouse is going to become a fireworks show. Take these lemons to the tunnel in Cordon west of where Kuznetsov's posted: you'll meet some Loners there with a box of artifacts. Bring Lyontsov and Romanenko with you - they can be trusted. Once you're done transacting, leave the artifacts where you found this box.\n \nSgt. Kovalenko\n \n
+		</text>
+	</string>
+
+	<string id="st_lootbox_note_deathlamp">
+		<text>Note in a Monolith Cache</text>
+	</string>
+	<string id="st_lootbox_note_deathlamp_descr">
+		<text>BROTHERS, I HAVE SEEN THE LIGHT AND IT BURNS THE SOUL, IT BURNS AND HURTS AND I CAN HEAR IT AND IT MUST BE SEALED AND WE ARE CURSED THERE IS NO LIGHT THERE IS NO HOPE THERE IS ONLY THE PAIN AND THE HURT AH OH GOD IT HURTS NO PUT IT AWAY GET IT OUT IT HELP I CANT HELP NO PLEASE HELP ME
+		</text>
+	</string>
+	<string id="st_lootbox_note_tourist">
+		<text>Note in a shotgun locker</text>
+	</string>
+	<string id="st_lootbox_note_tourist_descr">
+		<text>
+			8 September 2018
+			\n \nFuck man, I'm dead meat!
+			\nThat idiot Marko just had to open his mouth around that bitch Hip in the village! Bragging about how he had the Bizon shotgun and could shoot the balls off a Boar from 100 meters away! Well she heard us and made us a good offer, but that dumb fuck had to mouth off and say that he would only deal with her if she'd sweeten the deal with a blowie! That night we were camping near the train tunnel entrace, that bitch found us with a squad of some really serious looking motherfuckers! She put her handgun on Marko's junk and shot him, took off his fuckin' eggs! She told me to go bring her that shotgun or else she'd shoot my balls off next! Well Artem decided to run away, and my Marko is now sleeping it off in camp while I'm God knows where making sure this shooter is still here. Fuck this shit, I'm getting out of here! I'm going to leave this shotgun where it is and hope she finds it before she finds me! I hope her damn client has this gun blow up in his face.
+		</text>
+	</string>
+	
+	<string id="st_lootbox_docs_sheet">
+		<text>Loose Document</text>
+	</string>
+	
+	<string id="st_lootbox_docs_sheets">
+		<text>Old Documents</text>
+	</string>
+
+	<string id="st_lootbox_docs_notebook">
+		<text>Research Notebook</text>
+	</string>
+	
+	<string id="st_lootbox_docs_folder">
+		<text>Folder with Documents</text>
+	</string>
+	
+	<string id="st_lootbox_docs_usb">
+		<text>Flash Drive</text>
+	</string>
+
+	<string id="st_lootbox_docs_sheet_descr">
+		<text>A loose document with information, likely part of a larger dossier or laboratory notebook. You can't really tell the difference either way.</text>
+	</string>
+	
+	<string id="st_lootbox_docs_sheets_descr">
+		<text>Several stained and yellowed documents. It's difficult to make out much information, but this might be of interest to some people.</text>
+	</string>
+
+	<string id="st_lootbox_docs_notebook_descr">
+		<text>A field notebook with scientific observations and drawings. Several pages are encoded. The information inside is likely to be of interest to certain parties.</text>
+	</string>
+
+	<string id="st_lootbox_docs_folder_descr">
+		<text>Filing folder with several documents containing scientific information, including experiment logs, observations, and sketches. Most of these documents are encrypted and cannot be read. </text>
+	</string>
+	
+	<string id="st_lootbox_docs_usb_descr">
+		<text>Flash drive found in a briefcase. Common way to store and transport large quantities of information in a compact manner, although a computer is required to access the information.</text>
+	</string>
+
+	<string id="ui_mcm_menu_lootboxes">
+		<text>Lootboxes</text>
+	</string>
+	<string id="ui_mcm_lootboxes_title">
+		<text>Lootboxes</text>
+	</string>
+	<string id="ui_mcm_lootboxes_stashchance">
+		<text>Chance to find lootboxes in stashes</text>
+	</string>
+	<string id="ui_mcm_lootboxes_deathchance">
+		<text>Chance to find loot off dead stalkers (including lockpicks)</text>
+	</string>
+	
+	<string id="ui_mcm_lootboxes_animation">
+		<text>Box open animations</text>
+	</string>
+	<string id="ui_mcm_lootboxes_debug">
+		<text>Debug logging</text>
+	</string>
+	<string id="ui_mcm_lootboxes_override">
+		<text>Replace existing loot in stashes</text>
+	</string>
+
+
+	
+	<string id="st_dot">
+		<text>•</text>
+	</string>
+
+</string_table>

@@ -483,8 +483,10 @@ function open_lootbox(box, method)
         local delay = method == 2 and 2 or 5
         utils_obj.play_sound(sound)
         print_dbg("Start open box with id "..id)
+        RemoveTimeEvent("lootbox","box_open " .. id)
         CreateTimeEvent("lootbox","box_open " .. id, delay, open_lootbox_timer, id)
     else
+        RemoveTimeEvent("lootbox","box_open " .. id)
         CreateTimeEvent("lootbox","box_open " .. id, 0, open_lootbox_timer, id)
     end
 

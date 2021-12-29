@@ -200,7 +200,7 @@
 		<text>Note in a briefcase</text>
 	</string>
 	<string id="st_lootbox_note_bandit_descr">
-		<text>Flea, if you're reading this, don't take the habar to Chief's men like we planned, he tried to fucking kill us! Only Vor and I made it out - he thinks because Borov gave him control of the Cemetary he his the big boss now and can backstab his brothers! Take this loot and go to Sultan, hire some hitters so we can teach that bitch his place. I'll meet you at the bridge. \n \n- Worm\n \n
+		<text>Flea, if you're reading this, don't take the habar to Chief's men like we planned, he tried to fucking kill us! Only Vor and I made it out - he thinks because Borov gave him control of the Cemetary he's the big boss now and can backstab his brothers! Take this loot and go to Sultan, hire some hitters so we can teach that bitch his place. I'll meet you at the bridge. \n \n- Worm\n \n
 		</text>
 	</string>
 
@@ -372,7 +372,7 @@
 	<string id="ui_mcm_lootboxes_override">
 		<text>Replace existing loot in stashes</text>
 	</string>
-
+ 
 
 	
 	<string id="st_dot">

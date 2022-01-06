@@ -319,7 +319,7 @@
 	</string>
 
 	<string id="st_lootbox_docs_notebook">
-		<text>Research Notebook</text>
+		<text>Notebook</text>
 	</string>
 	
 	<string id="st_lootbox_docs_folder">
@@ -330,28 +330,52 @@
 		<text>Flash Drive</text>
 	</string>
 
-	<string id="st_lootbox_docs_sheet_descr">
-		<text>A loose document with information, likely part of a larger dossier or laboratory notebook. You can't really tell the difference either way.</text>
+	
+	<string id="st_lootbox_docs_sheet1_descr">
+		<text>A loose, typed document from military intelligence. The information is encrypted, as is standard procedure for the Military, who transport these documents in the absence of wireless alternatives and decrypt them by hand or with a special device. As such it is not too useful for the layman, though it is rumored that certain organized groups have access to the codes the military uses. The SSU would probably love to get this back, but other groups might get a lot of use out of this.</text>
 	</string>
 	
-	<string id="st_lootbox_docs_sheets_descr">
-		<text>Several stained and yellowed documents. It's difficult to make out much information, but this might be of interest to some people.</text>
+	<string id="st_lootbox_docs_sheet2_descr">
+		<text>An old, loose page from a lab notebook. Might be interesting to some parties, but not too useful without the rest of it. The handwriting is messy and smudged, and being kept in less than adequate conditions has not done any favors for its readability. Potentially interesting to scientific groups.</text>
 	</string>
 
-	<string id="st_lootbox_docs_notebook_descr">
-		<text>A field notebook with scientific observations and drawings. Several pages are encoded. The information inside is likely to be of interest to certain parties.</text>
+	<string id="st_lootbox_docs_sheet3_descr">
+		<text>A loose document in pretty bad shape. Some diagram is on it, which seems like a complex laboratory device. Liquid stains have rendered most of the typed text indecipherable, but it still may be worth a pittance.</text>
 	</string>
+
+	<string id="st_lootbox_docs_sheet4_descr">
+		<text>A loose transport invoice detailing what items in what quantity were shipped to what location. Looks new, but you don't know if that's because it was produced recently or happened to be stored in a nice dry environment. Unfortunately the items are only referred to by a code, although the prices next to these items are quite interesting.</text>
+	</string>
+
+	<string id="st_lootbox_docs_sheet5_descr">
+		<text>Some form of typed communication between two coded parties. No identifying marks of either of the parties are present, aside from two ciphered callsigns. Mercenary groups tend to pass information in this manner via one-time pads and dead drops to ensure absolute secrecy and anonymity for all parties involved.</text>
+	</string>
+
+	<string id="st_lootbox_docs_notebook1_descr">
+		<text>A field notebook with scientific observations and drawings recovered from an Ecologist team. Several pages are encoded. The information inside is likely to be of interest to certain parties. The Ecologists will want this back, but other groups would certainly be interested in this as well.</text>
+	</string>
+
+	<string id="st_lootbox_docs_notebook2_descr">
+		<text>Thick bundle of old papers from some administrative building. Most of the information in here is rather rote, like pay stubs, mundane reports, and printouts. There is definitely some useful information or patterns that may be uncovered here, but it will take a lot of time and patience.</text>
+	</string>
+	<string id="st_lootbox_docs_notebook3_descr">
+		<text>This notebook has some accounting information in it, but the entries are encoded for security reasons. This likely belongs to either the military or other independent groups operating in the area, which makes such a document quite dangerous in the wrong hands.</text>
+	</string>
+	<string id="st_lootbox_docs_notebook4_descr">
+		<text>Old notebook recovered from one of the X-Labs or a site adjacent to it.  Scientific groups will pay dearly for this, as any information inside can shed light on the true nature of the activities going on before the Second Incident.</text>
+	</string>
+
 
 	<string id="st_lootbox_docs_folder_descr">
-		<text>Filing folder with several documents containing scientific information, including experiment logs, observations, and sketches. Most of these documents are encrypted and cannot be read. </text>
+		<text>Thick folder with documents recovered from a laboratory. Contains a treasure trove of information on experiments, observations, results, and comments, as well as administrative documents like technical documentation, invoices, communiques and reports. Extremely valuable information for any party.</text>
 	</string>
-	
+
 	<string id="st_lootbox_docs_usb_descr">
 		<text>Flash drive found in a briefcase. Common way to store and transport large quantities of information in a compact manner, although a computer is required to access the information.</text>
 	</string>
 
 	<string id="ui_mcm_menu_lootboxes">
-		<text>Lootboxes</text>
+		<text>Lootboxes</text>	
 	</string>
 	<string id="ui_mcm_lootboxes_title">
 		<text>Lootboxes</text>

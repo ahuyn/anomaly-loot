@@ -19,6 +19,7 @@ New game not required, as everything is handled dynamically. MCM support present
 Other mod makers can integrate with lootboxes, adding items they have created into lootboxes. Consult custom_loot for usage information.
 
 Changelog
+1.1.8 - Revised documents with new descriptions and scaled sale price depending on faction.
 1.1.7 - Expanded API for custom items, now allowing for custom boxes and loot pools.
 1.1.6 - Reduced amount of loot in boxes (guarantee of one). Added weapon attachments and misc drugs to loot pool. Added API for custom items.
 1.1.5 - Added lockpick sets to a binder, because I can't figure out what's causing the bug otherwise

@@ -1,0 +1,66 @@
+local talking_npc_faction
+
+GetCost = utils_item.get_item_cost
+
+function utils_item.get_item_cost(obj, profile)
+    local cost = GetCost(obj, profile)
+    if profile.mode == 2 then
+        return cost
+    end
+    local sec = obj:section()
+    local factions = SYS_GetParam(0, sec, "factions")
+    if not factions or factions == "" then return cost end
+
+    local tbl = str_explode(factions, ",")
+    t2k_table(tbl)
+    if tbl[talking_npc_faction] then
+        printf("Found item %s has extra value", sec)
+    end
+    return tbl[talking_npc_faction] and cost * 2 or cost
+end
+
+
+function ActorMenu_on_trade_started()
+	local trader_npc = mob_trade.GetTalkingNpc()
+    talking_npc_faction = get_real_community(trader_npc)
+    printf("NPC %s is community %s", trader_npc:section(), talking_npc_faction)
+end
+
+
+function ActorMenu_on_trade_closed()
+    talking_npc_faction = nil    
+end
+
+local furniture = {
+    ["esc_m_trader"] = true,
+    ["red_m_lesnik"] = true
+}
+
+local blacklisted_comms = {
+    ["trader"] = true,
+    ["monster"] = true
+}
+
+function get_real_community(npc)
+
+	if furniture[npc:name()] then
+		return "stalker"
+	end
+	local community = character_community(npc)
+	if not blacklisted_comms[community] then
+		return community
+	end
+	local squad_community = get_object_squad(npc):get_squad_community()
+	if not blacklisted_comms[squad_community] then
+		return squad_community
+	else
+		return "stalker"
+	end
+end
+
+function on_game_start()
+
+    RegisterScriptCallback("ActorMenu_on_trade_started", ActorMenu_on_trade_started)
+    
+    RegisterScriptCallback("ActorMenu_on_trade_closed", ActorMenu_on_trade_closed)
+end

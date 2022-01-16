@@ -4,7 +4,7 @@ visual				                                   = dynamics\equipments\trade\ammo.og
 description			                                   = st_lockpick_descr
 inv_name			                                   = st_lockpick
 inv_name_short			                               = st_lockpick
-icons_texture							 		= ui\ui_icon_lootboxes
+icons_texture							        	   = ui\ui_icon_lootboxes
 inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 8
@@ -18,14 +18,14 @@ auto_attach				                               = false
 snd_on_take								 		       = part
 tier                                                   = 1
 replacement = 0.05
-use1_functor                = arti_lootboxes.try_bundle
-use1_action_functor         = arti_lootboxes.bundle_picks
+use1_functor                                           = pickset_binder.try_bundle
+use1_action_functor                                    = pickset_binder.bundle_picks
 [bundle_lockpick]:tch_part
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_lockpick_bundle_descr
 inv_name			                                   = st_lockpick_bundle
 inv_name_short			                               = st_lockpick_bundle
-icons_texture							 		= ui\ui_icon_lootboxes
+icons_texture							       		   = ui\ui_icon_lootboxes
 inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 9
@@ -39,21 +39,40 @@ auto_attach				                               = false
 snd_on_take								 		       = part
 tier                                                   = 1
 replacement = 0.25
-use1_functor                = arti_lootboxes.try_split
-use1_action_functor         = arti_lootboxes.split_picks
+use1_functor                                           = pickset_binder.try_split
+use1_action_functor                                    = pickset_binder.split_picks
+
+[snapgun]:tch_part
+visual				                                   = dynamics\equipments\trade\ammo.ogf
+description			                                   = st_snapgun_descr
+inv_name			                                   = st_snapgun
+inv_name_short			                               = st_snapgun
+icons_texture							       		   = ui\ui_icon_lootboxes
+cost				                                   = 5523
+inv_weight			                                   = 1.25
+inv_grid_width			                               = 1
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 10
+inv_grid_y			                                   = 2
+open_type                                              = 0
+open_power                                             = 4
+expire_type                                            = none
 
 [skeleton_key]:tch_part
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_skelekey_descr
 inv_name			                                   = st_skelekey
 inv_name_short			                               = st_skelekey
-icons_texture							 		= ui\ui_icon_lootboxes
+icons_texture							       		   = ui\ui_icon_lootboxes
 inv_grid_width			                               = 1
 inv_grid_height			                               = 2
 inv_grid_x			                                   = 10
 inv_grid_y			                                   = 0
 cost				                                   = 11014
 inv_weight			                                   = 0.05
+open_power                                             = 999
+open_type                                              = 1
+expire_type                                            = destroy
 
 
 [lockpick_set]:tch_part
@@ -67,10 +86,13 @@ inv_grid_height			                               = 1
 inv_grid_x			                                   = 6
 inv_grid_y			                                   = 0
 inv_weight			                                   = 0.34
-cost                                                   = 23392 
+cost                                                   = 5392 
 allow_repair                             		       = false
 snd_on_take								 		       = outfit
-use_condition                            		       = true
+open_type                                              = 0
+expire_type                                            = degrade
+use1_functor                                           = pickset_binder.menu_empty
+use1_action_functor                                    = pickset_binder.empty
 script_binding                                         = pickset_binder.bind
 
 
@@ -86,7 +108,7 @@ visual				                                   = dynamics\equipments\blue_box.ogf
 description			                                   = st_wpn_spareparts_descr
 inv_name			                                   = st_wpn_spareparts
 inv_name_short		                                   = st_wpn_spareparts
-icons_texture							 		= ui\ui_icon_lootboxes
+icons_texture							 		       = ui\ui_icon_lootboxes
 inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 0
@@ -105,7 +127,7 @@ unique_contents                                        = underwear,10
 weapon_condition                                       = 40
 snd_open                                               = Plastic_Small_Pick
 snd_open_key                                           = Plastic_Small_Key
-snd_open_axe = Wood_Axe
+snd_open_axe                                           = Wood_Axe
 use1_functor                = arti_lootboxes.try_pick
 use1_action_functor         = arti_lootboxes.pick_box
 
@@ -204,8 +226,7 @@ inv_name			                     = st_lootbox_docs_folder
 inv_name_short			                 = st_lootbox_docs_folder
 inv_grid_x			                     = 2
 inv_grid_y			                     = 15
-cost                                     = 12500
-factions                                 = stalker, bandit, renegade, csky, dolg, freedom, killer, army, monolith, isg, ecolog, greh
+cost                                     = 6500
 
 [lootbox_docs_sheet_1]:lootbox_lore ; white, little dirty
 description			                     = st_lootbox_docs_sheet1_descr
@@ -213,7 +234,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 0
 inv_grid_y			                     = 15
-cost                                     = 1500
+cost                                     = 750
 factions                                 = killer,army,freedom,monolith
 [lootbox_docs_sheet_2]:lootbox_lore ; yellow, readable
 description			                     = st_lootbox_docs_sheet2_descr
@@ -221,7 +242,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 4
 inv_grid_y			                     = 15
-cost                                     = 1200
+cost                                     = 600
 factions                                 = ecolog,csky,greh
 [lootbox_docs_sheet_3]:lootbox_lore ; yellowed, diagrams, smeared
 description			                     = st_lootbox_docs_sheet3_descr
@@ -229,14 +250,14 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 6
 inv_grid_y			                     = 15
-cost                                     = 1000
+cost                                     = 400
 [lootbox_docs_sheet_4]:lootbox_lore ; white
 description			                     = st_lootbox_docs_sheet4_descr
 inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 16
 inv_grid_y			                     = 15
-cost                                     = 2000
+cost                                     = 650
 factions                                 = stalker,dolg,freedom,csky,isg,monolith
 [lootbox_docs_sheet_5]:lootbox_lore ; white
 description			                     = st_lootbox_docs_sheet5_descr
@@ -244,7 +265,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 18
 inv_grid_y			                     = 15
-cost                                     = 2500
+cost                                     = 900
 factions                                 = dolg,killer,army,freedom,isg,monolith
 [lootbox_docs_notebook_1]:lootbox_lore ; notebook, blue, clean, thin
 description			                     = st_lootbox_docs_notebook1_descr
@@ -252,7 +273,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 8
 inv_grid_y			                     = 15
-cost                                     = 9000
+cost                                     = 3000
 factions                                 = ecolog,csky,stalker,bandit,isg,greh,dolg
 [lootbox_docs_notebook_2]:lootbox_lore ; yellow, thick, dirty bundle
 description			                     = st_lootbox_docs_notebook2_descr
@@ -260,7 +281,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 10
 inv_grid_y			                     = 15
-cost                                     = 7500
+cost                                     = 2000
 factions                                 = stalker,bandit
 [lootbox_docs_notebook_3]:lootbox_lore ; white cover, clean-ish
 description			                     = st_lootbox_docs_notebook3_descr
@@ -268,7 +289,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 12
 inv_grid_y			                     = 15
-cost                                     = 10000
+cost                                     = 2500
 factions                                 = army,killer,isg
 [lootbox_docs_notebook_4]:lootbox_lore ; yellow, no cover
 description			                     = st_lootbox_docs_notebook4_descr
@@ -276,7 +297,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 14
 inv_grid_y			                     = 15
-cost                                     = 12875
+cost                                     = 4500
 factions                                 = ecolog,greh
 
 [lootbox_docs_usb_1]:lootbox_lore
@@ -287,7 +308,7 @@ inv_grid_width		                     = 1
 inv_grid_height		                     = 1
 inv_grid_x                                             = 8
 inv_grid_y                                             = 3
-cost                                     = 18625
+cost                                     = 6491
 [lootbox_docs_usb_2]:lootbox_lore
 description			                     = st_lootbox_docs_usb_descr
 inv_name			                     = st_lootbox_docs_usb
@@ -296,5 +317,5 @@ inv_grid_width		                     = 1
 inv_grid_height		                     = 1
 inv_grid_x                                             = 9
 inv_grid_y                                             = 3
-cost                                     = 20000
+cost                                     = 7251
 

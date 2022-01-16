@@ -1,8 +1,10 @@
 -- If you don't use MCM, change your defaults from here.
 local defaults = {
+    ["lootchance"] = 40,
     ["stashchance"] = 40,
     ["deathchance"] = 20,
     ["override"] = false,
+    ["randomize"] = true,
     ["animation"] = true,
     ["debug"] = false
 }
@@ -14,6 +16,8 @@ end
 function on_mcm_load()
     op = { id= "lootboxes",sh=true ,gr={
             { id= "title",type= "slide",link= "ui_options_slider_player",text="ui_mcm_lootboxes_title",size= {512,50},spacing= 20 },
+            {id = "lootchance", type = "track", val = 2, min=5,max=100,step=5, def = 60},
+            {id = "randomize", type = "check", val = 1, def=true},
             {id = "stashchance", type = "track", val = 2, min=5,max=80,step=5, def = 40},
             {id = "deathchance", type = "track", val = 2, min=5,max=60,step=5, def = 20},
             {id = "animation", type = "check", val = 1, def=true},

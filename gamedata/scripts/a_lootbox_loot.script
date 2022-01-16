@@ -13,13 +13,29 @@ function utils_item.get_item_cost(obj, profile)
 
     local tbl = str_explode(factions, ",")
     t2k_table(tbl)
+    
+    cost = SYS_GetParam(2, sec, "cost")
     if tbl[talking_npc_faction] then
         printf("Found item %s has extra value", sec)
+        cost = cost * 2
     end
-    return tbl[talking_npc_faction] and cost * 2 or cost
+    return cost
 end
 
+GetStatus = utils_item.get_item_trade_status
+function utils_item.get_item_trade_status(obj, profile)
+    local status = GetStatus(obj, profile)
+    local sec = obj:section()
+    local factions = SYS_GetParam(0, sec, "factions")
+    if profile_mode == 2 and factions then
+        return 3
+    else
+        return status
+    end
 
+end
+
+-- purge all docs in npc inv, on sale they should vanish
 function ActorMenu_on_trade_started()
 	local trader_npc = mob_trade.GetTalkingNpc()
     talking_npc_faction = get_real_community(trader_npc)
@@ -28,6 +44,12 @@ end
 
 
 function ActorMenu_on_trade_closed()
+	local trader_npc = mob_trade.GetTalkingNpc()
+    trader_npc:iterate_inventory(function(temp, item)
+        if SYS_GetParam(0, item:section(), "factions") then
+            alife_release(item)
+        end
+    end)
     talking_npc_faction = nil    
 end
 

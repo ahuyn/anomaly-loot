@@ -344,13 +344,19 @@ function populate_lootbox(box_id, box_section)
                 loot_str = loot_str .. build_string(table[random], table[random+1], 100)
             end
         end
+
+        -- why not add a pda?
+        if math.random(3) == 3 then
+            loot_str = loot_str .. build_string("pda", 1)
+        end
+
         lootbox_contents[box_id] = loot_str
         print_dbg("Lootbox final contents for %s: %s", box_id, loot_str)
     end
 end
 
 function build_string(sec, amount, chance)
-    if math.random(100) > chance then return end
+    -- if math.random(100) > chance then return end
     amount = tonumber(amount)
     local loot_str = ""
     if sec == "money" then
@@ -359,21 +365,21 @@ function build_string(sec, amount, chance)
         print_dbg("Adding cash money in the amount of %s", amt)
     else
         local quantity = amount or 1
-        if get_config("randomize") then quantity = math.random(quantity) end
+        -- if get_config("randomize") then quantity = math.random(quantity) end
         print_dbg("Quantity of items to roll is %s", quantity)
         for j=1,quantity do
             local id, value = random_item_entry(sec)
             print_dbg("Adding %s amount of %s to lootbox",value, id)
             if sec_is_gun(id) then
                 local condition = SYS_GetParam(2, box_section, "weapon_condition")
-                loot_str = append_weapon(id, condition, rand(2) == 1)
+                loot_str = loot_str .. append_weapon(id, condition, rand(2) == 1)
                 quantity = 1
             else
                 local max_uses = SYS_GetParam(0, id, "max_uses")
                 if max_uses then
                     id = id .. "__" .. math.random(max_uses)
                 end
-                loot_str = id .. ","..rand(tonumber(value)) .. ","
+                loot_str = loot_str .. id .. ","..rand(tonumber(value)) .. ","
             end
         end
     end
@@ -679,7 +685,7 @@ function ui_item.build_desc_footer(obj, sec, str)
     
     local difficulty = SYS_GetParam(2, sec, "difficulty")--math.ceil(obj:condition() * 100)
     if difficulty ~= nil then
-        difficult = 5 * difficulty
+        difficulty = 5 * difficulty
         local clr = utils_xml.get_color_con(100 - tonumber(difficulty))
         _str = clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. tostring(difficulty) .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   
         return str .. _str

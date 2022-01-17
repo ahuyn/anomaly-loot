@@ -17,7 +17,7 @@ attach_bone_name		                               = bip01_r_hand
 auto_attach				                               = false
 snd_on_take								 		       = part
 tier                                                   = 1
-replacement = 0.05
+replacement = 1
 use1_functor                                           = pickset_binder.try_bundle
 use1_action_functor                                    = pickset_binder.bundle_picks
 [bundle_lockpick]:tch_part
@@ -38,7 +38,7 @@ attach_bone_name		                               = bip01_r_hand
 auto_attach				                               = false
 snd_on_take								 		       = part
 tier                                                   = 1
-replacement = 0.25
+replacement = 5
 use1_functor                                           = pickset_binder.try_split
 use1_action_functor                                    = pickset_binder.split_picks
 
@@ -128,8 +128,9 @@ weapon_condition                                       = 40
 snd_open                                               = Plastic_Small_Pick
 snd_open_key                                           = Plastic_Small_Key
 snd_open_axe                                           = Wood_Axe
-use1_functor                = arti_lootboxes.try_pick
-use1_action_functor         = arti_lootboxes.pick_box
+; use1_functor                = pickset_binder.try_pick
+; use1_action_functor         = pickset_binder.pick_box
+weapon_conditon = 20
 
 
 
@@ -226,7 +227,7 @@ inv_name			                     = st_lootbox_docs_folder
 inv_name_short			                 = st_lootbox_docs_folder
 inv_grid_x			                     = 2
 inv_grid_y			                     = 15
-cost                                     = 6500
+cost                                     = 19500
 factions                                 = none
 [lootbox_docs_sheet_1]:lootbox_lore ; white, little dirty
 description			                     = st_lootbox_docs_sheet1_descr
@@ -234,7 +235,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 0
 inv_grid_y			                     = 15
-cost                                     = 750
+cost                                     = 2254
 factions                                 = killer,army,freedom,monolith
 [lootbox_docs_sheet_2]:lootbox_lore ; yellow, readable
 description			                     = st_lootbox_docs_sheet2_descr
@@ -242,7 +243,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 4
 inv_grid_y			                     = 15
-cost                                     = 600
+cost                                     = 1890
 factions                                 = ecolog,csky,greh
 [lootbox_docs_sheet_3]:lootbox_lore ; yellowed, diagrams, smeared
 description			                     = st_lootbox_docs_sheet3_descr
@@ -250,7 +251,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 6
 inv_grid_y			                     = 15
-cost                                     = 400
+cost                                     = 1241
 factions                                 = none
 [lootbox_docs_sheet_4]:lootbox_lore ; white
 description			                     = st_lootbox_docs_sheet4_descr
@@ -258,7 +259,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 16
 inv_grid_y			                     = 15
-cost                                     = 650
+cost                                     = 1986
 factions                                 = stalker,dolg,freedom,csky,isg,monolith
 [lootbox_docs_sheet_5]:lootbox_lore ; white
 description			                     = st_lootbox_docs_sheet5_descr
@@ -266,7 +267,7 @@ inv_name			                     = st_lootbox_docs_sheet
 inv_name_short			                 = st_lootbox_docs_sheet
 inv_grid_x			                     = 18
 inv_grid_y			                     = 15
-cost                                     = 900
+cost                                     = 2812
 factions                                 = dolg,killer,army,freedom,isg,monolith
 [lootbox_docs_notebook_1]:lootbox_lore ; notebook, blue, clean, thin
 description			                     = st_lootbox_docs_notebook1_descr
@@ -274,7 +275,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 8
 inv_grid_y			                     = 15
-cost                                     = 3000
+cost                                     = 9091
 factions                                 = ecolog,csky,stalker,bandit,isg,greh,dolg
 [lootbox_docs_notebook_2]:lootbox_lore ; yellow, thick, dirty bundle
 description			                     = st_lootbox_docs_notebook2_descr
@@ -282,7 +283,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 10
 inv_grid_y			                     = 15
-cost                                     = 2000
+cost                                     = 6666
 factions                                 = stalker,bandit
 [lootbox_docs_notebook_3]:lootbox_lore ; white cover, clean-ish
 description			                     = st_lootbox_docs_notebook3_descr
@@ -290,7 +291,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 12
 inv_grid_y			                     = 15
-cost                                     = 2500
+cost                                     = 7562
 factions                                 = army,killer,isg
 [lootbox_docs_notebook_4]:lootbox_lore ; yellow, no cover
 description			                     = st_lootbox_docs_notebook4_descr
@@ -298,7 +299,7 @@ inv_name			                     = st_lootbox_docs_notebook
 inv_name_short			                 = st_lootbox_docs_notebook
 inv_grid_x			                     = 14
 inv_grid_y			                     = 15
-cost                                     = 4500
+cost                                     = 13531
 factions                                 = ecolog,greh
 
 [lootbox_docs_usb_1]:lootbox_lore
@@ -309,7 +310,7 @@ inv_grid_width		                     = 1
 inv_grid_height		                     = 1
 inv_grid_x                                             = 8
 inv_grid_y                                             = 3
-cost                                     = 6491
+cost                                     = 19473
 factions                                 = none
 [lootbox_docs_usb_2]:lootbox_lore
 description			                     = st_lootbox_docs_usb_descr
@@ -319,6 +320,6 @@ inv_grid_width		                     = 1
 inv_grid_height		                     = 1
 inv_grid_x                                             = 9
 inv_grid_y                                             = 3
-cost                                     = 7251
+cost                                     = 22512
 factions                                 = none
 

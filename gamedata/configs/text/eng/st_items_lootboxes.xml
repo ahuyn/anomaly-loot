@@ -111,6 +111,11 @@
     <string id="st_pick_split">
         <text>separate picks </text>
     </string>
+	
+    <string id="st_empty_pickset">
+        <text>remove picks</text>
+    </string>
+
     <string id="st_try_pick">
         <text>pick lock</text>
     </string>
@@ -186,6 +191,7 @@
 	</string>
 	<string id="st_snapgun_descr">
 		<text>A specialized device used to quickly open locks. The snap gun operates by striking all the pins at once in a simple tumbler lock, quickly aligning them with the shear line and allowing the tumbler to rotate. The benefit of such a device is that it can defeat most simple locks with little effort and has a long operational lifetime, but is quite heavy and hopeless with any slightly more complicated lock.\n \n
+			%c[d_cyan] • %c[ui_gray_2] effective strength: 20%\n
 		</text>
 	</string>
 

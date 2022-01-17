@@ -132,7 +132,7 @@ end
 
 function try_pick(obj)
     local found_set = false
-    local function search(temp, item)
+    function search(temp, item)
         local item_section = item:section()
         if item_section == "lockpick_set" then
             found_set = true
@@ -145,19 +145,23 @@ function try_pick(obj)
 end
 
 function pick_box(obj)
-    local found_set = nil
+    local found_id = 0
     local found_amt = 0
-    local function search(temp, item)
+    function search(temp, item)
+        print_dbg("checking %s", item:section())
         local item_id = item:id()
         if pickset_cond[item_id] then
             if pickset_cond[item_id] > found_amt then
+                print_dbg("Updating found amount")
                 found_amt = pickset_cond[item_id]
-                found_set = item
+                found_id = item_id
             end
         end
     end
     db.actor:iterate_inventory(search, nil)
-    on_item_drag_dropped(found_set, obj)
+    print_dbg("Best id so far is %s", found_id)
+    on_item_drag_dropped(get_object_by_id(found_id), obj)
+
 end
 
 -- to display condition on lockpick set
@@ -182,8 +186,8 @@ function on_item_drag_dropped(from, to)
     local from_sec = from:section()
     local to_sec = to:section()
     local replace_amt = SYS_GetParam(2,from_sec,"replacement")
-    if replace_amt and SYS_GetParam(0, to_sec, "script_binding") == "pickset_binder.bind" then
-        modify(from_id, replace_amt)
+    if replace_amt and SYS_GetParam(0, to_sec, "script_binding") == "pickset_binder.bind" and pickset_cond[to:id()] < 20 then
+        modify(to:id(), replace_amt)
         alife_release(from)
         send_tip(db.actor, gc("st_restore_pick"), nil, "swiss_knife", 6000)
     end

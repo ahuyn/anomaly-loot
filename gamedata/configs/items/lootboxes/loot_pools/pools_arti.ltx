@@ -1,52 +1,87 @@
 ; loot templates for grab-bag boxes
 ; format is comma separated pairs of pools and the max number of items to roll for it for key, value is incidence (e.g. how many times it shows up)
 
+; grab boxes should usually contain: 
+; junk, repair scrap, parts
+; food, meds, drugs, ammo, repair
+; devices, guns, gear, artifacts, docs, cash
+
 [lootbox_bad] ; 2000 to unlock
 junk,5
-junk,3,canfood,1,ammo_bad,1
-junk,2,repairstuff,2,ammo,1
-junk,2,repairstuff,2,drugs_low,1
-food,1,basic_supplies,2,drugs_low,1
-junk,2,drugs_low,2,basic_supplies,1,food,1
-junk,5,basic_supplies,1
-junk,3,ammo,2,basic_supplies,1
-gear_low,1,meds_low,1,drugs_low,1
-basic_supplies,1,devices_low,1
-handguns,1,ammo_bad,2,basic_supplies,1
-money,1000,junk,3
-devices_low,1,repairstuff,3
-handguns,1,junk,2,ammo_bad,3
-artifacts_low,1
+junk,3,drugs_low,2
+junk,3,meds_low,1,drugs_low,1
+junk,3,canfood,1,drinks,1,ammo_bad,1
+junk,5,repair_low,2,ammo,1
+scrap,2,repair_low,2,parts,2,drugs_low,1
+food,1,meds_low,2,drugs_low,1,knives,1
+junk,2,drugs_low,2,meds_low,1,food,1
+junk,3,ammo,2,meds_low,1,gear_low,1
+meds_low,1,drugs_low,1,repair_med,1,gear_low,1
+junk,5,devices_low,1
+money,1000,junk,3,repair_low,1
+money,1000,meds_low,1,drugs_low,1
+money,1000,junk,2,food,1
+money,1000,junk,1,repair,1
+money,1000,junk,3,drugs_low,1
+devices_low,1,repair_low,3,repairstuff,2
+handguns,1,junk,2,ammo_bad,3,knives,1
+handguns,1,ammo_bad,2,meds_low,1
+artifacts_low,1,docs_low,1
 
 [lootbox_good] ;4000 to unlock
-junk,4
-junk,4,gear_low,1,drugs,1,repairstuff,1
-repairstuff,4,ammo,2,ammo_grenades,2
-repairstuff,10
-money,2000,docs,2
-meds,5,drugs,5
-handguns,1,repair,1,ammo,1
-devices_med,1,food,2
+junk,5,scrap,2
+junk,3,drugs_med,2
+junk,3,meds,1,drugs,1,food,1
+junk,3,canfood,2,drinks,1,ammo,2
+junk,5,repair_low,1,repair,1,ammo,1,knives,1
+scrap,2,repair_low,2,repair_med,1,parts,2,drugs,1
+food,2,meds_low,1,meds_med,1,drugs,1
+junk,2,drugs_low,2,meds_low,1,food,1
+junk,3,ammo,2,meds_low,1,gear_low,1
+meds_low,1,drugs_low,1,repair_med,1,gear_low,1
+junk,5,devices_low,1,repair_med,1,knives,1
+junk,5,devices_med,1,scrap,2
+junk,3,money,2000,repair_low,1
+money,1500,meds_low,1,drugs_low,1
+junk,2,money,1700,food,4,knives,1
+junk,1,money,1900,repair,3,knives,1
+junk,3,money,2100,drugs,2,meds_low,2
+repair_low,3,repairstuff,2,devices_low,1
+ammo,2,ammo_grenades,1,handguns_case,1
+handguns,1,ammo_bad,2,meds_low,1
+artifacts_low,1,docs,1
+artifacts_low,1,docs_low,2
 artifacts,1
 
+[lootbox_cache]; 6k to unlock
+scrap,4,repair_low,2,repair,2,food,4,ammo_grenades,2
+meds_low,2,meds,4,drugs_med,2,drugs,3,ammo,2,ammo_grenades,2
+ammo,10,ammo_grenades,3,survfood,2,drinks,3,gear_med,1
+ammo,4,ammo_grenades,3,food,2,drinks,3,meds,2,drugs_med,2
+survfood,2,drinks,3,meds,6,drugs_med,2
+food,6,drinks,6,meds,4,drugs_med,2
+scrap,2,repair,2,smokes,2,devices_med,1
+
+
 [lootbox_secure] ; 10000
+docs_low,10,devices_med,1,gear_med,1
 ammo_rare,5,ammo_grenades,3,docs,1,handguns_case,1
-drugs,2,repair,3,ammo,3,gear,1,money,6000
-devices_med,1,repairstuff,4,docs,2
-ammo_rare,5,ammo_grenades,2,meds_med,2,meds_high,1,money,5000
+docs_high,1,devices_med,1,gear_med,1
+money,6000,drugs,2,ammo,3,gear,1
+money,5000,devices_med,1,repair_high,1,docs,2
+money,5000,ammo_rare,5,ammo_grenades,2,meds_med,2,meds_high,1
+money,2000,meds_med,4,meds_high,2,gear,2,drugs_high,2,knives,1
 drugs_high,1,meds_high,4,drugs,4,ammo,5
-repair,2,meds_med,4,meds_high,2,knives,1
+money,12000,junk,5
+money,3000,docs,3,ammo_greandes,1
+ammo_grenades,4,gear,2,gear_high,1
+scrap,2,repair,2,devices,2
 devices_high,1,gear,2
 gear_high,2,drugs,4,meds,3,docs,2
 artifacts_high,1
 artifacts,2
+artifacts_med,1
 
-[lootbox_cache]; 6k to unlock
-food,5,meds,3,ammo,4,repairstuff,2,drugs,3
-food,2,meds,6,ammo,4,repairstuff,2
-food,1,meds,1,ammo,10,repairstuff,1,drugs,2
-survfood,2,drinks,3,meds_med,4,repairstuff,3
-devices_med,1
 
 [lootbox_briefcase] ; 8000
 money,2000,docs,3
@@ -65,30 +100,30 @@ docs,2,devices_low,1
 docs,3
 devices_med,1
 docs_high,1
-docs_high,1,docs_low,2
+docs_high,1,docs_low,1
 devices_high,1
 
-
 [lootbox_monoloot]
-artifacts_high,4
+money,30000
+money,10000,artifacts_high,2
+drugs_high,2,ammo_rare,5,artifacts_low,1,artifacts_med,1
 gear_high,3,rifles_monolith,1,ammo_rare,4
-gear_high,1,devices_high,1
-artifacts_high,2,money,10000
-money,200000
 rifles_monolith,1,artifacts_high,1,ammo_rare,4
+rifles_monolith,1,ammo_rare,5,meds_high,3,ammo_grenades,3
+artifacts_high,4
+gear_high,1,devices_high,1
 gear_high,3,rifles_monolith,1,ammo_rare,4
-ammo_rare,5,meds_high,3,rifles_monolith,1,ammo_grenades,3
 
 [lootbox_box_artifacts]
-artifacts_low,1 = 3
-artifacts_med,1 = 2
+artifacts_low,1 = 5
+artifacts_med,1 = 3
+artifacts_low,2 = 2
 artifacts,1 = 2
+artifacts,2 = 2
 artifacts_high,1
 
 ; sink
 [lootbox_default]
 junk,1; test purposes
 [lootbox_test]
-test_stuff,5
-[lootbox_test_stuff]
-bolt
+handguns,1,gear_low,5

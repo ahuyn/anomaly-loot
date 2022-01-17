@@ -20,6 +20,7 @@ tarpaulin
 synthrope
 radio,2
 radio2
+cutlery
 
 [lootbox_scrap]
 prt_o_fabrics_1,2
@@ -168,6 +169,8 @@ ammo_5.56x45_fmj_bad
 ammo_5.56x45_ss190_bad
 ammo_7.62x39_fmj_bad
 ammo_7.62x54_7h1_bad
+ammo_vog-25_bad
+ammo_m209_bad
 
 [lootbox_meds_low]
 bandage,2
@@ -227,24 +230,39 @@ lootbox_docs_notebook_1
 lootbox_docs_notebook_3
 lootbox_docs_notebook_4
 
-[lootbox_repair]
-solvent
+[lootbox_repair_low]
 gun_oil
 gun_oil_ru
 gun_oil_ru_d
 sharpening_stones
-cleaning_kit_p
-cleaning_kit_s
-cleaning_kit_r5
-cleaning_kit_r7
-cleaning_kit_u
 glue_b
 glue_a
-glue_e
 armor_repair_fa
-sewing_kit_a
 sewing_kit_b
+swiss_knife
+grooming
+
+[lootbox_repair_med]
+glue_e
+sewing_kit_a
+solvent
+cleaning_kit_p
+cleaning_kit_s
+helmet_repair_kit
+light_repair_kit
+toolkit_p
+leatherman
+
+[lootbox_repair_high]
 sewing_kit_h
+cleaning_kit_u
+cleaning_kit_r5
+cleaning_kit_r7
+toolkit_s
+toolkit_r5
+toolkit_r7
+medium_repair_kit
+heavy_repair_kit
 
 [lootbox_ammo_good]
 ammo_7.62x25_p
@@ -264,16 +282,15 @@ ammo_5.56x45_fmj
 ammo_5.56x45_ss190
 ammo_7.62x39_fmj
 ammo_7.62x54_7h1
+ammo_vog-25
+ammo_m209
+
 grenade_rgd5
 grenade_f1
 
 [lootbox_ammo_grenades]
 grenade_f1
 grenade_rgd5
-ammo_vog-25
-ammo_vog-25_bad
-ammo_m209
-ammo_m209_bad
 
 [lootbox_meds_med]
 bandage = 4
@@ -303,7 +320,7 @@ adrenalin
 cocaine
 adrenalin
 drug_anabiotic
-[lootbox_devices_pda] ;only one should spawn per box
+[lootbox_pda] ;only one should spawn per box
 itm_pda_common = 3
 itm_pda_uncommon = 2
 itm_pda_rare
@@ -481,8 +498,8 @@ composition = docs_low,docs_med,docs_high
 [lootbox_junk]
 composition = trash,parts,scrap
 
-[lootbox_repairstuff]
-composition = parts,scrap,repair
+[lootbox_repair]
+composition = repair_low,repair_med,repair_high
 
 [lootbox_ammo]
 composition = ammo_bad,ammo_good,ammo_rare
@@ -506,8 +523,7 @@ composition = devices_low,devices_med,devices_high
 composition = artifacts_low,artifacts_med,artifacts_high
 
 ; other combined pools
-[lootbox_basic_supplies]:lootbox_food,meds_low,drinks
-[lootbox_ammo_all]:lootbox_ammo_bad,ammo_good,ammo_rare,ammo_grenades
+[lootbox_ammo_all]:lootbox_ammo_bad,lootbox_ammo_good,lootbox_ammo_rare,lootbox_ammo_grenades
 
 
 ; weapons have a separate classification, for a weapon containing crate it spawns 1 weapon + ammo and attachments
@@ -669,3 +685,7 @@ wpn_p90
 wpn_mp7
 wpn_9a91
 wpn_groza
+
+; debug stuff
+[lootbox_test_stuff]
+bolt

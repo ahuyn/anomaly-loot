@@ -4,6 +4,7 @@ GetCost = utils_item.get_item_cost
 
 function utils_item.get_item_cost(obj, profile)
     local cost = GetCost(obj, profile)
+	local discount = profile.discount
     if profile.mode == 2 then
         return cost
     end
@@ -16,10 +17,9 @@ function utils_item.get_item_cost(obj, profile)
     
     cost = SYS_GetParam(2, sec, "cost")
     if tbl[talking_npc_faction] then
-        printf("Found item %s has extra value", sec)
         cost = cost * 2
     end
-    return cost
+    return cost * discount
 end
 
 GetStatus = utils_item.get_item_trade_status
@@ -39,7 +39,6 @@ end
 function ActorMenu_on_trade_started()
 	local trader_npc = mob_trade.GetTalkingNpc()
     talking_npc_faction = get_real_community(trader_npc)
-    printf("NPC %s is community %s", trader_npc:section(), talking_npc_faction)
 end
 
 

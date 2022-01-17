@@ -1,0 +1,28 @@
+Base pools revised to the following:
+trash = Junk items with little use
+scrap = Items with repair and crafting use - batteries, fabrics, electronics
+outfitparts/weaponparts/parts - Weapon and outfit components. Parts is combined
+repair - Repair items (no repair kits)
+drinks = Thirst quenching stuff
+docs_low/med/high = money docs
+meds_low/med/high = core medical items (medkits, bandages, antirad). Better pools have stronger stuff
+drugs_low/med/high = Misc med items that do not directly restore health or stop bleeding quickly
+drinks/canfood/survfood = eatable stuff
+devices_low/med/high = electronic equipment
+gear_low/med/high = suppressors, attachments, scopes
+
+Composition pools:
+These consist of 3 pools that are picked from in a 60/30/10% split.
+
+Box tiers
+1 - Junk = 2k
+2 - Lockbox = 4k
+6 - Survival Cache - 6k (30%). Moved down a couple tiers
+5 - Briefcase - 8k (40%). Moved up, contents adjusted accordingly
+3 - Secure - 10k (50%). Moved down but contents better
+4 - Artifacts - 12k (60%). Moved up
+9 - Monolith Box - 100 Need more god shit
+
+7 Shotgun case - 10k (50%)
+71 Surplus case - 15k (70%)
+8 Pelican case - 18k (90%)

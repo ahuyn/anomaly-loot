@@ -24,7 +24,7 @@
 	</string>
 	<string id="st_lootbox_small_good_descr">
 		<text>
-            Fancy-looking yellow hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to tampering and the elements. Such boxes of this nature originate from outside the Zone and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
+            Fancy-looking yellow hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to mechanical tampering and the elements. Such boxes of this nature originate from outside Eastern Europe and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
 		</text>
 	</string>
 
@@ -33,7 +33,7 @@
 	</string>
 	<string id="st_lootbox_small_artifact_descr">
 		<text>
-            Professionaly made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and quite difficult to bypass.\n \n
+            Professionaly made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and very difficult to bypass.\n \n
 		</text>
 	</string>
 
@@ -42,7 +42,7 @@
 	</string>
 	<string id="st_lootbox_small_briefcase_descr">
 		<text>
-            Locked fireproof briefcase. Quite light and portable. Briefcases like these are commonly used by scientists and military members to transport sensitive documents, or criminal organizations to transport large amounts of paper money. As befitting a transport container of such sensitive items, the lock on this case is reasonably secure.\n \n
+            Locked fireproof briefcase. Quite light and portable. Briefcases like these are commonly used by scientists and military members to transport sensitive documents, or criminal organizations to transport large amounts of paper money. As befitting a transport container of such sensitive items, the lock on this case is very secure.\n \n
 		</text>
 	</string>
     
@@ -51,7 +51,7 @@
 	</string>
 	<string id="st_lootbox_survival_descr">
 		<text>
-			Locked weatherproof box containing a variety of useful field supplies. These specialized dead-drop style caches are used primarily by paramilitaries and covert task forces to resupply their agents in the field while maintaining a low operational profile. However, there are no identifying marks in either the outside of the box or the inside, so it is usually hard to distinguish if cases like these belong to spies or simply well-heeled stalkers. Due to the inherent danger of burying things in the irradiated soil of the Zone, these caches are well-hidden with a strong enough lock to discourage thieves. \n \n
+			Locked weatherproof box containing a variety of useful field supplies. These specialized dead-drop style caches are used primarily by paramilitaries and covert task forces to resupply their agents in the field while maintaining a low operational profile. However, there are no identifying marks in either the outside of the box or the inside, so it is usually hard to distinguish if cases like these belong to spies or simply well-heeled stalkers. Due to the inherent danger of burying things in the irradiated soil of the Zone, these caches are well-hidden with a decent enough lock to discourage thieves. Cases such as these do not contain much particularly valuable, though food, meds and ammo are always welcome. \n \n
 		</text>
 	</string>
 
@@ -97,6 +97,10 @@
         <text>Your picks are insufficient to open this box.</text>
     </string>
 
+    <string id="st_pick_condition">
+        <text>Pickset condition:</text>
+    </string>
+
     <string id="st_restore_pick">
         <text>Successfully replaced lockpicks.</text>
     </string>
@@ -107,6 +111,11 @@
     <string id="st_pick_split">
         <text>separate picks </text>
     </string>
+	
+    <string id="st_empty_pickset">
+        <text>remove picks</text>
+    </string>
+
     <string id="st_try_pick">
         <text>pick lock</text>
     </string>
@@ -155,11 +164,34 @@
 	<string id="st_skelekey_descr">
 		<text>A strange key that looks like it was exposed to an anomalous field. The blade is bent unnaturally, while the teeth glow ominously and look to be constantly changing shape and size.\n \n</text>
 	</string>
+	<string id="st_lockpick_set_starter">
+		<text>Basic set of lockpicks</text>
+	</string>
+	<string id="st_lockpick_set_starter_descr">
+		<text>A compact case containing a few torsion wrenches and room for ten lockpicks. Lockpicks are normally used by honest people to get back in their houses after accidentally locking themselves out, or by dishonest folk to break into homes and containers. In the Zone, lockpicks like these are used by the latter party to break into containers that do not belong to them. The lockpicks like these should be able to get through any lock, but are susceptible to wear and breakage. Frequent replacement of the lockpicks will be necessary if you plan to use this often.\n \n
+		</text>
+	</string>
 	<string id="st_lockpick_set">
-		<text>Set of lockpicks</text>
+		<text>Standard set of lockpicks</text>
 	</string>
 	<string id="st_lockpick_set_descr">
-		<text>A small case containing several lockpicks and torsion wrenches. Lockpicks are normally used by honest folk to get back in their houses after accidentally locking themselves out, or by dishonest folk to break into homes and containers. In the Zone, lockpicks like these are used by the latter party to break into containers that do not belong to them. The lockpicks like these should be able to get through any lock, but are susceptible to wear and breakage. Frequent replacement of the lockpicks will be necessary if you plan to use this often.\n \n
+		<text>A professionally-assembled lockpick set with capacity for twenty lockpicks and supplementary high-precision tools for defeating complex locks. Sets such as these are commonly carried in most technician workshops, and can open most locks with a reasonable amount of effort. However, be mindful that lockpicks wear out very easily and require frequent replacement.\n \n
+		</text>
+	</string>
+	<string id="st_lockpick_set_advanced">
+		<text>Advanced set of lockpicks</text>
+	</string>
+	<string id="st_lockpick_set_advanced_descr">
+		<text>Set of lockpicks coupled with a small x-ray imaging device that maps out the internal mechanism of the lock and displays it on a small LCD screen. Such a device presents a mostly accurate representation of the inner workings of a lock, including positions and depth of the lock pins. While the reading accuracy is not perfect, the additional information provided reduces the effort to open locks and thus increases longevity of your picks.
+		</text>
+	</string>
+
+	<string id="st_snapgun">
+		<text>Snap Gun</text>
+	</string>
+	<string id="st_snapgun_descr">
+		<text>A specialized device used to quickly open locks. The snap gun operates by striking all the pins at once in a simple tumbler lock, quickly aligning them with the shear line and allowing the tumbler to rotate. The benefit of such a device is that it can defeat most simple locks with little effort and has a long operational lifetime, but is quite heavy and hopeless with any slightly more complicated lock.\n \n
+			%c[d_cyan] • %c[ui_gray_2] effective strength: 20%\n
 		</text>
 	</string>
 
@@ -379,6 +411,9 @@
 	</string>
 	<string id="ui_mcm_lootboxes_title">
 		<text>Lootboxes</text>
+	</string>
+	<string id="ui_mcm_lootboxes_lootchance">
+		<text>Loot fill percentage</text>
 	</string>
 	<string id="ui_mcm_lootboxes_stashchance">
 		<text>Chance to find lootboxes in stashes</text>

@@ -19,6 +19,12 @@ New game not required, as everything is handled dynamically. MCM support present
 Other mod makers can integrate with lootboxes, adding items they have created into lootboxes. Consult custom_loot for usage information.
 
 Changelog
+1.2 - Major changes:
+    - Documents are made to be much more valuable. Documents sell for much higher overall, and certain factions will pay more for each document type.
+    - Lootbox content balance pass. Partial items now spawn and overall quantity of items reduced. Repair items, weapon and outfit parts, tools, and other items added to the lootbox pool.
+    - Internal refactoring to add new systems for determining loot drops.
+    - Lootboxes rebalanced to follow a smoother progression. Survival caches are easier to break into and offer less high value loot, briefcases increased in difficulty.
+    - Added a snapgun as a rare drop. Snapguns will open low condition boxes for free.
 1.1.8 - Revised documents with new descriptions and scaled sale price depending on faction.
 1.1.7 - Expanded API for custom items, now allowing for custom boxes and loot pools.
 1.1.6 - Reduced amount of loot in boxes (guarantee of one). Added weapon attachments and misc drugs to loot pool. Added API for custom items.

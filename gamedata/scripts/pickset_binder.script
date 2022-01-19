@@ -31,6 +31,7 @@ function pickset_binder:update(delta)
             pickset_cond[id] = 4
         end
     end
+    obj:set_condition(pickset_cond[id]/20)
 end
 
 function pickset_binder:reload(section)
@@ -201,7 +202,8 @@ function on_item_drag_dropped(from, to)
     local from_sec = from:section()
     local to_sec = to:section()
     local replace_amt = SYS_GetParam(2,from_sec,"replacement")
-    if replace_amt and SYS_GetParam(0, to_sec, "script_binding") == "pickset_binder.bind" and pickset_cond[to:id()] < 20 then
+    local max_picks = SYS_GetParam(2,to_sec,"max_picks")
+    if replace_amt and SYS_GetParam(0, to_sec, "script_binding") == "pickset_binder.bind" and pickset_cond[to:id()] < max_picks then
         modify(to:id(), replace_amt)
         alife_release(from)
         send_tip(db.actor, gc("st_restore_pick"), nil, "swiss_knife", 6000)

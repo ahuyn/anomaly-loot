@@ -261,19 +261,6 @@ function spook_player(obj)
     end
 end
 
-function try_bundle(obj)
-    local num_picks = 0
-    local function search(temp, item)
-        local item_section = item:section()
-        if item_section == "lockpick" then
-            num_picks = num_picks + 1
-        end
-    end
-    db.actor:iterate_inventory(search, nil)
-    if (num_picks > 4) then 
-        return gc("st_pick_bundle")
-    end
-end
 
 function on_item_drag_dropped(from, to, slot_from, slot_to)
 	
@@ -410,7 +397,7 @@ function append_weapon(section, min, add_ammo)
     end
     if string.find(section, "knife") or string.find(section, "axe") then
         print_dbg("Appending melee weapon")
-        return section.."0_0_"..rand(min,99)
+        return section..",0_0_"..rand(min,99) .. ","
     end
     local loot_str = ""
     local flag = 0

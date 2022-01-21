@@ -378,7 +378,7 @@ function build_string(sec, amount, chance)
                 quantity = 1
             else
                 local max_uses = SYS_GetParam(0, id, "max_uses")
-                if max_uses > 1 then
+                if max_uses and max_uses > 1 then
                     id = id .. "__" .. math.random(max_uses)
                 end
                 loot_str = loot_str .. id .. ","..rand(tonumber(value)) .. ","

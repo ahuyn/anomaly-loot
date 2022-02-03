@@ -35,15 +35,24 @@ function utils_item.get_item_trade_status(obj, profile)
 
 end
 
+local trader_npc_id = 0
+
 -- purge all docs in npc inv, on sale they should vanish
 function ActorMenu_on_trade_started()
 	local trader_npc = mob_trade.GetTalkingNpc()
+    trader_npc_id = trader_npc:id()
     talking_npc_faction = get_real_community(trader_npc)
 end
 
 
 function ActorMenu_on_trade_closed()
-	local trader_npc = mob_trade.GetTalkingNpc()
+    if trader_npc_id == 0 then 
+        return 
+    end
+	local trader_npc = level.object_by_id(trader_npc_id)
+    if not trader_npc then 
+        return 
+    end
     trader_npc:iterate_inventory(function(temp, item)
         if SYS_GetParam(0, item:section(), "factions") then
             alife_release(item)

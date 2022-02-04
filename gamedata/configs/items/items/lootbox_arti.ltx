@@ -11,12 +11,12 @@ inv_weight			                                   = 3.60
 difficulty                                             = 2
 contents                                               = bad
 loot_type                                              = grab
-unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
+; unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
 
 [lootbox_11]:lootbox_1 ; locked toolbox, alt appearance
 inv_grid_x			                                   = 2
 inv_grid_y			                                   = 0
-unique_contents                                        = af_glass,1,picture_woman,1,lootbox_note_dad,1
+; unique_contents                                        = af_glass,1,picture_woman,1,lootbox_note_dad,1
 
 [lootbox_2]:lootbox ; lockbox
 description			                                   = st_lootbox_small_ok_descr
@@ -31,7 +31,8 @@ inv_weight			                                   = 4.85
 difficulty                                             = 4
 contents                                               = good
 loot_type                                              = grab
-unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1,bolt,4
+box_group                                              = 2
+; unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1,bolt,4
 
 
 [lootbox_3]:lootbox ; secure container alpha
@@ -48,8 +49,9 @@ difficulty                                             = 12
 contents                                               = secure
 loot_type                                              = grab
 weapon_condition                                       = 60
-unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
-lootbox_docs_sheet_5,1,lootbox_docs_notebook_1,1,stimpack_scientic,1
+box_group                                              = 3
+; unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
+; lootbox_docs_sheet_5,1,lootbox_docs_notebook_1,1,stimpack_scientic,1
 
 [lootbox_31]:lootbox_3 ; secure container epsilon, don't use
 inv_grid_x			                                   = 3
@@ -70,12 +72,13 @@ inv_weight			                                   = 7.5
 difficulty                                             = 10
 contents                                               = box_artifacts
 loot_type                                              = grab
-unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
+box_group                                              = 4
+; unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
 
 [lootbox_41]:lootbox_4 ; arti box, dull metal
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 1
-unique_contents                                        = lootbox_note_transmute,1,af_empty,2
+; unique_contents                                        = lootbox_note_transmute,1,af_empty,2
 
 
 [lootbox_5]:lootbox ;BRIEFCASE
@@ -93,11 +96,13 @@ difficulty                                             = 8
 contents                                               = briefcase
 loot_type                                              = grab
 weapon_condition                                       = 50
+box_group                                              = 5
 unique_contents                                        = money,15000,itm_pda_rare,2,cocaine,1,lootbox_note_bandit,1
 
 [lootbox_51]:lootbox_5 ;BRIEFCASE 2
 inv_grid_x			                                   = 7
 inv_grid_y			                                   = 5
+box_group                                              = 5
 unique_contents = lootbox_note_spankbank,1,porn,5,porn2,5
 
 
@@ -115,11 +120,13 @@ weapon_condition                                       = 8
 difficulty                                             = 6
 contents                                               = cache
 loot_type                                              = grab
+box_group                                              = 6
 unique_contents                                        = lootbox_note_vodka,1,vodka,14
 
 [lootbox_61]:lootbox_6 ;survival box camo
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 3
+box_group                                              = 6
 unique_contents                                        = ied_new,2,money,5000,novice_outfit,1,cs_novice_outfit,1,lootbox_note_orders,1
 
 [lootbox_7]:lootbox ; shotty box
@@ -138,7 +145,8 @@ contents                                               = shotguns_case
 loot_type                                              = weapon
 snd_open                                               = Wood_Picks
 snd_open_key                                           = Wood_Key
-can_smash = true
+can_smash                                              = true
+box_group                                              = 7
 unique_contents = wpn_toz34_mark4,0_0_70,ammo_12x70_buck,2,lootbox_note_tourist,1
 
 [lootbox_71]:lootbox ; ak box
@@ -157,7 +165,8 @@ contents                                               = surplus_case
 loot_type                                              = weapon
 snd_open                                               = Wood_Picks
 snd_open_key                                           = Wood_Key
-can_smash = true
+box_group                                              = 71
+can_smash                                              = true
 unique_contents = lootbox_note_grenade,1,grenade_rgd5,15,grenade_f1,5
 
 [lootbox_8]:lootbox ; merc pelican box
@@ -174,7 +183,8 @@ weapon_condition                                       = 80
 difficulty                                             = 18
 contents                                               = rifles_case
 loot_type                                              = weapon
-unique_contents                                        =  wpn_svd_nimble,0_6_90,ammo_7.62x54_ap,2,cigar,1,lootbox_note_birthday,1
+box_group                                              = 8
+unique_contents                                        = wpn_svd_nimble,0_6_90,ammo_7.62x54_ap,2,cigar,1,lootbox_note_birthday,1
 
 [lootbox_81]:lootbox_8 ; merc pelican box 2
 inv_grid_x			                                   = 0
@@ -194,5 +204,7 @@ inv_weight			                                   = 19.86
 weapon_condition                                       = 95
 difficulty                                             = 101
 contents                                               = monoloot
+box_group                                              = 9
 loot_type                                              = grab
 unique_contents = af_death_lamp,1,lootbox_note_deathlamp,1
+

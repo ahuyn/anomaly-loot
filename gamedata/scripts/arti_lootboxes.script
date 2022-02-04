@@ -7,12 +7,20 @@ local get_config = arti_lootboxes_mcm.get_config
 local ini_pools = ini_file("items\\lootboxes\\loot_pools\\importer.ltx")
 -- importer for loot pool -> contents
 local ini_contents = ini_file("items\\lootboxes\\loot_contents\\importer.ltx")
+local ini_uniques = ini_file("items\\lootboxes\\unique_contents\\importer.ltx")
+local ini_lootbox = ini_file("items\\items\\items_rootbox.ltx")
 
+-- custom loaded contents
 contents_custom = {}
 pools_custom = {}
 -- cached maps, these will get hydrated as more loot is rolled
 local pool_cache = {}
 local contents_cache = {}
+-- map box groups to boxes
+local variant_map = {}
+-- track boxes that contain uniques, as well as what uniques have been seen so far
+local uniques_cache = {}
+-- store all lootbox contents
 local lootbox_contents = {}
 -- stolen from treasure_manager
 local item_prop_table = { cond_r = {30,70} , cond_ct = "part" , cond_cr = {0.5,0.75,1} }
@@ -79,12 +87,51 @@ local function server_entity_on_unregister(se_obj)
 	if lootbox_contents[se_obj.id] then
 		lootbox_contents[se_obj.id] = nil
 	end
+    if not lootbox_contents.uniques then
+        lootbox_contents.uniques = {}
+    end
+    if lootbox_contents.uniques[se_obj.id] then
+		lootbox_contents.uniques[se_obj.id] = nil
+	end
 end
+
+-- pop boxes that are created
+local function server_entity_on_register(se_obj)
+    if ini_lootbox:r_string_ex(se_obj:section_name(), "contents") then
+        print_dbg("Populating lootbox")
+        populate_lootbox(se_obj.id, se_obj:section_name())
+    end
+end
+
 
 function print_dbg(text, ...) 
 	if get_config("debug") then
 		printf("lootboxes | %s | " .. text, time_global(), ...)
 	end
+end
+
+-- returns 1 with 60% chance, 2 with 30%, 3 with 10%
+function weighted_roll()
+    local roll = math.random(10)
+    if roll == 10 then return 3
+    elseif roll > 6 then return 2
+    else return 1 end
+end
+
+-- return random entry from integer-indexed table
+function random_entry(t)
+    t = t or {}
+    return t[math.random(#t)]
+end
+
+-- convert a comma-separated string of sections and numbers into a table
+function parse_lootstring(str)
+    local temp = str_explode(str, ",")
+    local t = {}
+    for i=1,#temp-1, 2 do
+        t[temp[i]] = temp[i+1]
+    end
+    return t
 end
 
 function init()
@@ -100,6 +147,7 @@ function init()
             ref[tonumber(tier)] = values and str_explode(values, ",") or {}
         end
     end)
+
     local ini_stalker = ini_file("items\\settings\\lootbox_stalker_distribution.ltx")
     ini_stalker:section_for_each(function(faction)
         if not map_tiers[faction] then map_tiers[faction] = {} end
@@ -114,6 +162,43 @@ function init()
             ref[tonumber(tier)] = loot_table
         end
     end)
+
+    ini_lootbox:section_for_each(function(section)
+        local contents = ini_lootbox:r_string_ex(section, "contents")
+        if contents then
+            local group = ini_lootbox:r_string_ex(section, "box_group")
+            if not variant_map[group] then variant_map[group] = {} end
+            table.insert(variant_map[group], section)
+        end
+    end)
+    init_uniques()
+end
+
+function init_uniques()
+    -- hydrate the box uniques that have not been seen so far
+    -- mechanism: initially add all sections to this cache
+    -- when a unique box rolls, add an entry in uniques child table associating box id to what unique section exactly
+    -- when that box is opened (or deleted), drop the entry
+    -- opening also marks that entry as being unable to drop again
+    ini_uniques:section_for_each(function(section)
+        local id = ini_uniques:r_string_ex(section, "id")
+        if not lootbox_contents.uniques then lootbox_contents.uniques = {} end
+        if lootbox_contents.uniques[id] then return end
+        local box = ini_uniques:r_string_ex(section, "box")
+        if not uniques_cache[box] then uniques_cache[box] = {} end
+        table.insert(uniques_cache[box], section)
+    end)
+end
+
+-- given a group id, return a lootbox section from that group, if applicable
+function pick_lootbox(group)
+
+    if variant_map[group] then
+        return random_entry(variant_map[group])
+    else
+        return "lootbox_"..group
+    end
+
 end
 
 local not_wpn = {
@@ -125,14 +210,13 @@ local not_wpn = {
 
 function sec_is_weapon(section)
     local class = SYS_GetParam(0, section, "class")
-    print_dbg("Class of %s is %s. Is this a weapon? %s", section, class, not_wpn[class] == nil)
     if string.find(section, "wpn_") then
         return not_wpn[class] == nil
     else return false
     end
 end
 
--- select a random entry from the potential loot pool
+-- select a random entry from the potential loot pools
 function random_pool_entry(section)
     print_dbg("Checking section %s", section)
     if ini_pools:section_exist("lootbox_"..section) then
@@ -155,8 +239,7 @@ function random_pool_entry(section)
             end
             pool_cache[section] = pool
         end
-        local pool = pool_cache[section]
-        return pool[math.random(#pool)]
+        return random_entry(pool_cache[section])
     else 
         print_dbg("Pool %s not found", section)
         return "default,1"
@@ -197,13 +280,10 @@ function random_item_entry(section)
         
         local contents = contents_cache[section]
         if contents.composition then
-            local roll = math.random(10)
-            local to_select = contents[1]
-            if roll == 10 then to_select = contents[3]
-            elseif roll > 6 then to_select = contents[2] end
+            local to_select = contents[weighted_roll()]
             return random_item_entry(to_select)
         else
-            local selection = contents[math.random(#contents)]
+            local selection = random_entry(contents)
             if string.find(selection, ",") then
                 local split = str_explode(selection, ",")
                 return split[1], tonumber(split[2])
@@ -217,36 +297,36 @@ function random_item_entry(section)
     end
 end
 
--- unused
-function random_entry(section, pick_weapon) 
-    pick_weapon = pick_weapon or false
-    n = ini_lootbox:line_count("lootbox_"..section)
-    print_dbg("Picking out of %s entries for section %s", n,section)
-    -- add custom loots
-    local new_n = n
-    if lootbox_custom[section] and not is_empty(lootbox_custom[section]) then
-        print_dbg("Adding %s custom entries for %s", #lootbox_custom[section], section)
-        new_n = n + #lootbox_custom[section]
-    end
-    local roll = rand(new_n)
-    if roll > n then
-        roll = roll - n
-        item = str_explode(lootbox_custom[section][roll], ",")
-        id = item[1]
-        value = tonumber(item[2])
-        print_dbg("Spawning custom item %s (%s) for section %s", id, value, section)
-    else
-        result, id, value = ini_lootbox:r_line_ex("lootbox_"..section,rand(n) - 1,"","")
-    end
-    if value == nil or value == "" then value = 1 end
-    print_dbg("Returning random entry %s, %s", id, value)
-    -- todo: refactor this, this is unacceptable
-    if string.find(id, "|") then
-        local explode = str_explode(id, "|")
-        id = #explode == 2 and explode[1] or id
-    end
-    return id, value
-end
+-- -- unused
+-- function random_entry(section, pick_weapon) 
+--     pick_weapon = pick_weapon or false
+--     n = ini_lootbox:line_count("lootbox_"..section)
+--     print_dbg("Picking out of %s entries for section %s", n,section)
+--     -- add custom loots
+--     local new_n = n
+--     if lootbox_custom[section] and not is_empty(lootbox_custom[section]) then
+--         print_dbg("Adding %s custom entries for %s", #lootbox_custom[section], section)
+--         new_n = n + #lootbox_custom[section]
+--     end
+--     local roll = rand(new_n)
+--     if roll > n then
+--         roll = roll - n
+--         item = str_explode(lootbox_custom[section][roll], ",")
+--         id = item[1]
+--         value = tonumber(item[2])
+--         print_dbg("Spawning custom item %s (%s) for section %s", id, value, section)
+--     else
+--         result, id, value = ini_lootbox:r_line_ex("lootbox_"..section,rand(n) - 1,"","")
+--     end
+--     if value == nil or value == "" then value = 1 end
+--     print_dbg("Returning random entry %s, %s", id, value)
+--     -- todo: refactor this, this is unacceptable
+--     if string.find(id, "|") then
+--         local explode = str_explode(id, "|")
+--         id = #explode == 2 and explode[1] or id
+--     end
+--     return id, value
+-- end
 
 function actor_on_item_take_from_box(box,itm)
     local id = box:id()
@@ -297,21 +377,34 @@ function on_item_drag_dropped(from, to, slot_from, slot_to)
     end
 end
 
+-- attempt to populate a unique. if it fails, we can provide normal contents
+function try_populate_unique(box_id, box_section)
+    u = uniques_cache[box_section]
+    if not u or #u == 0 then return "" end
+    -- temporary
+    -- if math.random(10) ~= 10 then return false end
+    local custom_sec = random_entry(u)
+    local custom_id = ini_uniques:r_string_ex(custom_sec, "id")
+    local custom_contents = ini_uniques:r_string_ex(custom_sec, "contents")
+    print_dbg("Putting custom contents %s into box %s", custom_contents, box_section)
+
+    lootbox_contents.uniques[box_id] = custom_id
+    lootbox_contents[box_id] = custom_contents
+    if (box_section == "lootbox_4") then
+        lootbox_contents.spooky = box_id
+    end
+    return custom_contents
+end
 
 function populate_lootbox(box_id, box_section)
     if not lootbox_contents[box_id] then
         print_dbg("Populating lootbox loot for %s of type: %s",box_id,  box_section)
         local loot_type = SYS_GetParam(0,box_section,"loot_type")
         print_dbg("Loot type is %s", loot_type)
-        local loot_str = ""
+        local loot_str = try_populate_unique(box_id, box_section)
         -- populate lore box, 10% chance
-        if lootbox_contents[box_section] ~= true and rand(10) == 10 then-- == 10 then
-            loot_str = SYS_GetParam(0, box_section, "unique_contents")
-            print_dbg("Populating box with fixed contents: %s", loot_str)
-            lootbox_contents[box_section] = true
-            if (box_section == "lootbox_4") then
-                lootbox_contents.spooky = box_id
-            end
+        if loot_str ~= "" then
+            -- no action required
         elseif loot_type == "weapon" then
             -- spawn the weapon, roll for condition + attachments + spare ammos
             local loot_section = SYS_GetParam(0, box_section, "contents")
@@ -323,22 +416,13 @@ function populate_lootbox(box_id, box_section)
             -- grab a template, iterate through the pairs of items and populate bsaed on loot
             local loot_section = random_pool_entry(SYS_GetParam(0, box_section, "contents"))
             print_dbg("Rolled loot table %s", loot_section)
-            local table = str_explode(loot_section,",")
-            local at_least_one = false
-            local chance = 200--get_config("lootchance")
-            for i=1, #table - 1, 2 do
-                print_dbg("Building string for %s, %s",table[i], table[i+1])
-                result_string = build_string(table[i], table[i+1], chance)
+            local table = parse_lootstring(loot_section)
+            for k,v in pairs(table) do
+                print_dbg("Building string for %s, %s",k, v)
+                result_string = build_string(k, v)
                 if result_string then
-                    at_least_one = true
                     loot_str = loot_str .. result_string
                 end
-            end
-            if not at_least_one then
-                -- random entry
-                local random = 2*math.random(#table/2)
-                print_dbg("no entries found, adding %s", table[random])
-                loot_str = loot_str .. build_string(table[random], table[random+1], 100)
             end
             
             -- ciggies
@@ -357,8 +441,9 @@ function populate_lootbox(box_id, box_section)
     end
 end
 
-function build_string(sec, amount, chance)
-    -- if math.random(100) > chance then return end
+
+
+function build_string(sec, amount)
     amount = tonumber(amount)
     local loot_str = ""
     if sec == "money" then
@@ -375,7 +460,12 @@ function build_string(sec, amount, chance)
             if sec_is_weapon(id) then
                 local condition = SYS_GetParam(2, box_section, "weapon_condition") or math.random(20, 80)
                 loot_str = loot_str .. append_weapon(id, condition, rand(2) == 1)
-                quantity = 1
+            elseif item_device.device_npc_pda[id] then
+                local schmuck_id = pda_custom.cache_local_schmuck()
+                print_dbg("Adding %s's pda to the loot", schmuck_id)
+                if schmuck_id ~= 0 then
+                    loot_str = loot_str .. id .. "," .. schmuck_id .. ","
+                end
             else
                 local max_uses = SYS_GetParam(2, id, "max_uses") or 1
                 if max_uses > 1 then
@@ -496,11 +586,10 @@ function open_lootbox_timer(id)
 
     if not lootbox_contents[id] then return false end
     print_dbg("Opening box with id "..id)
-	local spawned_items = str_explode(lootbox_contents[id],",")
+	local spawned_items = parse_lootstring(lootbox_contents[id])
     local str = gc("st_lootbox_get") .. ":\\n"
-    for i=1, #spawned_items - 1, 2 do
-        local section = spawned_items[i]
-        local quantity = spawned_items[i+1]
+    -- give loot
+    for section, quantity in pairs(spawned_items) do
         print_dbg("Creating %s of %s", quantity, section)
         if section == "spooky" then
             alife_create("m_poltergeist_normal_flame", db.actor:position(), db.actor:level_vertex_id(), db.actor:game_vertex_id())
@@ -512,18 +601,15 @@ function open_lootbox_timer(id)
            str = str ..money_amt .. " ".. gc("st_money") .. "\\n"
         elseif sec_is_weapon(section) then
             str = str .. give_weapon(section, quantity)
+        elseif item_device.device_npc_pda[section] then
+            local se_itm = alife_create_item(section, db.actor, item_prop_table)
+            local id = se_itm and se_itm.id
+            -- quantity will be the id of the schmuck this pda belongs to
+            pda_custom.register_pda(tonumber(quantity), section, id)
         else
             local amt = tonumber(quantity) or 1
             for j=1,amt do
                 local se_itm = alife_create_item(section, db.actor, item_prop_table)
-                local id = se_itm and se_itm.id
-                if id and item_device.device_npc_pda[section] and #db.OnlineStalkers > 0 then
-                    local schmuck = get_object_by_id(db.OnlineStalkers[math.random(#db.OnlineStalkers)])
-                    if schmuck then
-                        print_dbg("registering pda %s to schmuck %s", id, schmuck:id())
-                        ui_pda_npc_tab.register_pda(schmuck, section, id)
-                    end
-                end
             end
             if string.find(section, "__") then section = str_explode(section, "__")[1] end
             local item_name = ui_item.get_sec_name(section) or "of something"
@@ -539,6 +625,14 @@ function open_lootbox_timer(id)
         end
     end
     send_tip(db.actor, str, nil, "swiss_knife", 6000)
+	lootbox_contents[id] = nil
+    -- manage uniques - once player opens, remove unique from appearing again
+    if lootbox_contents.uniques[id] then
+        local unique_sec = lootbox_contents.uniques[id]
+        lootbox_contents.uniques[unique_sec] = true
+        print_dbg("Lootbox unique %s opened", unique_sec)
+        lootbox_contents.uniques[id] = nil
+    end
 	lootbox_contents[id] = nil
     alife_release_id(id)
     return true
@@ -596,65 +690,57 @@ end
 
 -- spawn lootbox in box, tie the contents of box to creation time to prevent RNG cheese
 function spawn_lootbox(box)
-
     local id = box:id()
     if not lootbox_contents[id] then
         print_dbg("checking box id %s", id)
-        if rand(100) <= get_config("stashchance") then
+        local roll = rand(100)
+        if roll <= get_config("stashchance") then
             print_dbg("spawning box")
             local se_obj = alife_object(id) 
             local lvl = alife():level_name(game_graph():vertex(se_obj.m_game_vertex_id):level_id())
             if map_tiers[lvl] == nil then return end
-            local roll = rand(100)
-            local tier = 1
-            if roll > 89 then tier = 3
-            elseif roll > 59 then tier = 2 end
-            c = #map_tiers[lvl][tier]
+            
+            c = #map_tiers[lvl][weighted_roll()]
             print_dbg("Rolling tier %s, picking from %s choices. Roll is %s", tier, c, roll)
             local box_type = map_tiers[lvl][tier][math.fmod(roll, c) + 1]
+
+            local box_type = pick_lootbox(map_tiers[lvl][tier][math.fmod(roll, c) + 1])
+
             -- roll number from 1-4, corresponding to level of lootbox
             if ini_sys:section_exist("lootbox_"..box_type) then
                 print_dbg("Spawned in lootbox of type "..box_type)
                 se_itm = alife_create_item("lootbox_"..box_type, box)
-                populate_lootbox(se_itm.id, "lootbox_"..box_type)
+                -- populate_lootbox(se_itm.id, "lootbox_"..box_type)
             else
                 print_dbg("Could not spawn lootbox of type "..box_type)
             end
         end
-        if rand(10) == 10 then
+        if roll <= 10 then
             local section = "lockpick"
             local roll = rand(20)
             -- 70% one pick, 25% bundle, 5% skelekey 
             if roll == 20 then
                 section = "skeleton_key"
             elseif roll > 16 then
-                count = 3
+                section = "bundle_lockpick"
             elseif roll > 10 then
-                count = 2
+                section = "lockpick"
             end
-            print_dbg("Spawning %s amount of %s", count, section)
-            alife_create_item()
-            -- for i=1,count do
-            --     local se_obj = alife_create(section,box:position(),box:level_vertex_id(),box:game_vertex_id(),box:id(),false)
-            --     alife():register(se_obj)
-            -- end
+            local se_obj = alife_create(section,box:position(),box:level_vertex_id(),box:game_vertex_id(),box:id(),false)
+            alife():register(se_obj)
         end
     end
     -- set box id to true to mark that is has been checked
     lootbox_contents[id] = true
 end
 
--- spawn random amount of lockpicks
+-- spawn items on dead people
 function spawn_stalker_loot(npc)
 
     if rand(100) <= get_config("deathchance") then
         local community = npc:character_community()
         if map_tiers[community] == nil then community = "stalker" end
-        local roll = rand(20)
-        local tier = 1
-        if roll == 20 then tier = 3
-        elseif roll > 15 then tier = 2 end
-        local table = map_tiers[community][tier]
+        local table = map_tiers[community][weighted_roll()]
         if table[1] == "nothing" then return end
 
         local amt = rand(tonumber(table[2]))
@@ -663,9 +749,9 @@ function spawn_stalker_loot(npc)
             se_obj = alife_create(table[1],  npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id(), false)
             alife():register(se_obj)
             print_dbg("registered object "..se_obj.id)
-            if string.find(table[1], "lootbox_") then
-                populate_lootbox(se_obj.id, table[1])
-            end
+            -- if string.find(table[1], "lootbox_") then
+            --     populate_lootbox(se_obj.id, table[1])
+            -- end
         end
     end
 end
@@ -723,9 +809,9 @@ function on_game_start()
 	end
 	RegisterScriptCallback("actor_on_item_take_from_box",actor_on_item_take_from_box)
     RegisterScriptCallback("ActorMenu_on_item_drag_drop",on_item_drag_dropped)
+	RegisterScriptCallback("server_entity_on_register", server_entity_on_register)
 	RegisterScriptCallback("server_entity_on_unregister", server_entity_on_unregister)
     RegisterScriptCallback("ActorMenu_on_trade_started",create_tools)
 	RegisterScriptCallback("actor_on_item_take",spook_player)
-	RegisterScriptCallback("actor_item_to_ruck",spook_player)
     init()
 end

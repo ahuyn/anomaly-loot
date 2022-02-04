@@ -1,0 +1,161 @@
+-- custom override for pda stuff, to avoid bloating the main lootbox script
+
+print_dbg = arti_lootboxes.print_dbg
+
+local npcs = {}
+
+local schmucks = {}
+
+local map_tbl = {
+	"agr","bar","cit","dsc","esc","gar","gen","jup","kat","lim","mar","mil","out","pol","pri","rad","red","ros","trc","val","yan","zat"
+}
+local faction_encyption = {
+	["army"] = 30 , ["bandit"] = 0 , ["csky"] = 20 , ["dolg"] = 40 , ["ecolog"] = 30 , ["freedom"] = 20 , ["killer"] = 40 , ["stalker"] = 10 , ["monolith"] = 50 , --["renegade"] = 10 , --["greh"] = 30 , --["isg"] = 50,
+}
+local faction_lookup = { -- List of factions used in PDA messages
+	"stalker" , "dolg" , "freedom" , "csky" , "ecolog" , "killer" , "army" , "bandit" , "monolith" , --"renegade" , --"greh" , --"isg",
+}
+local stash_factor_per_pda = {
+	["itm_pda_common"] = 1 , ["itm_pda_uncommon"] = 2 , ["itm_pda_rare"] = 3,
+}
+local route_factor_per_pda = {
+	["itm_pda_common"] = 10 , ["itm_pda_uncommon"] = 15 , ["itm_pda_rare"] = 20,
+}
+local rf_factor_per_pda = {
+	["itm_pda_common"] = 15 , ["itm_pda_uncommon"] = 20 , ["itm_pda_rare"] = 30,
+}
+local faction_no_rf = {
+	["monolith"] = true , ["greh"] = true,
+}
+local directions = {
+	"st_dyn_news_near","st_dyn_news_close","st_dyn_news_east","st_dyn_news_north_east","st_dyn_news_north","st_dyn_news_north_west","st_dyn_news_west","st_dyn_news_south_west","st_dyn_news_south","st_dyn_news_south_east"
+}
+
+function cache_local_schmuck()
+	-- attempt five rolls, otherwise don't do anything
+	local attempts = 0
+	local schmuck_id = 0
+	while schmuck_id == 0 and attempts < 5 do
+		attempts = attempts + 1
+		local schmuck = get_object_by_id(db.OnlineStalkers[math.random(#db.OnlineStalkers)])
+		if schmuck and ui_pda_npc_tab.can_own_pda(schmuck) then
+			cache_schmuck(schmuck)
+			schmuck_id = schmuck:id()
+		end
+	end
+	return schmuck_id
+end
+
+function cache_schmuck(npc)
+    local contact = {
+		name = npc:character_name(),
+		comm = npc:character_community(),
+		icon = npc:character_icon(),
+		rank = ranks.get_obj_rank_name(npc),
+		repu = npc:character_reputation(),
+	}
+	print_dbg("Cached schmuck %s", npc:character_name())
+    schmucks[npc:id()] = contact
+end
+
+RegisterPDA = ui_pda_npc_tab.register_pda
+
+function register_pda(npc_id, pda_sec, pda_id) -- called from death_manager
+	print_dbg("registering pda of %s", npc_id)
+	-- Contact info
+	local contact = {}
+    copy_table(contact, schmucks[npc_id])
+    schmucks[npc_id] = nil
+	
+	-- PDA state
+	local state = "default"
+	if (math.random(1,100) <= 1) and (not has_alife_info("kill_the_strelok_pda_found")) then
+		state = "kill_the_strelok"
+	elseif (pda_sec == "itm_pda_rare") or (faction_encyption[contact.comm] and (math.random(1,100) < faction_encyption[contact.comm])) then 
+		state = "encrypted"
+	end
+	
+	
+	-- Stash message possibility
+	local stash = false
+	local stash_chance = game_difficulties.get_eco_factor("stash_chance") or 0.4
+	local stash_factor = stash_factor_per_pda[pda_sec] or 1
+	if ( math.random(1,100) < ((stash_chance * 100) * stash_factor) ) then
+		stash = true
+	end
+	
+	-- Map message possibility
+	local map_route = false
+	if (math.random(1,100) < (route_factor_per_pda[pda_sec] or 10))
+	and (not alife_storage_manager.get_state().opened_routes)
+	and txr_routes.is_route_left()
+	then
+		local locked_routes = {}
+		for i=1,#map_tbl do
+			for j=1,#map_tbl do
+				if (map_tbl[i] ~= map_tbl[j]) and txr_routes.is_map_connected(map_tbl[i],map_tbl[j]) and (not txr_routes.is_route_discovered (map_tbl[i],map_tbl[j])) then
+					locked_routes[#locked_routes + 1] = {map_tbl[i],map_tbl[j]}
+				end
+			end
+		end
+		if (#locked_routes > 0) then
+			map_route = locked_routes[math.random(#locked_routes)]
+		end
+	end
+	
+	-- RF source message possibility
+	local rf_source = false
+	local rf_sources = item_radio.RF_stashes
+	if (math.random(1,100) < (rf_factor_per_pda[pda_sec] or 15))
+	and (not faction_no_rf[contact.comm])
+	and is_not_empty(rf_sources)
+	then
+		local key_map = random_key_table(rf_sources)
+		if is_not_empty(rf_sources[key_map]) then
+			local key_id = random_key_table(rf_sources[key_map])
+			rf_source = { key_id , rf_sources[key_map][key_id] }
+		end
+	end
+	
+	-- Generate messages
+	local msg = {}
+	if (state ~= "kill_the_strelok") then
+		local msg_count = math.random(1,3)
+		for i=1,msg_count do
+			local older_date = (#msg > 0) and msg[#msg].msg_date or false
+			local special = (stash and "stash") or (map_route and "route") or (rf_source and "rf_source") or false
+			local special_functor = ((special == "route") and map_route) or ((special == "rf_source") and rf_source)
+			local curr_msg = ui_pda_npc_tab.generate_msg(contact, older_date, special, special_functor)
+			if curr_msg and curr_msg.topic and curr_msg.topic_title then
+				msg[#msg + 1] = curr_msg
+				if stash and curr_msg.stash then stash = false end -- 1 stash message only
+				if map_route and curr_msg.route then map_route = false end -- 1 map route message only
+				if rf_source and curr_msg.rf_freq then rf_source = false end -- 1 rf source message only
+			end
+		end
+	end
+	
+	se_save_var( pda_id, nil, "info", { state = state , contact = contact , msg = msg } )
+end
+
+local function server_entity_on_unregister(se_obj)
+	if schmucks[se_obj.id] then
+		schmucks[se_obj.id] = nil
+	end
+end
+
+local function save_state(mdata) 
+	mdata.schmucks = schmucks
+end
+
+local function load_state(mdata) 
+	schmucks = mdata.schmucks or {}
+end
+
+function on_game_start()
+	if (USE_MARSHAL) then 
+		RegisterScriptCallback("save_state",save_state)
+		RegisterScriptCallback("load_state",load_state)
+	end
+	RegisterScriptCallback("server_entity_on_unregister", server_entity_on_unregister)
+end

@@ -176,7 +176,7 @@ function pick_box(obj)
     end
     db.actor:iterate_inventory(search, nil)
     print_dbg("Best id so far is %s", found_id)
-    on_item_drag_dropped(get_object_by_id(found_id), obj)
+    on_item_drag_dropped(get_object_by_id(found_id), obj, EDDListType.iActorBag, EDDListType.iActorBag)
 
 end
 
@@ -198,9 +198,14 @@ function ui_item.build_desc_header(obj, sec, str)
     end
 end
 
-function on_item_drag_dropped(from, to)
+function on_item_drag_dropped(from, to, from_slot, to_slot)
+
+    if not ((from_slot == EDDListType.iDeadBodyBag and to_slot == EDDListType.iDeadBodyBag) or (from_slot == EDDListType.iActorBag  and (to_slot == EDDListType.iActorBag or to_slot == EDDListType.iActorSlot))) then
+        return
+    end
     local from_sec = from:section()
     local to_sec = to:section()
+
     local replace_amt = SYS_GetParam(2,from_sec,"replacement")
     local max_picks = SYS_GetParam(2,to_sec,"max_picks")
     if replace_amt and SYS_GetParam(0, to_sec, "script_binding") == "pickset_binder.bind" and pickset_cond[to:id()] < max_picks then

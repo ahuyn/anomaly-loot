@@ -37,10 +37,14 @@ function cache_local_schmuck()
 	local schmuck_id = 0
 	while schmuck_id == 0 and attempts < 5 do
 		attempts = attempts + 1
-		local schmuck = get_object_by_id(db.OnlineStalkers[math.random(#db.OnlineStalkers)])
-		if schmuck and ui_pda_npc_tab.can_own_pda(schmuck) then
-			cache_schmuck(schmuck)
-			schmuck_id = schmuck:id()
+		local check = db.OnlineStalkers[math.random(#db.OnlineStalkers)]
+
+		if check and check ~= 0 then
+			local schmuck = level.get_object_by_id(check)
+			if ui_pda_npc_tab.can_own_pda(schmuck) then
+				cache_schmuck(schmuck)
+				schmuck_id = check
+			end
 		end
 	end
 	return schmuck_id

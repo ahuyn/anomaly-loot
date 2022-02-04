@@ -90,8 +90,12 @@ local function server_entity_on_unregister(se_obj)
     if not lootbox_contents.uniques then
         lootbox_contents.uniques = {}
     end
+    -- if a unique box is deleted, add it back to the pool
     if lootbox_contents.uniques[se_obj.id] then
+        local unique = lootbox_contents.uniques[se_obj.id]
+        uniques_cache[se_obj:section_name()][unique] = true
 		lootbox_contents.uniques[se_obj.id] = nil
+        
 	end
 end
 
@@ -181,12 +185,11 @@ function init_uniques()
     -- when that box is opened (or deleted), drop the entry
     -- opening also marks that entry as being unable to drop again
     ini_uniques:section_for_each(function(section)
-        local id = ini_uniques:r_string_ex(section, "id")
         if not lootbox_contents.uniques then lootbox_contents.uniques = {} end
-        if lootbox_contents.uniques[id] then return end
+        if lootbox_contents.uniques[section] then return end
         local box = ini_uniques:r_string_ex(section, "box")
         if not uniques_cache[box] then uniques_cache[box] = {} end
-        table.insert(uniques_cache[box], section)
+        uniques_cache[box][section] = true
     end)
 end
 
@@ -380,20 +383,21 @@ end
 -- attempt to populate a unique. if it fails, we can provide normal contents
 function try_populate_unique(box_id, box_section)
     u = uniques_cache[box_section]
-    if not u or #u == 0 then return "" end
-    -- temporary
-    -- if math.random(10) ~= 10 then return false end
-    local custom_sec = random_entry(u)
-    local custom_id = ini_uniques:r_string_ex(custom_sec, "id")
-    local custom_contents = ini_uniques:r_string_ex(custom_sec, "contents")
-    print_dbg("Putting custom contents %s into box %s", custom_contents, box_section)
+    local next = next
+    if not u or next(u) == nil then return "" end
+    if math.random(10) ~= 10 then return false end
+    local unique_sec = random_key_table(u)
+    local unique_contents = ini_uniques:r_string_ex(unique_sec, "contents")
+    print_dbg("Putting custom contents %s into box %s", unique_contents, box_section)
 
-    lootbox_contents.uniques[box_id] = custom_id
-    lootbox_contents[box_id] = custom_contents
+    lootbox_contents.uniques[box_id] = unique_sec
+    lootbox_contents[box_id] = unique_contents
     if (box_section == "lootbox_4") then
         lootbox_contents.spooky = box_id
     end
-    return custom_contents
+    
+    uniques_cache[box_section][unique_sec] = nil
+    return unique_contents
 end
 
 function populate_lootbox(box_id, box_section)
@@ -629,9 +633,9 @@ function open_lootbox_timer(id)
     -- manage uniques - once player opens, remove unique from appearing again
     if lootbox_contents.uniques[id] then
         local unique_sec = lootbox_contents.uniques[id]
+        lootbox_contents.uniques[id] = nil
         lootbox_contents.uniques[unique_sec] = true
         print_dbg("Lootbox unique %s opened", unique_sec)
-        lootbox_contents.uniques[id] = nil
     end
 	lootbox_contents[id] = nil
     alife_release_id(id)

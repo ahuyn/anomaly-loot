@@ -753,9 +753,6 @@ function spawn_stalker_loot(npc)
             se_obj = alife_create(table[1],  npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id(), false)
             alife():register(se_obj)
             print_dbg("registered object "..se_obj.id)
-            -- if string.find(table[1], "lootbox_") then
-            --     populate_lootbox(se_obj.id, table[1])
-            -- end
         end
     end
 end

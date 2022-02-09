@@ -31,6 +31,10 @@ function pickset_binder:update(delta)
             pickset_cond[id] = 4
         end
     end
+    -- default to empty
+    if not pickset_cond[id] then
+        pickset_cond[id] = 0
+    end
     obj:set_condition(pickset_cond[id]/20)
 end
 

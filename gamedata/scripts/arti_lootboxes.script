@@ -99,19 +99,14 @@ local function server_entity_on_unregister(se_obj)
 	end
 end
 
--- pop boxes that are created
-local function server_entity_on_register(se_obj)
-    if ini_lootbox:r_string_ex(se_obj:section_name(), "contents") then
-        print_dbg("Populating lootbox")
-        populate_lootbox(se_obj.id, se_obj:section_name())
-    end
-end
-
-
 function print_dbg(text, ...) 
 	if get_config("debug") then
 		printf("lootboxes | %s | " .. text, time_global(), ...)
 	end
+end
+
+function get_loot_string(id)
+    return lootbox_contents[id]
 end
 
 -- returns 1 with 60% chance, 2 with 30%, 3 with 10%

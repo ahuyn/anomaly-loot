@@ -1,0 +1,49 @@
+-- utils to test lootboxes
+create_lootstring = arti_lootboxes.create_lootstring
+build_template = arti_lootboxes.build_template
+process_template = arti_lootboxes.process_template
+str_explode_num = arti_lootboxes.str_explode_num
+
+
+-- print out a bunch of templates
+function generate(section)
+    templates = util_gen_templates(section)
+    for k,v in pairs(templates) do
+        loot_str = process_template(v, section)
+        printf("Section %s, Iteration %s, template=%s", section, k, create_lootstring(v))
+        printf("Lootstring=%s",create_lootstring(loot_str))
+    end
+end
+
+-- -- print out a bunch of populated boxes
+-- function gen_contents(section)
+--     templates = util_gen_templates(section)
+--     for k,v in pairs(templates) do
+--         loot_str = process_template(v)
+--         printf("Section %s, Iteration %s, contents=%s", section, k, create_lootstring(loot_str))
+--     end
+-- end
+
+function util_gen_templates(box_section)
+    templates = {}
+    local loot_sec = SYS_GetParam(0, box_section, "contents")
+    local min, max = unpack(str_explode_num(SYS_GetParam(0, box_section, "items_range"), ","))
+    for i=1,20 do
+        local to_roll = math.random(min, max)
+        -- bias skews the drop rate for rare stuff up if less items spawn
+        local bias = 1 + ( 2 * (max - to_roll) / (max - min) )
+        local tbl = {}
+        build_template(tbl, loot_sec, to_roll, bias)
+        templates[i] = tbl
+    end
+    return templates
+end
+
+function on_game_start()
+    -- generate("lootbox_1")
+    -- generate("lootbox_2")
+    -- generate("lootbox_3")
+    -- generate("lootbox_4")
+    -- generate("lootbox_5")
+    -- generate("lootbox_6")
+end

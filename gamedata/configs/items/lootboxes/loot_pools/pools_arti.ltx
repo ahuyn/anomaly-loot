@@ -1,129 +1,230 @@
 ; loot templates for grab-bag boxes
-; format is comma separated pairs of pools and the max number of items to roll for it for key, value is incidence (e.g. how many times it shows up)
 
 ; grab boxes should usually contain: 
-; junk, repair scrap, parts
-; food, meds, drugs, ammo, repair
-; devices, guns, gear, artifacts, docs, cash
+; junk, 		repair scrap, 		parts
+; food, 		meds, 		drugs, 		ammo, 		repair
+; devices, 		guns, 		gear, 		artifacts, 		docs, 		cash
+; todo: move money rolls to their own item pools
 
-[lootbox_bad] ; 2000 to unlock
-junk,5
-junk,3,drugs_low,2
-junk,3,meds_low,1,drugs_low,1
-junk,3,canfood,1,drinks,1,ammo_bad,1
-junk,5,repair_low,2,ammo,1
-scrap,2,repair_low,2,parts,2,drugs_low,1
-food,1,meds_low,2,drugs_low,1,knives,1
-junk,2,drugs_low,2,meds_low,1,food,1
-junk,3,ammo,2,meds_low,1,gear_low,1
-meds_low,1,drugs_low,1,repair_med,1,gear_low,1
-junk,5,devices_low,1
-money,1000,junk,3,repair_low,1
-money,1000,meds_low,1,drugs_low,1
-money,1000,junk,2,food,1
-money,1000,junk,1,repair,1
-money,1000,junk,3,drugs_low,1
-gear_low,1,repair_low,3,repairstuff,2
-handguns,1,junk,2,ammo_bad,3,knives,1
-handguns,1,ammo_bad,2,meds_low,1
-artifacts_low,1,docs_low,1
+[lootbox_default]
+smokes												 = 0, 		3, 		60
+pda												 = 1, 		1, 		30
 
-[lootbox_good] ;4000 to unlock
-junk,5,scrap,2
-junk,3,drugs_med,2
-junk,3,meds,1,drugs,1,food,1
-junk,3,canfood,2,drinks,1,ammo,2
-junk,5,repair_low,1,repair,1,ammo,1,knives,1
-scrap,2,repair_low,2,repair_med,1,parts,2,drugs,1
-food,2,meds_low,1,meds_med,1,drugs,1
-junk,2,drugs_low,2,meds_low,1,food,1
-junk,3,ammo,2,meds_low,1,gear_low,1
-meds_low,1,drugs_low,1,repair_med,1,gear_low,1
-junk,5,gear_low,1,repair_med,1,knives,1
-junk,5,devices_med,1,scrap,2
-junk,3,money,2000,repair_low,1
-money,1500,meds_low,1,drugs_low,1
-junk,2,money,1700,food,4,knives,1
-junk,1,money,1900,repair,3,knives,1
-junk,3,money,2100,drugs,2,meds_low,2
-repair_low,3,repairstuff,2,devices_low,1
-ammo,2,ammo_grenades,1,handguns_case,1
-handguns,1,ammo_bad,2,meds_low,1
-artifacts_low,1,docs,1
-artifacts_low,1,docs_low,2
-artifacts,1
+[lootbox_bad]:lootbox_default ; 2000 to unlock
+trash												 = 1, 		10, 		100
+scrap												 = 1, 		5, 		50
+parts												 = 1, 		5, 		50
+drinks												 = 1, 		2, 		60
+canfood												 = 2, 		2, 		20
+drugs_low												 = 1, 		4, 		50
+meds_low												 = 1, 		4, 		30
+repair_low												 = 1, 		2, 		30
+attachments_low												 = 2, 		1, 		30
+ammo_bad												 =  1, 		5, 		70
+ammo_good												 =  2, 		5, 		10
+knives												 = 4, 		1, 		10
+handguns												 = 5, 		1, 		5
+devices_low												 = 4, 		1, 		10
+money_low												 = 4, 		1, 		5
+docs_low												 =  4, 		1, 		5
+artifacts_low												 = 5, 		1, 		5
 
-[lootbox_cache]; 6k to unlock
-scrap,4,repair_low,2,repair,2,food,4,ammo_grenades,2
-meds_low,2,meds,4,drugs_med,2,drugs,3,ammo,2,ammo_grenades,2
-ammo,10,ammo_grenades,3,survfood,2,drinks,3,gear_med,1
-ammo,4,ammo_grenades,3,food,2,drinks,3,meds,2,drugs_med,2
-survfood,2,drinks,3,meds,6,drugs_med,2
-food,6,drinks,6,meds,4,drugs_med,2
-scrap,2,repair,2,smokes,2,devices_med,1
+[lootbox_good]:lootbox_default ;4000 to unlock
+
+trash												 = 1, 		10, 		70
+scrap												 = 1, 		5, 		70
+parts												 = 1, 		5, 		70
+drugs_low												 = 1, 		4, 		60
+drugs_med												 = 1, 		4, 		30
+ammo_bad												 =  1, 		5, 		60
+ammo_good												 =  1, 		5, 		20
+ammo_grenades												 = 2, 		1, 		10
+drinks												 = 1, 		2, 		60
+canfood												 = 1, 		2, 		40
+survfood												 = 3, 		1, 		5
+meds_low												 = 1, 		4, 		50
+repair_low												 = 1, 		2, 		40
+repair_med												 = 2, 		2, 		10
+attachments_low												 = 1, 		1, 		30
+attachments_high												 = 1, 		1, 		30
+knives												 = 4, 		1, 		20
+money_low												 = 3, 		1, 		20
+devices_low												 = 3, 		1, 		20
+devices_med												 = 3, 		1, 		10
+docs_low												 =  2, 		2, 		10
+docs_med												 =  2, 		1, 		10
+artifacts_low												 = 5, 		1, 		8
+artifacts_med												 = 5, 		1, 		4
+handguns												 = 5, 		1, 		10
+handguns_case												 = 5, 		1, 		5
+; junk,5,scrap,2
+; junk,3,drugs_med,2
+; junk,3,meds,1,drugs,1,food,1
+; junk,3,canfood,2,drinks,1,ammo,2
+; junk,5,repair_low,1,repair,1,ammo,1,knives,1
+; scrap,2,repair_low,2,repair_med,1,parts,2,drugs,1
+; food,2,meds_low,1,meds_med,1,drugs,1
+; junk,2,drugs_low,2,meds_low,1,food,1
+; junk,3,ammo,2,meds_low,1,gear_low,1
+; meds_low,1,drugs_low,1,repair_med,1,gear_low,1
+; junk,5,gear_low,1,repair_med,1,knives,1
+; junk,5,devices_med,1,scrap,2
+; junk,3,money,2000,repair_low,1
+; money,1500,meds_low,1,drugs_low,1
+; junk,2,money,1700,food,4,knives,1
+; junk,1,money,1900,repair,3,knives,1
+; junk,3,money,2100,drugs,2,meds_low,2
+; repair_low,3,repairstuff,2,devices_low,1
+; ammo,2,ammo_grenades,1,handguns_case,1
+; handguns,1,ammo_bad,2,meds_low,1
+; artifacts_low,1,docs,1
+; artifacts_low,1,docs_low,2
+; artifacts,1
+
+[lootbox_cache]:lootbox_default; 6k to unlock
+;                                                          Size     Limit   Chance
+scrap												     = 1, 		3, 	    50
+parts												     = 0, 		2, 		40
+repair_low												 = 1, 		5, 		70
+repair_med												 = 1, 		3, 		40
+repair_high												 = 4, 		1, 		10
+meds_low												 = 1, 		6, 		60
+meds_med												 = 1, 		3, 		30
+meds_high												 = 1, 		1, 		10
+drinks												     = 1, 		6, 		70
+canfood												     = 1, 		6, 		70
+survfood												 = 4, 		2, 		40
+ammo_bad												 = 1, 		8, 		20
+ammo_good												 = 1, 		8, 		50
+ammo_rare												 = 1, 		1, 		10
+ammo_grenades											 = 1, 		2, 		40
+devices_low												 = 2, 		2, 		50
+devices_med												 = 2, 		2, 		30
+devices_high											 = 2, 		1, 		3
+
+; scrap,4,repair_low,2,repair,2,food,4,ammo_grenades,2
+; meds_low,2,meds,4,drugs_med,2,drugs,3,ammo,2,ammo_grenades,2
+; ammo,10,ammo_grenades,3,survfood,2,drinks,3,gear_med,1
+; ammo,4,ammo_grenades,3,food,2,drinks,3,meds,2,drugs_med,2
+; survfood,2,drinks,3,meds,6,drugs_med,2
+; food,6,drinks,6,meds,4,drugs_med,2
+; scrap,2,repair,2,smokes,2,devices_med,1
 
 
-[lootbox_secure] ; 10000
-docs_low,10,devices_med,1,gear_med,1
-ammo_rare,5,ammo_grenades,3,docs,1,handguns_case,1
-docs_high,1,devices_med,1,gear_med,1
-money,6000,drugs,2,ammo,3,gear,1
-money,5000,devices_med,1,repair_high,1,docs,2
-money,5000,ammo_rare,5,ammo_grenades,2,meds_med,2,meds_high,1
-money,2000,meds_med,4,meds_high,2,gear,2,drugs_high,2,knives,1
-drugs_high,1,meds_high,4,drugs,4,ammo,5
-money,12000,junk,5
-money,3000,docs,3,ammo_greandes,1
-ammo_grenades,4,gear,2,gear_high,1
-scrap,2,repair,2,devices,2
-devices_high,1,gear,2
-gear_high,2,drugs,4,meds,3,docs,2
-artifacts_high,1
-artifacts,2
-artifacts_med,1
+[lootbox_secure]:lootbox_default ; 10000, 		size of 8-12
+;                                                          Size     Limit   Chance
+drugs_low												 = 1, 		4, 		10
+drugs_med												 = 1, 		4, 		50
+drugs_high												 = 1, 		4, 		10
+meds_low												 = 1, 		4, 		20
+meds_med												 = 1, 		4, 		70
+meds_high												 = 1, 		4, 		20
+knives											    	 = 2, 		1, 		50
+docs_low												 = 1, 		5, 		50
+docs_med												 = 2, 		3, 		40
+docs_high												 = 5, 		1, 		20
+devices_low												 = 1, 		2, 		40
+devices_med												 = 2, 		2, 		60
+devices_high							    			 = 4, 		2, 		20
+repair_med												 = 1, 		3, 		60
+repair_high												 = 2, 		1, 		20
+attachments_high										 = 1, 		2, 		50
+scrap								    				 = 1, 		3, 		5
+parts									    			 = 1, 		3, 		5
+ammo_good												 = 1, 		5, 		60
+ammo_rare												 = 1, 		5, 		10
+ammo_grenades											 = 1, 		3, 		50
+artifacts_low											 = 4, 		2, 		40
+artifacts_med											 = 5, 		1, 		20
+artifacts_high											 = 7, 		1, 		10
+; docs_low,10,devices_med,1,gear_med,1
+; ammo_rare,5,ammo_grenades,3,docs,1,handguns_case,1
+; docs_high,1,devices_med,1,gear_med,1
+; money,6000,drugs,2,ammo,3,gear,1
+; money,5000,devices_med,1,repair_high,1,docs,2
+; money,5000,ammo_rare,5,ammo_grenades,2,meds_med,2,meds_high,1
+; money,2000,meds_med,4,meds_high,2,gear,2,drugs_high,2,knives,1
+; drugs_high,1,meds_high,4,drugs,4,ammo,5
+; money,12000,junk,5
+; money,3000,docs,3,ammo_greandes,1
+; ammo_grenades,4,gear,2,gear_high,1
+; scrap,2,repair,2,devices,2
+; devices_high,1,gear,2
+; gear_high,2,drugs,4,meds,3,docs,2
+; artifacts_high,1
+; artifacts,2
+; artifacts_med,1
 
 
-[lootbox_briefcase] ; 8000
-money,2000,docs,3
-money,1000,docs,4
-money,2000,devices,1
-money,1000,handguns_case,1
-money,2500,docs,2,smokes,1
-money,3500,docs,2
-money,8500
-artifacts,1
-docs,4
-docs_low,1,devices,1
-docs_low,4,devices_low,1
-docs_low,3,devices_low,1
-docs,2,devices_low,1
-docs,3
-devices_med,1
-docs_high,1
-docs_high,1,docs_low,1
-devices_high,1
+[lootbox_briefcase]:lootbox_default ; 8000, 		sizeof 8
+;                                                          Size     Limit   Chance
+docs_low												 = 1, 		10, 	70
+docs_med												 = 2, 		5, 		40
+docs_high												 = 3, 		2, 		10
+devices_med												 = 2, 		1, 		40
+devices_high											 = 4, 		1, 		20
+artifacts_low											 = 4, 		1, 		16
+artifacts_med											 = 5, 		1, 		8
+artifacts_high											 = 7, 		1, 		4
+money_low												 = 1, 		3, 		50
+money_med												 = 2, 		2, 		30
+money_high												 = 5, 		1, 		10
+handguns_case											 = 4, 		1, 		50
+; money,2000,docs,3
+; money,1000,docs,4
+; money,2000,devices,1
+; money,1000,handguns_case,1
+; money,2500,docs,2,smokes,1
+; money,3500,docs,2
+; money,8500
+; artifacts,1
+; docs,4
+; docs_low,1,devices,1
+; docs_low,4,devices_low,1
+; docs_low,3,devices_low,1
+; docs,2,devices_low,1
+; docs,3
+; devices_med,1
+; docs_high,1
+; docs_high,1,docs_low,1
+; devices_high,1
 
-[lootbox_monoloot]
-money,30000
-money,10000,artifacts_high,2
-drugs_high,2,ammo_rare,5,artifacts_low,1,artifacts_med,1
-gear_high,3,rifles_monolith,1,ammo_rare,4
-rifles_monolith,1,artifacts_high,1,ammo_rare,4
-rifles_monolith,1,ammo_rare,5,meds_high,3,ammo_grenades,3
-artifacts_high,4
-gear_high,1,devices_high,1
-gear_high,3,rifles_monolith,1,ammo_rare,4
+[lootbox_monoloot] ; 
+;                                                          Size     Limit   Chance
+money_med												 = 1, 		4, 		60
+money_high												 = 2, 		1, 		40
+money_fat												 = 5, 		1, 		10
+artifacts_low											 = 4, 		4, 		60
+artifacts_med											 = 5, 		3, 		40
+artifacts_high											 = 7, 		2, 		20
+ammo_rare												 = 1, 		5, 		50
+ammo_grenades											 = 1, 		4, 		50
+devices_med												 = 1, 		4, 		60
+devices_high											 = 2, 		2, 		30
+attachments_high										 = 0, 		1, 		50
+rifles_monolith											 = 6, 		1, 		40
+; money,30000
+; money,10000,artifacts_high,2
+; drugs_high,2,ammo_rare,5,artifacts_low,1,artifacts_med,1
+; gear_high,3,rifles_monolith,1,ammo_rare,4
+; rifles_monolith,1,artifacts_high,1,ammo_rare,4
+; rifles_monolith,1,ammo_rare,5,meds_high,3,ammo_grenades,3
+; artifacts_high,4
+; gear_high,1,devices_high,1
+; gear_high,3,rifles_monolith,1,ammo_rare,4
 
 [lootbox_box_artifacts]
-artifacts_low,1 = 5
-artifacts_med,1 = 3
-artifacts_low,2 = 2
-artifacts,1 = 2
-artifacts,2 = 2
-artifacts_high,1
+;                                                          Size     Limit   Chance
+artifacts_low											 = 1, 		3, 		60
+artifacts_med											 = 2, 		2, 		40
+artifacts_high											 = 3, 		1, 		20
+; artifacts_low,1												 = 5
+; artifacts_med,1												 = 3
+; artifacts_low,2												 = 2
+; artifacts,1												 = 2
+; artifacts,2												 = 2
+; artifacts_high,1
 
 ; sink
-[lootbox_default]
-junk,1; test purposes
 [lootbox_test]
 pda,5

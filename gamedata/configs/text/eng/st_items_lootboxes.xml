@@ -27,13 +27,18 @@
             Fancy-looking yellow hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to mechanical tampering and the elements. Such boxes of this nature originate from outside Eastern Europe and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
 		</text>
 	</string>
+	<string id="st_lootbox_small_good2_descr">
+		<text>
+            Fancy-looking hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to mechanical tampering and the elements. Such boxes of this nature originate from outside Eastern Europe and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
+		</text>
+	</string>
 
 	<string id="st_lootbox_small_artifact">
 		<text>Locked Lead-lined box</text>
 	</string>
 	<string id="st_lootbox_small_artifact_descr">
 		<text>
-            Professionaly made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and very difficult to bypass.\n \n
+            Professionally made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and very difficult to bypass.\n \n
 		</text>
 	</string>
 
@@ -77,78 +82,6 @@
 	<string id="st_lootbox_large_rifle_descr">
 		<text>
             Hard waterproof case often used to transport long rifles. The only people in the Zone who can afford to care for their shooters with such luxury are Mercenaries or other similarly dangerous people, so cases like these are very rare and extremely dangerous to possess.\n \n
-		</text>
-	</string>
-	<string id="st_lootbox_toolbox">
-		<text>Toolset</text>
-	</string>
-	<string id="st_lootbox_toolbox_descr">
-		<text>
-			Toolset with a keyed lock on the handle. Commonly found with mechanics, who use such boxes as organized means to carry tools and other maintenance equipment. Due to how the tools are held in this type of container, it cannot contain anything besides repair items, spare parts, and maybe a stale pack of smokes. Good tools such as these are in high demand from most mechanics.
-		</text>
-	</string>
-	<string id="st_lootbox_medbox">
-		<text>Medical Box</text>
-	</string>
-	<string id="st_lootbox_medbox_descr">
-		<text>
-			Sterile multi-compartment case designed to hold a large amount of first aid, with an integral lock. Usually found in a doctor's office, and definitely worth a lot of money to any medic.
-		</text>
-	</string>
-	<string id="st_lootbox_ammocase">
-		<text>Munitions Case</text>
-	</string>
-	<string id="st_lootbox_ammocase_descr">
-		<text>
-			Waterproof container used to store weapon magazines and ammunition. Common with hunters and wealthy citizens. A good find in the Zone - usually, tourists bring these cases in along with a good amount of high-quality ammunition, and the climate control ensures that the ammo inside is clean and dry. Most ammunition in the Zone is old, damaged, or worse, handloaded by inexperienced smiths with subpar equipment, and as such good rounds are uncommon and quite valuable.
-		</text>
-	</string>
-	<string id="st_lootbox_foodbox">
-		<text>Metal Food Box</text>
-	</string>
-	<string id="st_lootbox_foodbox_descr">
-		<text>
-			Insulated metal box designed to hold perishables. Uncommon in the Zone and used mostly by SSU personnel to carry food, but there is unusual demand for these boxes for their ability to keep alcohol cold.
-		</text>
-	</string>
-	<string id="st_lootbox_junkbox">
-		<text>Box of Junk</text>
-	</string>
-	<string id="st_lootbox_junkbox_descr">
-		<text>
-			A big container with a lot of junk inside, maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here...
-		</text>
-	</string>
-	<string id="st_lootbox_foodbox">
-		<text>Metal Food Box</text>
-	</string>
-	<string id="st_lootbox_foodbox_descr">
-		<text>
-			Insulated metal box designed to hold perishables. Uncommon in the Zone and used mostly by SSU personnel to carry food, but there is unusual demand for these boxes for their ability to keep alcohol cold.
-		</text>
-	</string>
-	<string id="st_lootbox_devicecase">
-		<text>Electronics Case</text>
-	</string>
-	<string id="st_lootbox_device_descr">
-		<text>
-			Waterproof and EMP-resistant case designed to hold military electronic devices. Incidentally also used by Ecologists to hold all their sensitive field equipment, given the heavy monetary equipment losses to Electro fields, chemical corrosion, fire or simply being thrown into the atmosphere by a gravitational anomaly.
-		</text>
-	</string>
-	<string id="st_lootbox_gearcase">
-		<text>Equipment Case</text>
-	</string>
-	<string id="st_lootbox_gear_descr">
-		<text>
-			Large case holding miscellaneous equipment for 
-		</text>
-	</string>
-	<string id="st_lootbox_snipercase">
-		<text>Sniper Rifle Case</text>
-	</string>
-	<string id="st_lootbox_snipercase_descr">
-		<text>
-			Slim western-style rifle case. For some reason, it is popular to store marksman rifles, sniper rifles and other high-precision rifles in cases such as these if possible - supposedly the foam lining helps to keep sight zero when the case is handled and dropped, or something. Either way, a very good find - if you can get past the lock, that is.
 		</text>
 	</string>
 	<string id="st_lootbox_large_monolith">
@@ -430,6 +363,7 @@
 	</string>
 	<string id="st_lootbox_note_mechanic_descr">
 		<text>
+			d
 		</text>
 	</string>
 
@@ -497,7 +431,7 @@
 		<text>Flash drive found in a briefcase. Common way to store and transport large quantities of information in a compact manner, although a computer is required to access the information.</text>
 	</string>
 	
-	<string id="st_	lootbox_docs_case">
+	<string id="st_lootbox_docs_case">
 		<text>Metal Document Folder</text>
 	</string>
 	<string id="st_lootbox_docs_case_descr">
@@ -519,7 +453,9 @@
 		<text>Chance to find lootboxes in stashes</text>
 	</string>
 	<string id="ui_mcm_lootboxes_deathchance">
-		<text>Chance to find loot off dead stalkers (including lockpicks)</text>
+		<text>
+			Chance to find loot off dead stalkers (including lockpicks)
+		</text>
 	</string>
 	
 	<string id="ui_mcm_lootboxes_animation">
@@ -527,9 +463,6 @@
 	</string>
 	<string id="ui_mcm_lootboxes_debug">
 		<text>Debug logging</text>
-	</string>
-	<string id="ui_mcm_lootboxes_override">
-		<text>Replace existing loot in stashes</text>
 	</string>
  
 

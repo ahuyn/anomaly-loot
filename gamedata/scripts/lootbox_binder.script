@@ -1,0 +1,88 @@
+-- just to keep track of weights
+
+local weights = {}
+-- class
+function bind(obj)
+    obj:bind_object(lootbox_binder(obj))
+end
+
+class "lootbox_binder" (object_binder)
+
+function lootbox_binder:__init(obj) super(obj)
+	self.first_update = nil
+end
+
+function lootbox_binder:update(delta)
+    local obj  = self.object
+    local id = obj:id()
+    if not self.first_update then
+        self.first_update = true
+        arti_lootboxes.populate_lootbox(id, obj:section())
+        calc_weight(obj)
+    end
+end
+
+function lootbox_binder:reload(section)
+    object_binder.reload(self, section)
+end
+
+function lootbox_binder:reinit()
+    object_binder.reinit(self)
+end
+
+function lootbox_binder:net_spawn(se_abstract)
+    if not(object_binder.net_spawn(self, se_abstract)) then
+        return false
+    end
+    local id = self.object:id()
+    if weights[id] then
+        self.object:set_weight(weights[id])
+    end
+    return true
+end
+
+function lootbox_binder:net_destroy()
+	--print_dbg("[%s] destroyed: %s", self.object:name())
+	object_binder.net_destroy(self)
+end
+
+function lootbox_binder:save(stpk)
+end
+
+function lootbox_binder:load(stpk)
+end
+
+local function se_device_on_unregister(se_obj, typ)
+    local id = se_obj.id
+    weights[id] = nil
+
+end
+
+function calc_weight(box)
+    local lootstring = arti_lootboxes.get_loot_string(box:id())
+    local weight = SYS_GetParam(2, box:section(), "inv_weight")
+	local spawned_items = arti_lootboxes.parse_lootstring(lootstring)
+    for section, quantity in pairs(spawned_items) do
+        if section == "spooky" or section == "money" then
+        elseif arti_lootboxes.sec_is_weapon(section) then
+            item_weight = SYS_GetParam(2, section, "inv_weight")
+            weight = weight + item_weight
+        else
+            if string.find(section, "__") then
+                section = str_explode(section, "__")[1]
+            end
+            item_weight = SYS_GetParam(2, section, "inv_weight") or 0
+            weight = weight + (item_weight * tonumber(quantity))
+        end
+    end
+    weights[box:id()] = weight
+    box:set_weight(weight)
+end
+
+function on_game_start()
+	-- if (USE_MARSHAL) then 
+	-- 	RegisterScriptCallback("save_state",save_state)
+	-- 	RegisterScriptCallback("load_state",load_state)
+	-- end
+	RegisterScriptCallback("server_entity_on_unregister",se_device_on_unregister)
+end

@@ -131,15 +131,16 @@ auto_attach				                               = false
 snd_on_take								 		       = other
 tier                                                   = 3
 box_group                                              = 0
+use_condition                            		       = true 
 unique_contents                                        = underwear,10
+loot_type                                              = grab
 weapon_condition                                       = 40
 snd_open                                               = Plastic_Small_Pick
 snd_open_key                                           = Plastic_Small_Key
 snd_open_axe                                           = Wood_Axe
-; use1_functor                = pickset_binder.try_pick
-; use1_action_functor         = pickset_binder.pick_box
+items_range                                            = 6, 10
+multiuse_full                                          = false
 script_binding                                         = lootbox_binder.bind
-weapon_condition = 20
 
 
 

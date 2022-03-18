@@ -10,6 +10,7 @@ cost				                                   = 1997
 inv_weight			                                   = 1
 difficulty                                             = 2
 contents                                               = bad
+box_group                                              = low
 loot_type                                              = grab
 ; unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
 
@@ -31,7 +32,7 @@ inv_weight			                                   = 1
 difficulty                                             = 4
 contents                                               = good
 loot_type                                              = grab
-box_group                                              = 2
+box_group                                              = mid
 items_range                                            = 8, 12
 ; unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1,bolt,4
 
@@ -50,7 +51,7 @@ difficulty                                             = 12
 contents                                               = secure
 loot_type                                              = grab
 weapon_condition                                       = 60
-box_group                                              = 3
+box_group                                              = secure
 items_range                                            = 8, 14
 ; unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
 ; lootbox_docs_sheet_5,1,lootbox_docs_notebook_1,1,stimpack_scientic,1
@@ -79,7 +80,7 @@ inv_weight			                                   = 1
 difficulty                                             = 15
 contents                                               = box_artifacts
 loot_type                                              = grab
-box_group                                              = 4
+box_group                                              = artifact
 items_range                                            = 1, 3
 ; unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
 
@@ -104,7 +105,7 @@ difficulty                                             = 8
 contents                                               = briefcase
 loot_type                                              = grab
 weapon_condition                                       = 50
-box_group                                              = 5
+box_group                                              = briefcase
 items_range                                            = 4, 8
 ; unique_contents                                        = money,15000,itm_pda_rare,2,cocaine,1,lootbox_note_bandit,1
 
@@ -126,13 +127,13 @@ inv_grid_width			                               = 2
 inv_grid_height			                               = 2
 inv_grid_x			                                   = 6
 inv_grid_y			                                   = 3
-cost				                                   = 8005
+cost				                                   = 5905
 inv_weight			                                   = 1
 weapon_condition                                       = 8
 difficulty                                             = 6
 contents                                               = cache
 loot_type                                              = grab
-box_group                                              = 6
+box_group                                              = survcache
 ; unique_contents                                        = lootbox_note_vodka,1,vodka,14
 items_range                                            = 8, 12
 
@@ -159,7 +160,7 @@ loot_type                                              = weapon
 snd_open                                               = Wood_Picks
 snd_open_key                                           = Wood_Key
 can_smash                                              = true
-box_group                                              = 7
+box_group                                              = wpn_shotgun
 unique_contents = wpn_toz34_mark4,0_0_70,ammo_12x70_buck,2,lootbox_note_tourist,1
 
 [lootbox_71]:lootbox ; ak box
@@ -173,12 +174,12 @@ inv_grid_y			                                   = 5
 cost				                                   = 25021
 inv_weight			                                   = 10
 weapon_condition                                       = 75
-difficulty                                             = 15
+difficulty                                             = 14
 contents                                               = surplus_case
 loot_type                                              = weapon
 snd_open                                               = Wood_Picks
 snd_open_key                                           = Wood_Key
-box_group                                              = 71
+box_group                                              = wpn_ak
 can_smash                                              = true
 unique_contents = lootbox_note_grenade,1,grenade_rgd5,15,grenade_f1,5
 
@@ -196,7 +197,7 @@ weapon_condition                                       = 80
 difficulty                                             = 18
 contents                                               = rifles_case
 loot_type                                              = weapon
-box_group                                              = 8
+box_group                                              = wpn_rifle
 unique_contents                                        = wpn_svd_nimble,0_6_90,ammo_7.62x54_ap,2,cigar,1,lootbox_note_birthday,1
 
 [lootbox_81]:lootbox_8 ; merc pelican box 2
@@ -217,7 +218,7 @@ inv_weight			                                   = 1
 weapon_condition                                       = 95
 difficulty                                             = 101
 contents                                               = monoloot
-box_group                                              = 9
+box_group                                              = monoloot
 loot_type                                              = grab
 items_range                                            = 10, 15
 ; unique_contents = af_death_lamp,1,lootbox_note_deathlamp,1

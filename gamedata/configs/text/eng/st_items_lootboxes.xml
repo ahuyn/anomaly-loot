@@ -2,7 +2,7 @@
 <string_table>
 
 	<string id="st_lootbox_small_bad">
-		<text>Padlocked toolbox</text>
+		<text>Padlocked Toolbox</text>
 	</string>
 	<string id="st_lootbox_small_bad_descr">
 		<text>
@@ -145,6 +145,9 @@
 
     <string id="st_money">
         <text> roubles</text>
+    </string>
+    <string id="st_check_peek">
+        <text>[DEBUG] peek</text>
     </string>
 
 	<string id="st_lockpick">

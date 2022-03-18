@@ -5,7 +5,7 @@
 	</string>
 	<string id="st_lootbox_toolbox_descr">
 		<text>
-			Toolset with a keyed lock on the handle. Commonly found with mechanics, who use such boxes as organized means to carry tools and other maintenance equipment. Due to how the tools are held in this type of container, it cannot contain anything besides repair items, spare parts, and maybe a stale pack of smokes. Good tools such as these are in high demand from most mechanics.\n
+			Toolset with a keyed lock on the handle. Commonly found with mechanics, who use such boxes as organized means to carry tools and other maintenance equipment. Due to how the tools are held in this type of container, it cannot contain anything besides repair items, spare parts, and maybe a stale pack of smokes. Good tools such as these are in high demand from most mechanics, and as such this is secured with a decent quality lock. \n
 		</text>
 	</string>
 	<string id="st_lootbox_medbox">
@@ -13,7 +13,7 @@
 	</string>
 	<string id="st_lootbox_medbox_descr">
 		<text>
-			Sterile multi-compartment case designed to hold a large amount of first aid, with an integral lock. Usually found in a doctor's office, and definitely worth a lot of money to any medic. Of course, having a lot of medical items on hand is never a bad thing...\n
+			Sterile multi-compartment case designed to hold a large amount of first aid, with an integral lock. An aftermarket lock of extremely high quality has been used to secure the case closed. Usually found in a doctor's office, and definitely worth a lot of money to any medic. Of course, having a lot of medical items on hand is never a bad thing...\n
 		</text>
 	</string>
 	<string id="st_lootbox_ammocase">
@@ -33,11 +33,11 @@
 		</text>
 	</string>
 	<string id="st_lootbox_junkbox">
-		<text>Digger's Junkbox</text>
+		<text>Scavenger's Junkbox</text>
 	</string>
 	<string id="st_lootbox_junkbox_descr">
 		<text>
-			A big container with a lot of junk inside. Maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here...\n
+			A big container with a lot of junk inside. A crappy lock holds it closed. Maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here...\n
 		</text>
 	</string>
 	<string id="st_lootbox_devicecase">
@@ -45,7 +45,7 @@
 	</string>
 	<string id="st_lootbox_device_descr">
 		<text>
-			Waterproof and EMP-resistant case designed to hold military electronic devices. Incidentally also used by Ecologists to hold all their sensitive field equipment, given the heavy monetary equipment losses to Electro fields, chemical corrosion, fire or simply being thrown into the atmosphere by a gravitational anomaly.\n
+			Waterproof and EMP-resistant case used by the Ecologists to transport equipment and samples. After one too many incidents involving 'dropping' field equipment in anomalies, the Ministry of Science has mandated the usage of specialized cases to carry equipment in the field. These cases contain a wide variety of advanced electronic devices and are also used by hired Mercenaries to store their sensitive equipment and extra armor. There is a special compartment for storing field samples as well.\n
 		</text>
 	</string>
 	<string id="st_lootbox_coinbox">

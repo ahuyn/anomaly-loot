@@ -19,6 +19,20 @@ New game not required, as everything is handled dynamically. MCM support present
 Other mod makers can integrate with lootboxes, adding items they have created into lootboxes. Consult custom_loot for usage information.
 
 Changelog
+2.0 - Major changes
+    - Note: Some old boxes might break. Don't worry, it won't crash your game.
+    - System for determining loot overhauled majorly. Expect much more random spead of items now.
+    - Box drop system now tier-based, can drop any category of box within that tier.
+    - Several new boxes added.
+        - Toolbox
+        - Munitions Case
+        - Food Storage Box
+        - Scavenger's Junkbox
+        - Medical Storage Case
+        - Competition Rifle Case
+    - PDA spawning improved. Now the PDA is based on where you find the box, instead of where you open it.
+    - Support for multiple unique drops instead of being instanced to one per box type.
+    - Loot quantity off stalkers and randomly in stashes has been adjusted.
 1.2 - Major changes:
     - Documents are made to be much more valuable. Documents sell for much higher overall, and certain factions will pay more for each document type.
     - Lootbox content balance pass. Partial items now spawn and overall quantity of items reduced. Repair items, weapon and outfit parts, tools, and other items added to the lootbox pool.

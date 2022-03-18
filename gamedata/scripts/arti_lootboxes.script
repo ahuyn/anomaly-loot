@@ -62,9 +62,9 @@ function get_loot_string(id)
     return lootbox_contents[id]
 end
 
--- rand(100) against these odds
+-- rand() against these odds
 function roll(odds)
-    return rand(100) <= odds
+    return rand() <= odds
 end
 
 -- returns 1 with 60% chance, 2 with 30%, 3 with 10%
@@ -141,29 +141,18 @@ function init()
         local line_count = ini_map:line_count(map) or 0
         local ref = map_tiers[map]
         for i=0,line_count-1 do
-            local junk1, tier, values = ini_map:r_line_ex(map, i, "", "")
-            print_dbg("adding boxes %s to map %s, tier %s", values, map,tier)
-            ref[tonumber(tier)] = values and str_explode(values, ",") or {}
-        end
-    end)
-
-    local ini_stalker = ini_file("items\\settings\\lootbox_stalker_distribution.ltx")
-    ini_stalker:section_for_each(function(faction)
-        if not map_tiers[faction] then map_tiers[faction] = {} end
-
-        print_dbg("processing community %s", faction)
-        local line_count = ini_stalker:line_count(faction) or 0
-        local ref = map_tiers[faction]
-        for i=0,line_count-1 do
-            local junk1, tier, values = ini_stalker:r_line_ex(faction, i, "", "")
-            local loot_table = values and str_explode(values, ",") or {["nothing"] = 1}
-            print_dbg("adding loot %s to stalker faction %s", values, map,tier)
-            ref[tonumber(tier)] = loot_table
+            local drop_chance = {}
+            local junk1, group, chance = ini_map:r_line_ex(map, i, "", "")
+            drop_chance.group = group
+            drop_chance.chance = chance or 0.5
+            print_dbg("adding box group %s to map %s, weight %s", group, map, chance)
+            
+            ref[i + 1] = drop_chance
         end
     end)
 
     ini_lootbox:section_for_each(function(section)
-        local group = ini_lootbox:r_string_ex(section, "box_group")
+        local group = ini_lootbox:r_string_ex(section, "box_group") or "low"
         if group then
             if not variant_map[group] then variant_map[group] = {} end
             table.insert(variant_map[group], section)
@@ -188,15 +177,18 @@ function init_uniques()
 end
 
 -- given a group id, return a lootbox section from that group, if applicable
-function pick_lootbox(group)
+function pick_lootbox(map)
 
-    if variant_map[group] then
-        print_dbg("Checking group %s", group)
+    if map_tiers[map] then
+        local group = nil
+        while not group do
+            local m = random_entry(map_tiers[map])
+            if roll(m.chance) then
+                group = m.group
+            end
+        end
         return random_entry(variant_map[group])
-    else
-        return "lootbox_"..group
     end
-
 end
 
 -- Weapon data is stored as weapon_section,flags_ammotype_cond
@@ -311,9 +303,6 @@ function process_template(template, box_section)
             if sec_is_weapon(id) then
                 local condition = SYS_GetParam(2, box_section, "weapon_condition") or rand(20, 80)
                 append_weapon(processed, id, condition)
-            -- elseif id == "money" then
-            --     local money_amt = rand(value) or 1000
-            --     table_upsert(processed, k, money_amt)
             elseif item_device.device_npc_pda[id] then
                 if not processed[id] then
                     local schmuck_id = pda_custom.cache_local_schmuck()
@@ -538,15 +527,15 @@ function open_lootbox(box, method)
         utils_obj.play_sound(sound)
         print_dbg("Start open box with id "..id)
         RemoveTimeEvent("lootbox","box_open " .. id)
-        CreateTimeEvent("lootbox","box_open " .. id, delay, open_lootbox_timer, id)
+        CreateTimeEvent("lootbox","box_open " .. id, delay, open_lootbox_timer, id, true)
     else
         RemoveTimeEvent("lootbox","box_open " .. id)
-        CreateTimeEvent("lootbox","box_open " .. id, 0, open_lootbox_timer, id)
+        CreateTimeEvent("lootbox","box_open " .. id, 0, open_lootbox_timer, id, true)
     end
 
 end
 
-function open_lootbox_timer(id)
+function open_lootbox_timer(id, give)
     xr_effects.enable_ui_lite(db.actor, nil)
 
     if not lootbox_contents[id] then return false end
@@ -590,66 +579,19 @@ function open_lootbox_timer(id)
         end
     end
     send_tip(db.actor, str, nil, "swiss_knife", 6000)
-	lootbox_contents[id] = nil
-    -- manage uniques - once player opens, remove unique from appearing again
-    if lootbox_contents.uniques[id] then
-        local unique_sec = lootbox_contents.uniques[id]
-        lootbox_contents.uniques[id] = nil
-        lootbox_contents.uniques[unique_sec] = true
-        print_dbg("Lootbox unique %s opened", unique_sec)
+    if give then
+        lootbox_contents[id] = nil
+        -- manage uniques - once player opens, remove unique from appearing again
+        if lootbox_contents.uniques[id] then
+            local unique_sec = lootbox_contents.uniques[id]
+            lootbox_contents.uniques[id] = nil
+            lootbox_contents.uniques[unique_sec] = true
+            print_dbg("Lootbox unique %s opened", unique_sec)
+        end
+        lootbox_contents[id] = nil
+        alife_release_id(id)
     end
-	lootbox_contents[id] = nil
-    alife_release_id(id)
     return true
-end
-
--- spawn kit and picks in technician inv
-
-function IsMechanic(npc)
-    return string.find(npc:section(), "mechanic") or string.find(npc:section(), "tech")
-end
-
-function create_tools()
-
-    local npc = mob_trade.GetTalkingNpc()
-    print_dbg("trade init with "..npc:character_name())
-    if IsMechanic(npc) then
-        local num_set = 0
-        local num_picks = 0
-        local num_bundle = 0
-
-        local function search(temp, item)
-            local item_section = item:section()
-            if item_section == "lockpick" then
-                num_picks = num_picks + 1
-                print_dbg("found lockpick")
-            elseif item_section == "bundle_lockpick" then
-                num_bundle = num_bundle + 1
-                print_dbg("found lockpick")
-            elseif item_section == "lockpick_set" then
-                num_set = num_set + 1
-            end
-        end
-        npc:iterate_inventory(search, nil)
-        num_picks = 5 - num_picks
-        if num_picks > 0 then
-            print_dbg("Spawning ".. num_picks .. " lockpicks")
-            for i=1, num_picks do
-                alife_create_item("lockpick", npc)
-            end 
-        end
-        num_bundle = 5 - num_bundle
-        if num_bundle > 0 then
-            print_dbg("Spawning ".. num_bundle .. " bundles")
-            for i=1, num_bundle do
-                alife_create_item("bundle_lockpick", npc)
-            end 
-        end
-        if num_set == 0 then
-            print_dbg("spawning pickset")
-            alife_create_item("lockpick_set", npc)
-        end
-    end
 end
 
 
@@ -662,14 +604,8 @@ function spawn_lootbox(box)
         local se_obj = alife_object(id) 
         local lvl = alife():level_name(game_graph():vertex(se_obj.m_game_vertex_id):level_id())
         print_dbg("spawning box in %s", lvl)
-        if map_tiers[lvl] == nil then return end
-        local tier = weighted_roll()
-        c = #map_tiers[lvl][tier]
-        print_dbg("Rolling tier %s, picking from %s choices", tier, c)
+        local box_type = pick_lootbox(lvl)
 
-        local box_type = pick_lootbox(map_tiers[lvl][tier][math.fmod(roll, c) + 1])
-
-        -- roll number from 1-4, corresponding to level of lootbox
         if ini_sys:section_exist(box_type) then
             print_dbg("Spawned in lootbox of type "..box_type)
             se_itm = alife_create_item(box_type, box)
@@ -748,6 +684,15 @@ function ui_item.build_desc_footer(obj, sec, str)
     end
 end
     
+function check_peek(obj)
+    if DEV_DEBUG then
+        return gc("st_check_peek")
+    end
+end
+
+function peek(obj)
+
+end
 
 CreateReleaseItem = death_manager.create_release_item
 function death_manager.create_release_item(npc)
@@ -765,7 +710,6 @@ function on_game_start()
 	RegisterScriptCallback("actor_on_item_take_from_box",actor_on_item_take_from_box)
     RegisterScriptCallback("ActorMenu_on_item_drag_drop",on_item_drag_dropped)
 	RegisterScriptCallback("server_entity_on_unregister", server_entity_on_unregister)
-    RegisterScriptCallback("ActorMenu_on_trade_started",create_tools)
 	RegisterScriptCallback("actor_on_item_take",spook_player)
     init()
 end

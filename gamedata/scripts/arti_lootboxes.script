@@ -146,7 +146,20 @@ function init()
             drop_chance.group = group
             drop_chance.chance = chance or 0.5
             print_dbg("adding box group %s to map %s, weight %s", group, map, chance)
-            
+            ref[i + 1] = drop_chance
+        end
+    end)
+    local ini_stalker = ini_file("items\\settings\\lootbox_stalker_distribution.ltx")
+    ini_stalker:section_for_each(function(faction)
+        if not map_tiers[faction] then map_tiers[faction] = {} end
+        print_dbg("processing faction %s", faction)
+        local line_count = ini_stalker:line_count(faction) or 0
+        local ref = map_tiers[faction]
+        for i=0,line_count-1 do
+            local drop_chance = {}
+            local junk1, items, chance = ini_stalker:r_line_ex(faction, i, "", "")
+            drop_chance.items = items
+            drop_chance.chance = chance or 0.5
             ref[i + 1] = drop_chance
         end
     end)
@@ -174,21 +187,6 @@ function init_uniques()
         if not uniques_cache[box] then uniques_cache[box] = {} end
         uniques_cache[box][section] = true
     end)
-end
-
--- given a group id, return a lootbox section from that group, if applicable
-function pick_lootbox(map)
-
-    if map_tiers[map] then
-        local group = nil
-        while not group do
-            local m = random_entry(map_tiers[map])
-            if roll(m.chance) then
-                group = m.group
-            end
-        end
-        return random_entry(variant_map[group])
-    end
 end
 
 -- Weapon data is stored as weapon_section,flags_ammotype_cond
@@ -275,6 +273,7 @@ function build_template(template, section, max, chance_mult)
         -- build
         max = max or 10
         bias = bias or 1
+        bias = bias * get_config("lootquality")
         print_dbg("Adding %s items, bias %s", max, bias)
         pool = pool_cache[section]
         iters = 0
@@ -594,6 +593,21 @@ function open_lootbox_timer(id, give)
     return true
 end
 
+-- given a group id, return a lootbox section from that group, if applicable
+function pick_lootbox(map)
+
+    if map_tiers[map] then
+        local group = nil
+        local bias = get_config("lootquality") or 1
+        while not group do
+            local m = random_entry(map_tiers[map])
+            if roll(m.chance * bias) then
+                group = m.group
+            end
+        end
+        return random_entry(variant_map[group])
+    end
+end
 
 -- spawn lootbox in box, tie the contents of box to creation time to prevent RNG cheese
 function spawn_lootbox(box)
@@ -637,16 +651,23 @@ function spawn_stalker_loot(npc)
 
     if rand(100) <= get_config("deathchance") then
         local community = npc:character_community()
+        local rank_bias = npc:rank() / 10000
         if map_tiers[community] == nil then community = "stalker" end
-        local table = map_tiers[community][weighted_roll()]
-        if table[1] == "nothing" then return end
-
-        local amt = rand(tonumber(table[2]))
-        print_dbg("Spawning %s of %s on dead NPC", amt, table[1])
-        for i=1,amt do
-            se_obj = alife_create(table[1],  npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id(), false)
+        local table = map_tiers[community]
+        local to_drop = nil
+        
+        while not to_drop do
+            local m = random_entry(map_tiers[community])
+            if roll(m.chance * rank_bias) then
+                to_drop = m.items
+            end
+        end
+        tbl = str_explode(to_drop, ",")
+        if not tbl[2] then tbl[2] = 1 end
+        print_dbg("Spawning %s of %s on dead NPC", tbl[2], tbl[1])
+        for i=1,tonumber(tbl[2]) do
+            se_obj = alife_create(tbl[1],  npc:position(), npc:level_vertex_id(), npc:game_vertex_id(), npc:id(), false)
             alife():register(se_obj)
-            print_dbg("registered object "..se_obj.id)
         end
     end
 end

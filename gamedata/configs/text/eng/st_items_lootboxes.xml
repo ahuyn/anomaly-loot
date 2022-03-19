@@ -246,6 +246,16 @@
 			Chance to find loot off dead stalkers (including lockpicks)
 		</text>
 	</string>
+	<string id="ui_mcm_lootboxes_lootquality">
+		<text>
+			Loot quality
+		</text>
+	</string>
+	<string id="ui_mcm_lootboxes_lootquality_desc">
+		<text>
+			Affects quality of lockboxes found and quality of loot in them by increasing chances to roll better pools.
+		</text>
+	</string>
 	
 	<string id="ui_mcm_lootboxes_animation">
 		<text>Box open animations</text>

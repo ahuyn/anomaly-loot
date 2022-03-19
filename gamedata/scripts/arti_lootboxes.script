@@ -600,7 +600,7 @@ function spawn_lootbox(box)
     local id = box:id()
     if lootbox_contents[id] then return end
     local roll = rand(100)
-    if roll <= 101 then -- get_config("stashchance") then
+    if roll <= get_config("stashchance") then
         local se_obj = alife_object(id) 
         local lvl = alife():level_name(game_graph():vertex(se_obj.m_game_vertex_id):level_id())
         print_dbg("spawning box in %s", lvl)

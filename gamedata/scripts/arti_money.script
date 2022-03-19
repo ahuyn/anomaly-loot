@@ -1,0 +1,25 @@
+-- custom functors for using money
+
+function menu_cash(obj)
+    local money_range = SYS_GetParam(0, obj:section(), "money_value")
+    if money_range then
+        return game.translate_string("st_use_money"..math.random(4))
+    end
+end
+
+function func_cash(obj)
+
+    local money_range = SYS_GetParam(0, obj:section(), "money_value")
+    if money_range then
+        money = arti_lootboxes.str_explode_num(money_range, ",")
+		if money[2] then
+			local min_amt = math.floor(tonumber(money[1])) or 10
+			local max_amt = math.floor(tonumber(money[2])) or 30
+			db.actor:give_money(math.random(min_amt, max_amt))
+		else
+			local amount = math.floor(tonumber(money[1])) or 10
+			db.actor:give_money(amount)
+		end
+        alife_release(obj)
+    end
+end

@@ -2,7 +2,7 @@
 <string_table>
 
 	<string id="st_lootbox_small_bad">
-		<text>Padlocked toolbox</text>
+		<text>Padlocked Toolbox</text>
 	</string>
 	<string id="st_lootbox_small_bad_descr">
 		<text>
@@ -27,13 +27,18 @@
             Fancy-looking yellow hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to mechanical tampering and the elements. Such boxes of this nature originate from outside Eastern Europe and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
 		</text>
 	</string>
+	<string id="st_lootbox_small_good2_descr">
+		<text>
+            Fancy-looking hardshell container with an internal lock. The case is made from unknown composite materials and is designed to be resistant to mechanical tampering and the elements. Such boxes of this nature originate from outside Eastern Europe and are popular with foreigners and rich stalkers as the best means to safely store your items. The internal lock is very complex, but should be manageable to bypass.\n \n
+		</text>
+	</string>
 
 	<string id="st_lootbox_small_artifact">
 		<text>Locked Lead-lined box</text>
 	</string>
 	<string id="st_lootbox_small_artifact_descr">
 		<text>
-            Professionaly made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and very difficult to bypass.\n \n
+            Professionally made lead-lined case with a built-in lock stamped with the symbol of the Ukrainian Ministry of Science. These cases are often used by Ecologists to transport artifacts through dangerous areas, and excel at keeping radiation inside while keeping moisture and would-be thieves outside. Even with hired guards, groups of Ecologists are often preyed upon for their collected artifacts and research data, and as such securing high-value information and artifacts in secure containers became standard practice. The internal lock is professionally made and very difficult to bypass.\n \n
 		</text>
 	</string>
 
@@ -140,6 +145,9 @@
 
     <string id="st_money">
         <text> roubles</text>
+    </string>
+    <string id="st_check_peek">
+        <text>[DEBUG] peek</text>
     </string>
 
 	<string id="st_lockpick">
@@ -342,6 +350,26 @@
 		</text>
 	</string>
 	
+	<string id="st_lootbox_note_mechanic">
+		<text>Note in a toolbox</text>
+	</string>
+	<string id="st_lootbox_note_mechanic_descr">
+		<text>
+			\n \n Personal log of Andrei Petrenko
+			\n \n Yesterday was my birthday. I have been living in the Zone for almost one year now, give or take the occasional hop to the outside world to fetch supplies. I am starting to enjoy it here - the outside world never afforded me much respect, but here I put in honest work and enjoy the respect of my fellow man. There is something strange about this place, it hates technology and violence. I have cleaned and maintained more guns here just in the last year than in ten years as a gunsmith.  
+		</text>
+	</string>
+	
+
+	<string id="st_lootbox_note_mechanic">
+		<text>Note in a shotgun locker</text>
+	</string>
+	<string id="st_lootbox_note_mechanic_descr">
+		<text>
+			d
+		</text>
+	</string>
+
 	<string id="st_lootbox_docs_sheet">
 		<text>Loose Document</text>
 	</string>
@@ -405,6 +433,15 @@
 	<string id="st_lootbox_docs_usb_descr">
 		<text>Flash drive found in a briefcase. Common way to store and transport large quantities of information in a compact manner, although a computer is required to access the information.</text>
 	</string>
+	
+	<string id="st_lootbox_docs_case">
+		<text>Metal Document Folder</text>
+	</string>
+	<string id="st_lootbox_docs_case_descr">
+		<text>
+			Slim, secured metal folder used to store documents. While the X-Labs were still operational, critical findings and other important information were locked in these document cases and shipped out. These document cases are now almost impossible to find in the Zone - anyone would pay out the nose to know the contents within. The lock on this case is biometric and not possible to open mechanically.
+		</text>
+	</string>
 
 	<string id="ui_mcm_menu_lootboxes">
 		<text>Lootboxes</text>	
@@ -419,7 +456,9 @@
 		<text>Chance to find lootboxes in stashes</text>
 	</string>
 	<string id="ui_mcm_lootboxes_deathchance">
-		<text>Chance to find loot off dead stalkers (including lockpicks)</text>
+		<text>
+			Chance to find loot off dead stalkers (including lockpicks)
+		</text>
 	</string>
 	
 	<string id="ui_mcm_lootboxes_animation">
@@ -427,9 +466,6 @@
 	</string>
 	<string id="ui_mcm_lootboxes_debug">
 		<text>Debug logging</text>
-	</string>
-	<string id="ui_mcm_lootboxes_override">
-		<text>Replace existing loot in stashes</text>
 	</string>
  
 

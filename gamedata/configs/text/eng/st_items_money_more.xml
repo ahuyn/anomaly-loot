@@ -1,0 +1,62 @@
+
+<string_table>	
+	<string id="st_money_low">
+		<text>Small stack of rubles</text>
+	</string>
+	<string id="st_money_low_desc">
+		<text>A stack of small bills, likely taken from some grocery store cash register. \n</text>
+	</string>
+
+	<string id="st_money_med">
+		<text>Stack of rubles</text>
+	</string>
+	<string id="st_money_med_desc">
+		<text>Medium stack of rubles with moderate to high monetary amount. Bills are still crisp. \n</text>
+	</string>
+	<string id="st_money_high">
+		<text>Large stack of rubles</text>
+	</string>
+	<string id="st_money_high_desc">
+		<text>A large stack of rubles worth a lot. Did this come from a bank robbery? \n</text>
+	</string>
+	<string id="st_money_fat">
+		<text>Fat stack of rubles</text>
+	</string>
+	<string id="st_money_fat_desc">
+		<text>A fat ass stack of money. This is enough to put a target on your head. \n</text>
+	</string>
+	<string id="st_money_card_low">
+		<text>Stolen account card</text>
+	</string>
+	<string id="st_money_card_low_desc">
+		<text>Stolen bank card from some poor stalker. Sometimes large purchases are done electronically in the Zone for safety reasons; this is a common card and not likely to have a lot of money in the account.</text>
+	</string>
+	<string id="st_money_card_med">
+		<text>Credit Card</text>
+	</string>
+	<string id="st_money_card_med_desc">
+		<text>Credit card from an international lending firm. While said firms have a decent amount of fraud protection, it is possible to perform a little bit of clever transacting to pull some money out of this before they find out.</text>
+	</string>
+	<string id="st_money_card_high">
+		<text>Executive Card</text>
+	</string>
+	<string id="st_money_card_high_desc">
+		<text>Quite a fancy-looking Western card. Like with other credit cards, these types of cards have sophisticated fraud protection - however, owners of such cards often make frivolous and ridiculous purchases so it is quite easy to get away with a lot of money. Not they would mind, anyway - better to ensure your survival than being wasted on another bottle of champagne or escort.</text>
+	</string>
+	
+	<string id="st_use_money1">
+		<text>cash in</text>
+	</string>
+	<string id="st_use_money2">
+		<text>count em up</text>
+	</string>
+	<string id="st_use_money3">
+		<text>make it rain</text>
+	</string>
+	<string id="st_use_money4">
+		<text>get that bread</text>
+	</string>
+	<string id="st_use_money_card">
+		<text>commit card fraud</text>
+	</string>
+</string_table>

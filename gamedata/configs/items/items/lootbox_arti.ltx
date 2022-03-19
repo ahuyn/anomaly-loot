@@ -7,16 +7,17 @@ inv_grid_height			                               = 1
 inv_grid_x			                                   = 0
 inv_grid_y			                                   = 0
 cost				                                   = 1997
-inv_weight			                                   = 3.60
+inv_weight			                                   = 1
 difficulty                                             = 2
 contents                                               = bad
+box_group                                              = low
 loot_type                                              = grab
-unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
+; unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
 
 [lootbox_11]:lootbox_1 ; locked toolbox, alt appearance
 inv_grid_x			                                   = 2
 inv_grid_y			                                   = 0
-unique_contents                                        = af_glass,1,picture_woman,1,lootbox_note_dad,1
+; unique_contents                                        = af_glass,1,picture_woman,1,lootbox_note_dad,1
 
 [lootbox_2]:lootbox ; lockbox
 description			                                   = st_lootbox_small_ok_descr
@@ -27,11 +28,13 @@ inv_grid_height			                               = 1
 inv_grid_x			                                   = 4
 inv_grid_y			                                   = 0
 cost				                                   = 4341
-inv_weight			                                   = 4.85
+inv_weight			                                   = 1
 difficulty                                             = 4
 contents                                               = good
 loot_type                                              = grab
-unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1,bolt,4
+box_group                                              = mid
+items_range                                            = 8, 12
+; unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1,bolt,4
 
 
 [lootbox_3]:lootbox ; secure container alpha
@@ -43,19 +46,26 @@ inv_grid_height			                               = 2
 inv_grid_x			                                   = 0
 inv_grid_y			                                   = 1
 cost				                                   = 16010
-inv_weight			                                   = 5.26
+inv_weight			                                   = 1
 difficulty                                             = 12
 contents                                               = secure
 loot_type                                              = grab
 weapon_condition                                       = 60
-unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
-lootbox_docs_sheet_5,1,lootbox_docs_notebook_1,1,stimpack_scientic,1
-
-[lootbox_31]:lootbox_3 ; secure container epsilon, don't use
+box_group                                              = secure
+items_range                                            = 8, 14
+; unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
+; lootbox_docs_sheet_5,1,lootbox_docs_notebook_1,1,stimpack_scientic,1
+[lootbox_32]:lootbox_3 ; secure container epsilon, don't use
 inv_grid_x			                                   = 3
 inv_grid_y			                                   = 5
-difficulty = 1
 contents = test
+[lootbox_31]:lootbox_3 ; secure container epsilon, don't use
+box_group = 0
+inv_grid_x			                                   = 10
+inv_grid_y			                                   = 3
+description			                                   = st_lootbox_small_good2_descr
+inv_name			                                   = st_lootbox_small_good
+inv_name_short			                               = st_lootbox_small_good
 
 [lootbox_4]:lootbox ; arti box
 description			                                   = st_lootbox_small_artifact_descr
@@ -66,16 +76,18 @@ inv_grid_height			                               = 2
 inv_grid_x			                                   = 6
 inv_grid_y			                                   = 1
 cost				                                   = 15625
-inv_weight			                                   = 7.5
-difficulty                                             = 10
+inv_weight			                                   = 1
+difficulty                                             = 15
 contents                                               = box_artifacts
 loot_type                                              = grab
-unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
+box_group                                              = artifact
+items_range                                            = 1, 3
+; unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
 
 [lootbox_41]:lootbox_4 ; arti box, dull metal
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 1
-unique_contents                                        = lootbox_note_transmute,1,af_empty,2
+; unique_contents                                        = lootbox_note_transmute,1,af_empty,2
 
 
 [lootbox_5]:lootbox ;BRIEFCASE
@@ -87,18 +99,24 @@ inv_grid_height			                               = 2
 inv_grid_x			                                   = 5
 inv_grid_y			                                   = 5
 cost				                                   = 8005
-inv_weight			                                   = 2.1
+inv_weight			                                   = 1
 
 difficulty                                             = 8
 contents                                               = briefcase
 loot_type                                              = grab
 weapon_condition                                       = 50
-unique_contents                                        = money,15000,itm_pda_rare,2,cocaine,1,lootbox_note_bandit,1
+box_group                                              = briefcase
+items_range                                            = 4, 8
+; unique_contents                                        = money,15000,itm_pda_rare,2,cocaine,1,lootbox_note_bandit,1
 
 [lootbox_51]:lootbox_5 ;BRIEFCASE 2
 inv_grid_x			                                   = 7
 inv_grid_y			                                   = 5
-unique_contents = lootbox_note_spankbank,1,porn,5,porn2,5
+; unique_contents = lootbox_note_spankbank,1,porn,5,porn2,5
+[lootbox_52]:lootbox_5 ;BRIEFCASE 2
+inv_grid_x			                                   = 4
+inv_grid_y			                                   = 7
+; unique_contents = lootbox_note_spankbank,1,porn,5,porn2,5
 
 
 [lootbox_6]:lootbox ;survival box
@@ -109,18 +127,21 @@ inv_grid_width			                               = 2
 inv_grid_height			                               = 2
 inv_grid_x			                                   = 6
 inv_grid_y			                                   = 3
-cost				                                   = 8005
-inv_weight			                                   = 11.1
+cost				                                   = 5905
+inv_weight			                                   = 1
 weapon_condition                                       = 8
 difficulty                                             = 6
 contents                                               = cache
 loot_type                                              = grab
-unique_contents                                        = lootbox_note_vodka,1,vodka,14
+box_group                                              = survcache
+; unique_contents                                        = lootbox_note_vodka,1,vodka,14
+items_range                                            = 8, 12
 
 [lootbox_61]:lootbox_6 ;survival box camo
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 3
-unique_contents                                        = ied_new,2,money,5000,novice_outfit,1,cs_novice_outfit,1,lootbox_note_orders,1
+box_group                                              = 6
+; unique_contents                                        = ied_new,2,money,5000,novice_outfit,1,cs_novice_outfit,1,lootbox_note_orders,1
 
 [lootbox_7]:lootbox ; shotty box
 description			                                   = st_lootbox_large_shotgun_descr
@@ -131,14 +152,15 @@ inv_grid_height			                               = 1
 inv_grid_x			                                   = 0
 inv_grid_y			                                   = 6
 cost				                                   = 13149
-inv_weight			                                   = 15.1
+inv_weight			                                   = 9
 weapon_condition                                       = 75
 difficulty                                             = 10
 contents                                               = shotguns_case
 loot_type                                              = weapon
 snd_open                                               = Wood_Picks
 snd_open_key                                           = Wood_Key
-can_smash = true
+can_smash                                              = true
+box_group                                              = wpn_shotgun
 unique_contents = wpn_toz34_mark4,0_0_70,ammo_12x70_buck,2,lootbox_note_tourist,1
 
 [lootbox_71]:lootbox ; ak box
@@ -150,14 +172,15 @@ inv_grid_height			                               = 1
 inv_grid_x			                                   = 0
 inv_grid_y			                                   = 5
 cost				                                   = 25021
-inv_weight			                                   = 15.05
+inv_weight			                                   = 10
 weapon_condition                                       = 75
-difficulty                                             = 15
+difficulty                                             = 14
 contents                                               = surplus_case
 loot_type                                              = weapon
 snd_open                                               = Wood_Picks
 snd_open_key                                           = Wood_Key
-can_smash = true
+box_group                                              = wpn_ak
+can_smash                                              = true
 unique_contents = lootbox_note_grenade,1,grenade_rgd5,15,grenade_f1,5
 
 [lootbox_8]:lootbox ; merc pelican box
@@ -169,12 +192,13 @@ inv_grid_height			                               = 2
 inv_grid_x			                                   = 3
 inv_grid_y			                                   = 3
 cost				                                   = 33010
-inv_weight			                                   = 12.05
+inv_weight			                                   = 1
 weapon_condition                                       = 80
 difficulty                                             = 18
 contents                                               = rifles_case
 loot_type                                              = weapon
-unique_contents                                        =  wpn_svd_nimble,0_6_90,ammo_7.62x54_ap,2,cigar,1,lootbox_note_birthday,1
+box_group                                              = wpn_rifle
+unique_contents                                        = wpn_svd_nimble,0_6_90,ammo_7.62x54_ap,2,cigar,1,lootbox_note_birthday,1
 
 [lootbox_81]:lootbox_8 ; merc pelican box 2
 inv_grid_x			                                   = 0
@@ -190,9 +214,12 @@ inv_grid_height			                               = 2
 inv_grid_x			                                   = 9
 inv_grid_y			                                   = 5
 cost				                                   = 54010
-inv_weight			                                   = 19.86
+inv_weight			                                   = 1
 weapon_condition                                       = 95
 difficulty                                             = 101
 contents                                               = monoloot
+box_group                                              = monoloot
 loot_type                                              = grab
-unique_contents = af_death_lamp,1,lootbox_note_deathlamp,1
+items_range                                            = 10, 15
+; unique_contents = af_death_lamp,1,lootbox_note_deathlamp,1
+

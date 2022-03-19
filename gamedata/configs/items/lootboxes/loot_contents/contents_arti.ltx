@@ -1,4 +1,4 @@
-; low tier loot
+; junk, parts
 [lootbox_trash]
 prt_i_scrap,2 = 2
 prt_i_fasteners,5 = 5
@@ -13,13 +13,13 @@ broken_detector,2
 flashlight_broken,2
 cards
 jewelry_box
-underwear,2
+underwear,2 = 2
 porn
 porn2
 tarpaulin
 synthrope
-radio,2
-radio2
+radio = 2
+radio2 = 2
 cutlery
 
 [lootbox_scrap]
@@ -145,91 +145,7 @@ prt_w_p_spring_6
 
 [lootbox_parts]:lootbox_weaponparts,lootbox_outfitparts
 
-[lootbox_docs_low]
-lootbox_docs_sheet_1
-lootbox_docs_sheet_2
-lootbox_docs_sheet_3
-lootbox_docs_notebook_2
-
-[lootbox_ammo_bad]
-ammo_7.62x25_p_bad
-ammo_9x18_fmj_bad
-ammo_9x18_pmm_bad
-ammo_9x19_pbp_bad
-ammo_9x19_fmj_bad
-ammo_11.43x23_hydro_bad
-ammo_11.43x23_fmj_bad
-ammo_12x70_buck_bad
-ammo_12x76_zhekan_bad
-ammo_12x76_dart_bad
-ammo_357_hp_mag_bad
-ammo_5.45x39_fmj_bad
-ammo_5.45x39_ep_bad
-ammo_5.56x45_fmj_bad
-ammo_5.56x45_ss190_bad
-ammo_7.62x39_fmj_bad
-ammo_7.62x54_7h1_bad
-ammo_vog-25_bad
-ammo_m209_bad
-
-[lootbox_meds_low]
-bandage,2 = 3
-stimpack
-medkit = 2
-survival_kit
-
-[lootbox_drugs_low]
-salicidic_acid
-antibio_sulfad
-antibio_chlor
-antirad_cystamine
-drug_coagulant
-akvatab
-caffeine
-yadylin
-antiemetic
-
-[lootbox_smokes]
-cigarettes_lucky
-cigarettes_russian
-cigarettes
-cigar1
-cigar2
-cigar3
-tobacco
-joint
-marijuana
-cocaine
-
-[lootbox_canfood]
-protein
-tushonka
-protein
-kolbasa
-tomato
-corn
-chili
-conserva
-beans
-raisins
-chocolate
-nuts
-
-[lootbox_drinks]
-energy_drink
-water_drink
-mineral_water
-flask = 3
-
-; medium tier loot
-
-[lootbox_docs_med]
-lootbox_docs_sheet_4
-lootbox_docs_sheet_5
-lootbox_docs_notebook_1
-lootbox_docs_notebook_3
-lootbox_docs_notebook_4
-
+; repair items
 [lootbox_repair_low]
 gun_oil
 gun_oil_ru
@@ -264,6 +180,76 @@ toolkit_r7
 medium_repair_kit
 heavy_repair_kit
 
+; meds
+[lootbox_meds_low]
+bandage,2 = 3
+stimpack
+medkit = 2
+survival_kit
+
+[lootbox_meds_med]
+bandage = 4
+drug_radioprotector 
+antirad
+jgut
+medkit_army
+medkit,2
+stimpack_army
+morphine
+
+[lootbox_meds_high]
+medkit_scientic
+stimpack_scientic
+adrenalin 
+
+
+; drugs
+[lootbox_drugs_low]
+salicidic_acid
+antibio_sulfad
+antibio_chlor
+antirad_cystamine
+drug_coagulant
+akvatab
+caffeine
+yadylin
+antiemetic
+
+[lootbox_drugs_med]
+drug_booster
+morphine
+analgetic
+akvatab
+drug_antidot
+antirad_kalium
+drug_psy_blockade
+
+[lootbox_drugs_high]
+cocaine
+adrenalin
+drug_anabiotic
+
+
+; ammo
+[lootbox_ammo_bad]
+ammo_7.62x25_p_bad
+ammo_9x18_fmj_bad
+ammo_9x18_pmm_bad
+ammo_9x19_pbp_bad
+ammo_9x19_fmj_bad
+ammo_11.43x23_hydro_bad
+ammo_11.43x23_fmj_bad
+ammo_12x70_buck_bad
+ammo_12x76_zhekan_bad
+ammo_12x76_dart_bad
+ammo_357_hp_mag_bad
+ammo_5.45x39_fmj_bad
+ammo_5.45x39_ep_bad
+ammo_5.56x45_fmj_bad
+ammo_5.56x45_ss190_bad
+ammo_7.62x39_fmj_bad
+ammo_7.62x54_7h1_bad
+
 [lootbox_ammo_good]
 ammo_7.62x25_p
 ammo_9x18_fmj
@@ -282,106 +268,7 @@ ammo_5.56x45_fmj
 ammo_5.56x45_ss190
 ammo_7.62x39_fmj
 ammo_7.62x54_7h1
-ammo_vog-25
-ammo_m209
-
-grenade_rgd5
-grenade_f1
-
-[lootbox_ammo_grenades]
-grenade_f1
-grenade_rgd5
-
-[lootbox_meds_med]
-bandage = 4
-drug_radioprotector 
-antirad
-jgut
-medkit_army
-medkit,2
-stimpack_army
-morphine
-
-[lootbox_drugs_med]
-drug_booster
-morphine
-analgetic
-akvatab
-drug_antidot
-antirad_kalium
-drug_psy_blockade
-
-[lootbox_meds_high]
-medkit_scientic
-stimpack_scientic
-adrenalin 
-
-[lootbox_drugs_high]
-cocaine
-adrenalin
-drug_anabiotic
-[lootbox_pda] ;only one should spawn per box
-itm_pda_common = 3
-itm_pda_uncommon = 2
-itm_pda_rare
-
-[lootbox_devices_low]
-detector_simple
-detector_radio
-detector_geiger
-device_torch_nv_1
-device_torch_dummy
-snapgun
-
-[lootbox_gear_low]
-wpn_binoc
-af_kevlar
-af_frames
-kobra
-1p29
-ps01
-wpn_addon_scope_pu
-wpn_sil_9mm
-wpn_sil_45
-wpn_sil_aps
-wpn_sil_pbs4
-wpn_sil_6p9
-
-[lootbox_survfood]
-mre
-ration_ru
-ration_ukr
-
-[lootbox_devices_med]
-device_pda_2
-af_iam
-af_plates
-af_surge
-af_cooler
-af_grid
-detector_advanced
-skeleton_key
-snapgun
-
-[lootbox_gear_med]
-pso1m21
-ac10632
-c-more
-ac11090
-acog
-eot
-wpn_sil_pbs1
-wpn_sil_tgp-a
-wpn_sil_nato
-wpn_sil_kzrzp
-wpn_sil_atg
-wpn_sil_9a91
-wpn_sil_vihr
-wpn_sil_sr25
-wpn_sil_gemtech
-wpn_sil_57
-
-; high tier loot
+ammo_9x39_pab9
 
 [lootbox_ammo_rare] ; high end sniper rounds, AP rounds, and gauss batteries
 ammo_gauss
@@ -396,8 +283,141 @@ ammo_pkm_100
 ammo_9x39_ap
 ammo_5.45x39_ap
 ammo_5.56x45_ap
+ammo_7.62x39_ap
 
-[lootbox_gear_high]
+[lootbox_ammo_grenades]
+grenade_f1
+grenade_rgd5
+ammo_vog-25
+ammo_m209
+
+; food/drink/smokes
+[lootbox_smokes]
+cigarettes_lucky
+cigarettes_russian
+cigarettes
+cigar1
+cigar2
+cigar3
+tobacco
+joint
+marijuana
+cocaine
+
+[lootbox_drinks]
+energy_drink
+water_drink
+mineral_water
+flask = 3
+
+[lootbox_canfood]
+protein
+tushonka
+protein
+kolbasa
+tomato
+corn
+chili
+conserva
+beans
+raisins
+chocolate
+nuts
+
+[lootbox_survfood]
+mre
+ration_ru
+ration_ukr
+
+; docs
+[lootbox_docs_low]
+lootbox_docs_sheet_1
+lootbox_docs_sheet_2
+lootbox_docs_sheet_3
+lootbox_docs_notebook_2
+
+[lootbox_docs_med]
+lootbox_docs_sheet_4
+lootbox_docs_sheet_5
+lootbox_docs_notebook_1
+lootbox_docs_notebook_3
+lootbox_docs_notebook_4
+
+[lootbox_docs_high]
+lootbox_docs_folder
+lootbox_docs_usb_1
+lootbox_docs_usb_2
+
+; money
+[lootbox_money_low]
+money_box_low
+[lootbox_money_med]
+money_box_med
+money_box_med2
+[lootbox_money_high]
+money_box_high
+money_box_high2
+[lootbox_money_fat]
+money_box_fat
+
+; equipment
+[lootbox_attachments_low]
+kobra
+1p29
+ps01
+pso1m21
+wpn_addon_scope_pu
+wpn_sil_9mm
+wpn_sil_45
+wpn_sil_aps
+wpn_sil_pbs4
+wpn_sil_6p9
+wpn_sil_pbs1
+wpn_sil_tgp-a
+
+[lootbox_attachments_high]
+wpn_sil_nato
+wpn_sil_kzrzp
+wpn_sil_atg
+wpn_sil_9a91
+wpn_sil_vihr
+wpn_sil_sr25
+wpn_sil_gemtech
+wpn_sil_57
+ac10632
+c-more
+ac11090
+acog
+eot
+
+; devices
+[lootbox_devices_low]
+detector_simple
+detector_radio
+detector_geiger
+device_torch_dummy
+wpn_binoc
+af_kevlar
+af_frames
+
+[lootbox_devices_med]
+device_pda_2
+detector_advanced
+skeleton_key
+snapgun
+device_torch_nv_1
+af_iam
+af_plates
+af_surge
+af_cooler
+af_grid
+
+[lootbox_devices_high]
+detector_elite
+detector_scientific
+device_torch_nv_2
+device_torch_nv_3
+device_pda_3
 af_aam
 af_aac
 af_kevlar_up
@@ -408,11 +428,12 @@ af_grid_up
 af_frames_up
 skeleton_key = 2
 
-[lootbox_docs_high]
-lootbox_docs_folder
-lootbox_docs_usb_1
-lootbox_docs_usb_2
+[lootbox_pda]
+itm_pda_common = 3
+itm_pda_uncommon = 2
+itm_pda_rare
 
+;artis
 [lootbox_artifacts_low]
 af_black
 af_dragon_eye
@@ -462,13 +483,6 @@ af_dummy_glassbeads
 af_dummy_battery
 af_soul
 
-; ultra gucci shit
-[lootbox_devices_high]
-detector_elite
-detector_scientific
-device_torch_nv_2
-device_torch_nv_3
-device_pda_3
 
 [lootbox_artifacts_high] ; t2 and t3
 af_cristall
@@ -490,42 +504,6 @@ af_fuzz_kolobok
 af_fireball
 af_glass
 af_baloon
-
-; combined/composed pools
-; these pick 3 pools with a 60/30/10 split 
-[lootbox_docs]
-composition = docs_low,docs_med,docs_high
-
-[lootbox_junk]
-composition = trash,parts,scrap
-
-[lootbox_repair]
-composition = repair_low,repair_med,repair_high
-
-[lootbox_ammo]
-composition = ammo_bad,ammo_good,ammo_rare
-
-[lootbox_meds]
-composition = meds_low,meds_med,meds_high
-
-[lootbox_drugs]
-composition = drugs_low,drugs_med,drugs_high
-
-[lootbox_food]
-composition = drinks,canfood,survfood
-
-[lootbox_gear]
-composition = gear_low,gear_med,gear_high
-
-[lootbox_devices]
-composition = devices_low,devices_med,devices_high
-
-[lootbox_artifacts]
-composition = artifacts_low,artifacts_med,artifacts_high
-
-; other combined pools
-[lootbox_ammo_all]:lootbox_ammo_bad,lootbox_ammo_good,lootbox_ammo_rare,lootbox_ammo_grenades
-
 
 ; weapons have a separate classification, for a weapon containing crate it spawns 1 weapon + ammo and attachments
 
@@ -690,3 +668,12 @@ wpn_groza
 ; debug stuff
 [lootbox_test_stuff]
 bolt
+
+; stalker loot pools
+[picks]
+lockpick = 5
+lockpick,2 = 3
+lockpick,3 = 1
+
+[skeleton]
+skeleton_key

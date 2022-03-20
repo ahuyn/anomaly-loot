@@ -1,25 +1,25 @@
 ; junk, parts
 [lootbox_trash]
-prt_i_scrap,2 = 2
-prt_i_fasteners,5 = 5
+prt_i_scrap,4
+prt_i_fasteners,5
 jar
-e_syringe,2 = 3
-rope,3 = 3
-shovel_old = 5
-shovel_mili = 5
-beadspread = 2
-walkie,2
-broken_detector,2
+e_syringe,4
+rope
+shovel_old 
+shovel_mili
+beadspread 
+walkie = 0.8
+broken_detector = 0.8
 flashlight_broken,2
 cards
-jewelry_box
-underwear,2 = 2
+jewelry_box = 0.5
+underwear,2 
 porn
 porn2
 tarpaulin
 synthrope
-radio = 2
-radio2 = 2
+radio = 0.8
+radio2 = 0.8
 cutlery
 
 [lootbox_scrap]
@@ -182,13 +182,13 @@ heavy_repair_kit
 
 ; meds
 [lootbox_meds_low]
-bandage,2 = 3
-stimpack
-medkit = 2
-survival_kit
+bandage,2
+stimpack = 0.7
+medkit
+survival_kit = 0.5
 
 [lootbox_meds_med]
-bandage = 4
+bandage,4
 drug_radioprotector 
 antirad
 jgut
@@ -305,10 +305,10 @@ marijuana
 cocaine
 
 [lootbox_drinks]
-energy_drink
-water_drink
-mineral_water
-flask = 3
+energy_drink = 0.5
+water_drink = 0.5
+mineral_water = 0.5
+flask
 
 [lootbox_canfood]
 protein
@@ -407,6 +407,8 @@ skeleton_key
 snapgun
 device_torch_nv_1
 af_iam
+af_kevlar_up
+af_frames_up
 af_plates
 af_surge
 af_cooler
@@ -420,18 +422,16 @@ device_torch_nv_3
 device_pda_3
 af_aam
 af_aac
-af_kevlar_up
 af_plates_up
 af_surge_up
 af_cooler_up
 af_grid_up
-af_frames_up
-skeleton_key = 2
+skeleton_key
 
 [lootbox_pda]
-itm_pda_common = 3
-itm_pda_uncommon = 2
-itm_pda_rare
+itm_pda_common 
+itm_pda_uncommon = 0.7
+itm_pda_rare = 0.4
 
 ;artis
 [lootbox_artifacts_low]
@@ -508,8 +508,11 @@ af_baloon
 ; weapons have a separate classification, for a weapon containing crate it spawns 1 weapon + ammo and attachments
 
 [lootbox_knives]
-wpn_knife3 = 4
-wpn_knife5
+wpn_knife1
+wpn_knife2
+wpn_knife3
+wpn_knife4 = 0.3
+wpn_knife5 = 0.3
 
 [lootbox_handguns]
 wpn_pm
@@ -570,32 +573,37 @@ wpn_desert_eagle
 wpn_desert_eagle_custom
 
 [lootbox_shotguns_case]
-wpn_bm16_full = 5
-wpn_toz34 = 5
-wpn_mosin = 4
-wpn_bm16_full_alt = 2
-wpn_mp133 = 2
-wpn_toz34_custom
-wpn_toz34_decor
-wpn_mp153
-wpn_k98
-wpn_toz194
-wpn_fort500
-wpn_toz34_bull
-wpn_remington700
+wpn_tt33
+wpn_bm16
+wpn_bm16_alt
+wpn_bm16_full
+wpn_bm16_full_alt
+wpn_toz34 
+wpn_toz34_obrez
+wpn_mosin
+wpn_mp133 = 0.5
+wpn_toz34_custom = 0.6
+wpn_toz34_obrez_custom
+wpn_toz34_decor = 0.6
+wpn_toz34_obrez_decor
+wpn_k98 = 0.5
+wpn_toz194 = 0.5
+wpn_fort500 = 0.5
+wpn_svt40 = 0.2
+wpn_ppsh41 = 0.2
 
 [lootbox_surplus_case]
-wpn_ak74 = 4
-wpn_abakan = 3
-wpn_ak74m = 2
-wpn_ak74m_alt = 2
-wpn_akm = 3
-wpn_akms = 3
-wpn_akms_alt = 3
-wpn_aks = 3
-wpn_aks74 = 3
-wpn_aek
-wpn_aek_duty
+wpn_ak74
+wpn_abakan = 0.7
+wpn_ak74m = 0.7
+wpn_ak74m_alt = 0.7
+wpn_akm
+wpn_akms
+wpn_akms_alt
+wpn_aks
+wpn_aks74
+wpn_aek = 0.4
+wpn_aek_duty = 0.1
 wpn_mp153
 
 [lootbox_rifles_case]
@@ -668,12 +676,3 @@ wpn_groza
 ; debug stuff
 [lootbox_test_stuff]
 bolt
-
-; stalker loot pools
-[picks]
-lockpick = 5
-lockpick,2 = 3
-lockpick,3 = 1
-
-[skeleton]
-skeleton_key

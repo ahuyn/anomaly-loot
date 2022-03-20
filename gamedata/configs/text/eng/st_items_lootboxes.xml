@@ -61,11 +61,11 @@
 	</string>
 
 	<string id="st_lootbox_large_shotgun">
-		<text>Wooden rifle case</text>
+		<text>Old weapon crate</text>
 	</string>
 	<string id="st_lootbox_large_shotgun_descr">
 		<text>
-            Wooden case used to hold hunting rifles and shotguns. A stylish way to carry your arms out into the field for duck and deer hunts. These types of cases are usually brought in by tourists looking to bag a few mutant trophies to bring home to the Great Land. Such tourists usually don't view the Zone as anything much beyond a radioactive safari, and often meet unfortunate ends in anomalous fields or the jaws of more dangerous mutants.\n \n
+            Wooden case used by villagers to store weapons - hunting rifles, Great War surplus, etc. A handful of these were left behind in the Exclusion Zone's surrounding villages while others are simply reused crates found in the Zone by stalkers to hold their guns in a semi-dry environment. The wood is fairly old and rotting in some places, so it'd be trivial to break the lock off with an axe.\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_large_surplus">
@@ -73,7 +73,7 @@
 	</string>
 	<string id="st_lootbox_large_surplus_descr">
 		<text>
-           Army crate with a padlock, commonly used to transport rifles and ordnance. In responses to frequent thefts and 'shortages' of military equipment, the Ukrainian military has stepped up its security measures and protocols concerning ordnance and other military hardware. As a result, the lock on this crate is unusually strong - it'd be a lot of effort to pick through the lock, so perhaps it'd be easier to simply smash through the wood with an axe...\n \n
+           Army crate with a padlock, commonly used to transport rifles and ordnance. After the failed initial attempts at probing the Exclusion Zone, a vast amount of equipment, including crates like these, were abandoned and left to the mercy of the Zone's conditions. It's a gamble to tell if these crates are either fresh imports from a few years ago or relics from the inception of the Zone - in addition, they're really heavy and usually not worth hauling around.\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_large_rifle">
@@ -234,9 +234,6 @@
 	</string>
 	<string id="ui_mcm_lootboxes_title">
 		<text>Lootboxes</text>
-	</string>
-	<string id="ui_mcm_lootboxes_lootchance">
-		<text>Loot fill percentage</text>
 	</string>
 	<string id="ui_mcm_lootboxes_stashchance">
 		<text>Chance to find lootboxes in stashes</text>

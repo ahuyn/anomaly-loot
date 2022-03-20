@@ -65,7 +65,7 @@ function calc_weight(box)
     for section, quantity in pairs(spawned_items) do
         if section == "spooky" or section == "money" then
         elseif arti_lootboxes.sec_is_weapon(section) then
-            item_weight = SYS_GetParam(2, section, "inv_weight")
+            item_weight = SYS_GetParam(2, section, "inv_weight") or 0
             weight = weight + item_weight
         else
             if string.find(section, "__") then

@@ -8,7 +8,7 @@ local ini_contents = ini_file("items\\lootboxes\\box_contents\\importer.ltx")
 -- importer for loot pool -> contents
 local ini_pools = ini_file("items\\lootboxes\\item_pools\\importer.ltx")
 local ini_uniques = ini_file("items\\lootboxes\\unique_contents\\importer.ltx")
-local ini_lootbox = ini_file("items\\items\\items_rootbox.ltx")
+local ini_lootbox = ini_file("items\\items\\items_lootbox.ltx")
 
 -- custom loaded contents
 contents_custom = {}

@@ -1,5 +1,48 @@
+[tch_loot]
+GroupControlSection                                = spawn_group 
+discovery_dependency                               = 
+$spawn                                             = "food and drugs\harmonica_a"
+cform                                              = skeleton 
+class                                              = II_ATTCH 
+kind			                               		= i_misc
+attach_angle_offset                                = 0.000000, -1.204452, -1.262921 
+attach_position_offset                             = 0.081856, -0.035081, 0.011694 
+attach_bone_name                                   = bip01_l_hand 
+auto_attach                                        = false 
+cost	                                           = 0
+use5_functor                = ui_itm_details.menu_details
+use5_action_functor         = ui_itm_details.func_details
+use5_modes                	= inventory, loot, trade, repair
+use5_containers             = actor_bag, actor_equ, actor_belt, actor_trade, actor_trade_bag, npc_bag, npc_trade, npc_trade_bag
+
+use6_functor         		= item_parts.menu_disassembly
+use6_action_functor  		= item_parts.func_disassembly
+use6_modes         			= inventory, loot
+use6_containers  			= actor_bag, actor_equ, actor_belt, npc_bag
+
+use7_functor                = ui_debug_launcher.menu_cond_inc
+use7_action_functor         = ui_debug_launcher.func_cond_inc
+
+use8_functor                = ui_debug_launcher.menu_cond_dec
+use8_action_functor         = ui_debug_launcher.func_cond_dec
+
+use9_functor         		= ui_debug_launcher.menu_release
+use9_action_functor  		= ui_debug_launcher.func_release
+immunities_sect				= sect_identity_immunities
+slot 						= -1
+description					= no_description
+default_to_ruck             = false
+sprint_allowed              = true
+control_inertion_factor     = 1.0
+zoom_rotate_time            = 0.25
+can_trade			        = true
+quest_item      	        = false
+condition_bar				= condition_progess_bar
+snd_on_take					= other
+
+
 ; -- Lockpicks 
-[lockpick]:tch_part
+[lockpick]:tch_loot
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_lockpick_descr
 inv_name			                                   = st_lockpick
@@ -23,7 +66,7 @@ replacement = 1
 use1_functor                                           = pickset_binder.try_bundle
 use1_action_functor                                    = pickset_binder.bundle_picks
 
-[bundle_lockpick]:tch_part
+[bundle_lockpick]:tch_loot
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_lockpick_bundle_descr
 inv_name			                                   = st_lockpick_bundle
@@ -45,7 +88,7 @@ replacement = 5
 use1_functor                                           = pickset_binder.try_split
 use1_action_functor                                    = pickset_binder.split_picks
 
-[snapgun]:tch_part
+[snapgun]:tch_loot
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_snapgun_descr
 inv_name			                                   = st_snapgun
@@ -61,7 +104,7 @@ open_type                                              = 0
 open_power                                             = 4
 expire_type                                            = none
 
-[skeleton_key]:tch_part
+[skeleton_key]:tch_loot
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_skelekey_descr
 inv_name			                                   = st_skelekey
@@ -78,7 +121,7 @@ open_type                                              = 1
 expire_type                                            = destroy
 
 
-[lockpick_set]:tch_part
+[lockpick_set]:tch_loot
 visual				                                   = dynamics\part\prt_o_fabrics_1.ogf
 description			                                   = st_lockpick_set_descr
 inv_name			                                   = st_lockpick_set
@@ -102,7 +145,7 @@ script_binding                                         = pickset_binder.bind
 
 
 ;-- Lootbox base item
-[lootbox]:identity_immunities
+[lootbox]:tch_loot
 GroupControlSection                                    = spawn_group 
 discovery_dependency                                   = 
 $spawn                                                 = "food and drugs\harmonica_a"

@@ -26,7 +26,7 @@
 		<text>A fat ass stack of money. This is enough to put a target on your head. \n</text>
 	</string>
 	<string id="st_money_card_low">
-		<text>Stolen account card</text>
+		<text>Debit card</text>
 	</string>
 	<string id="st_money_card_low_desc">
 		<text>Stolen bank card from some poor stalker. Sometimes large purchases are done electronically in the Zone for safety reasons; this is a common card and not likely to have a lot of money in the account.</text>

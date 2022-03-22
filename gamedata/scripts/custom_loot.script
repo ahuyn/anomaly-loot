@@ -1,11 +1,19 @@
 --[[
 Integration point for other users to add custom loot into lootboxes.
-If you don't pick one of these sections, you won't see your stuff added.
-
-
 --]] 
 
-function add_content(loot_section, item_section, quantity)
+-- Add an item to an existing item pool
+function item_to_item_pool(item, pool, chance)
+
+end
+
+-- Add an item pool to an existing box drop table
+function add_pool_to_box()
+
+end
+
+
+function add_content(loot_section, item_section, quantity, weight)
     if not ini_sys:section_exist(item_section) then return end
     if not quantity then quantity = 1 end
     if not arti_lootboxes.contents_custom[loot_section] then arti_lootboxes.contents_custom[loot_section] = {} end
@@ -23,13 +31,4 @@ function add_pool(lootbox_section, pool_string, is_composition)
     if not arti_lootboxes.pools_custom[lootbox_section] then arti_lootboxes.pools_custom[lootbox_section] = {} end
     table.insert(arti_lootboxes.pools_custom[lootbox_section], pool_string)
 
-end
-
--- add box drop to map in tier
--- tier should be 1, 2, 3
--- box_name should not have lootbox_ prefix
-function add_to_map(map, tier, box_name)
-    if not arti_lootboxes.map_tiers[map] then return end
-    if not arti_lootboxes.map_tiers[map][tier] then return end
-    table.insert(arti_lootboxes.map_tiers[map][tier], box_name)
 end

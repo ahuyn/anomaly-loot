@@ -18,7 +18,9 @@ function lootbox_binder:update(delta)
     if not self.first_update then
         self.first_update = true
         arti_lootboxes.populate_lootbox(id, obj:section())
-        calc_weight(obj)
+        local weight = calc_weight(obj)
+        obj:set_weight(weight)
+        weights[id] = weight
     end
 end
 
@@ -67,6 +69,8 @@ function calc_weight(box)
         elseif arti_lootboxes.sec_is_weapon(section) then
             item_weight = SYS_GetParam(2, section, "inv_weight") or 0
             weight = weight + item_weight
+        elseif string.find(section, "itm_pda") then
+            weight = weight + SYS_GetParam(2, section, "inv_weight") or 0
         else
             if string.find(section, "__") then
                 section = str_explode(section, "__")[1]
@@ -75,14 +79,9 @@ function calc_weight(box)
             weight = weight + (item_weight * tonumber(quantity))
         end
     end
-    weights[box:id()] = weight
-    box:set_weight(weight)
+    return weight
 end
 
 function on_game_start()
-	-- if (USE_MARSHAL) then 
-	-- 	RegisterScriptCallback("save_state",save_state)
-	-- 	RegisterScriptCallback("load_state",load_state)
-	-- end
 	RegisterScriptCallback("server_entity_on_unregister",se_device_on_unregister)
 end

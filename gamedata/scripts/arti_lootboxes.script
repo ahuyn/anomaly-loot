@@ -64,6 +64,10 @@ end
 
 -- rand() against these odds
 function roll(odds)
+    if not odds then
+        callstack()
+        return false
+    end
     return rand() <= tonumber(odds)
 end
 
@@ -646,13 +650,14 @@ function spawn_stalker_loot(npc)
 
     if rand(100) <= get_config("deathchance") then
         local community = npc:character_community()
-        local rank_bias = npc:rank() / 10000
+        local rank_bias = (npc:rank() / 10000) or 1
         if map_tiers[community] == nil then community = "stalker" end
         local table = map_tiers[community]
         local to_drop = nil
         
         while not to_drop do
             local m = random_entry(map_tiers[community])
+            if not m.chance then m.chance = 0.5 end
             if roll(m.chance * rank_bias) then
                 to_drop = m.items
             end
@@ -712,7 +717,6 @@ end
 
 CreateReleaseItem = death_manager.create_release_item
 function death_manager.create_release_item(npc)
-    print_dbg("Interdicted death manager - spawning picks")
     CreateReleaseItem(npc)
     spawn_stalker_loot(npc)
 end

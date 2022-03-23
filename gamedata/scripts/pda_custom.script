@@ -65,6 +65,7 @@ RegisterPDA = ui_pda_npc_tab.register_pda
 
 function register_pda(npc_id, pda_sec, pda_id) -- called from death_manager
 	print_dbg("registering pda of %s", npc_id)
+	if not schmucks[npc_id] then return false end
 	-- Contact info
 	local contact = {}
     copy_table(contact, schmucks[npc_id])

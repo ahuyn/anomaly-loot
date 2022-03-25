@@ -42,7 +42,7 @@ end
 function on_game_start()
     -- generate("lootbox_1")
     -- generate("lootbox_2")
-    -- generate("lootbox_3")
+    generate("lootbox_3")
     -- generate("lootbox_4")
     -- generate("lootbox_5")
     -- generate("lootbox_6")

@@ -4,11 +4,11 @@ local send_tip = news_manager.send_tip
 local get_config = arti_lootboxes_mcm.get_config
 
 -- importer for lootbox -> loot pool
-local ini_contents = ini_file("items\\lootboxes\\box_contents\\importer.ltx")
+ini_contents = ini_file("items\\lootboxes\\box_contents\\importer.ltx")
 -- importer for loot pool -> contents
-local ini_pools = ini_file("items\\lootboxes\\item_pools\\importer.ltx")
-local ini_uniques = ini_file("items\\lootboxes\\unique_contents\\importer.ltx")
-local ini_lootbox = ini_file("items\\items\\items_lootbox.ltx")
+ini_pools = ini_file("items\\lootboxes\\item_pools\\importer.ltx")
+ini_uniques = ini_file("items\\lootboxes\\unique_contents\\importer.ltx")
+ini_lootbox = ini_file("items\\items\\items_lootbox.ltx")
 
 -- custom loaded contents
 contents_custom = {}
@@ -242,16 +242,16 @@ end
 local MAX_ITER = 10000
 -- build a loot template to be substituted with items
 -- loot template is table mapping item pools = quant of items
-function build_template(template, section, max, chance_mult)
+function build_template(template, section, max, bias)
     template = template or {}
-    if ini_contents:section_exist("lootbox_"..section) then
+    if ini_contents:section_exist(section) then
         -- cache the table
-        if not pool_cache[section] then
-            n = ini_contents:line_count("lootbox_"..section)
+        if not contents_cache[section] then
+            n = ini_contents:line_count(section)
             local pool = {}
             for i=0,n-1 do
                 local content = {}
-                _, id, value = ini_contents:r_line_ex("lootbox_"..section,i,"","")
+                _, id, value = ini_contents:r_line_ex(section,i,"","")
                 print_dbg("Adding %s of %s", value, id)
                 values = str_explode_num(value, ",")
                 content.section = id
@@ -260,31 +260,25 @@ function build_template(template, section, max, chance_mult)
                 content.chance = values[3]
                 table.insert(pool, content)
             end
-            if pools_custom[section] and not is_empty(pools_custom[section]) then
-                print_dbg("Adding %s custom entries for %s", #pools_custom[section], section)
-                for k,v in pairs(pools_custom[section]) do
-                    local content = {}
-                    values = str_explode_num(v, ",")
-                    content.section = k
-                    content.size = values[1]
-                    content.limit = values[2]
-                    content.chance = values[3]
-                    table.insert(pool, content)
+            if contents_custom[section] and not is_empty(contents_custom[section]) then
+                print_dbg("Adding %s custom entries for section %s", #contents_custom[section], section)
+                for k,v in pairs(contents_custom[section]) do
+                    table.insert(pool, v)
                 end
             end
-            pool_cache[section] = pool
+            contents_cache[section] = pool
         end
         -- build
         max = (not max or max < 0) and 10 or max
         bias = bias or 1
         bias = bias * get_config("lootquality")
         print_dbg("Adding %s items, bias %s", max, bias)
-        pool = pool_cache[section]
+        content_pool = contents_cache[section]
         iters = 0
         while max > 0 do
             -- pick a random entry from the pool
             if iters > MAX_ITER then break end
-            item = pool[rand(#pool)]
+            item = random_entry(content_pool)
             print_dbg("Rolled item %s, chance is %s", item.section, item.chance)
             local curr_amt = template[item.section] or 0
             if curr_amt < item.limit and roll(item.chance * bias) then
@@ -327,16 +321,16 @@ function process_template(template, box_section)
     return processed
 end
 
--- select a random item from the content pool
+-- select a random item from the item pool
 function random_item_entry(section)
-    print_dbg("Adding item from content section %s", section)
-    if ini_pools:section_exist("lootbox_"..section) then
-        if not contents_cache[section] then
-            n = ini_pools:line_count("lootbox_"..section)
+    print_dbg("Adding item from item pool %s", section)
+    if ini_pools:section_exist(section) then
+        if not pool_cache[section] then
+            n = ini_pools:line_count(section)
             local contents = {}
             for i=0,n-1 do
                 local ref = {}
-                _, id, value = ini_pools:r_line_ex("lootbox_"..section,i,"","")
+                _, id, value = ini_pools:r_line_ex(section,i,"","")
                 if not value or value == "" then value = 1 end
                 id = str_explode(id, ",")
                 ref.section = id[1]
@@ -344,20 +338,21 @@ function random_item_entry(section)
                 ref.chance = value
                 contents[#contents + 1] = ref
             end
-            if contents_custom[section] and not is_empty(contents_custom[section]) then
-                print_dbg("Adding %s custom entries for %s", #contents_custom[section], section)
-                for k,v in pairs(contents_custom[section]) do
+            if pools_custom[section] and not is_empty(pools_custom[section]) then
+                print_dbg("Adding %s custom entries for section %s", #pools_custom[section], section)
+
+                for k,v in pairs(pools_custom[section]) do
                     table.insert(contents, v)
                 end
             end
-            contents_cache[section] = contents
+            pool_cache[section] = contents
             -- end
         end
         
-        local contents = contents_cache[section]
+        local item_pool = pool_cache[section]
         local selection = nil
         while not selection do
-            local item = random_entry(contents)
+            local item = random_entry(item_pool)
             if roll(item.chance) then 
                 selection = item
             end

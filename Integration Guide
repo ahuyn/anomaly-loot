@@ -7,9 +7,31 @@ When a lootbox is created, it generates the loot it will store in two stages.
 1. Roll to create a 'template' of loot. A template is a collection of item groups and the quantity that will be picked from that item group. These are based on entries in the pools directory.
 2. Iterate through the template and subsitute out the item groups for actual items. The mapping of item groups to items in those groups is handled in 'contents' directory.
 
-Templates / Box Pools
+Stages of loot rolling
+There is one major step between boxes and picking items to be in those boxes - item pools
+An item pool is a list of items and weights. When an item pool is selected, it will randomly pick one entry from the pool and roll against the chance to lock it in. 
 
+For example:
+[meds_low]
+bandage,2
+stimpack = 0.7
+medkit
+survival_kit = 0.5
 
+This is the item pool for medical items. When an item is selected from here, it will perform an additional roll against the weight (value after =, defaults to 1/guaranteed) to secure it. If survival_kit is picked randomly, it will make an additional roll against 0.5 (50%) to confirm it - otherwise it will pick another entry at random and repeat.
+
+Boxes follow a similar logic, containing several item pools. For example:
+
+[briefcase]:default ; 8000, 8-12
+;                                                          Size     Limit   Chance
+docs_low												 = 1, 		10, 	0.7
+docs_med												 = 2, 		5, 		0.5
+docs_high												 = 4, 		2, 		0.1
+Here is a truncated config for briefcase items. 
+All lootboxes have a capacity range defined in their section (check field items_range), and the capacity is randomly chosen in that range. 
+Size is how much capacity one item from that pool will take - in this case, if we roll a 'docs_high', it will take up 4 spaces.
+Limit is the cap on how many items from this pool can be added.
+Chance is the difficulty of the extra roll required to lock this in.
 
 Adding new boxes
 
@@ -18,8 +40,6 @@ Make sure you do not use any existing sections. Lootboxes that come with this mo
 
 Breakdown of lootbox fields:
 - Difficulty: How many lockpicks are required to open the box (when used with lockpick set, of course)
-- Contents: Corresponds to a drop pool - consult loot_pools for info
-- Loot_type: This is one of two types, either weapon or grab. Weapon means the box holds a single gun with ammo and attachments. Grab means it holds multiple items that are picked randomly.
-- 'Weapon' loot types refer to a contents pool directly. 'Grab' goes through one layer of loot pool, then 
-
-Adding new 
+- Contents: Corresponds to a drop pool - consult box_contents for info
+- Loot_type: This is one of two types, either weapon or grab. 'Weapon' loot types refer to a contents pool directly and adds a weapon with a chance ot add ammo for that weapon. 'Grab' picks items from the contents til the limit is reached.
+- items_range: Range of items to populate in the box.

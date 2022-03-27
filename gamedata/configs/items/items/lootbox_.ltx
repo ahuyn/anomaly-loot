@@ -52,6 +52,7 @@ inv_name_short			                               = st_lockpick
 icons_texture							        	   = ui\ui_icon_lootboxes
 class                                                  = WP_GLAUN 
 grenade_vel                              = 76
+kind			                                       = i_part
 inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 8
@@ -74,6 +75,7 @@ description			                                   = st_lockpick_bundle_descr
 inv_name			                                   = st_lockpick_bundle
 inv_name_short			                               = st_lockpick_bundle
 icons_texture							       		   = ui\ui_icon_lootboxes
+kind			                                       = i_part
 inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 9
@@ -91,6 +93,7 @@ use1_functor                                           = pickset_binder.try_spli
 use1_action_functor                                    = pickset_binder.split_picks
 
 [snapgun]:tch_loot
+kind			                                       = i_part
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_snapgun_descr
 inv_name			                                   = st_snapgun
@@ -102,11 +105,10 @@ inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 10
 inv_grid_y			                                   = 2
-open_type                                              = 0
-open_power                                             = 4
-expire_type                                            = none
+open_power                                             = 5
 
 [skeleton_key]:tch_loot
+kind			                                       = i_part
 visual				                                   = dynamics\equipments\trade\ammo.ogf
 description			                                   = st_skelekey_descr
 inv_name			                                   = st_skelekey
@@ -118,9 +120,6 @@ inv_grid_x			                                   = 10
 inv_grid_y			                                   = 0
 cost				                                   = 11014
 inv_weight			                                   = 0.05
-open_power                                             = 999
-open_type                                              = 1
-expire_type                                            = destroy
 
 
 [lockpick_set]:tch_loot
@@ -137,13 +136,25 @@ inv_weight			                                   = 0.34
 cost                                                   = 5392 
 allow_repair                             		       = false
 snd_on_take								 		       = outfit
-open_type                                              = 0
-expire_type                                            = degrade
 max_picks                                              = 20
 use_condition                                          = true
 use1_functor                                           = pickset_binder.menu_empty
 use1_action_functor                                    = pickset_binder.empty
 script_binding                                         = pickset_binder.bind
+
+[arcade_tokens]:tch_loot
+kind			                                       = i_part
+visual				                                   = dynamics\equipments\trade\ammo.ogf
+description			                                   = st_tokens_descr
+inv_name			                                   = st_tokens
+inv_name_short			                               = st_tokens
+icons_texture							       		   = ui\ui_icon_lootboxes
+inv_grid_width			                               = 1
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 11
+inv_grid_y			                                   = 0
+cost				                                   = 10
+inv_weight			                                   = 0.01
 
 
 ;-- Lootbox base item
@@ -161,6 +172,8 @@ description			                                   = st_wpn_spareparts_descr
 inv_name			                                   = st_wpn_spareparts
 inv_name_short		                                   = st_wpn_spareparts
 icons_texture							 		       = ui\ui_icon_lootboxes
+attach_angle_offset		                               = -0.287979, 1.560923, 1.544060
+attach_position_offset		                           = 0.096910, -0.013594, 0.107925
 inv_grid_width			                               = 1
 inv_grid_height			                               = 1
 inv_grid_x			                                   = 0
@@ -169,21 +182,14 @@ cost				                                   = 14010
 inv_weight			                                   = 0.05
 difficulty                                             = 1
 contents                                               = bad
-attach_angle_offset		                               = -0.287979, 1.560923, 1.544060
-attach_position_offset		                           = 0.096910, -0.013594, 0.107925
 attach_bone_name		                               = bip01_r_hand
 auto_attach				                               = false
 snd_on_take								 		       = other
-tier                                                   = 3
 box_group                                              = 0
 use_condition                            		       = true 
 unique_contents                                        = underwear,10
 loot_type                                              = grab
 weapon_condition                                       = 40
-snd_open                                               = Plastic_Small_Pick
-snd_open_key                                           = Plastic_Small_Key
-snd_open_axe                                           = Wood_Axe
 items_range                                            = 6, 10
 multiuse_full                                          = false
 script_binding                                         = lootbox_binder.bind
-

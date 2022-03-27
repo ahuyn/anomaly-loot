@@ -1,0 +1,32 @@
+; Control how box-opening items behave
+; precondition = check if box can be opened by tool
+; postcondition = what to do AFTER box is opened
+[lockpick_set]
+precondition = arti_lootboxes.precond_lockpickset
+postcondition = arti_lootboxes.use_lockpickset
+sound = Plastic_Small_Pick
+sound_wood = Wood_Picks
+duration = 5
+[wpn_axe]
+precondition = arti_lootboxes.precond_axe
+postcondition = arti_lootboxes.use_axe
+sound = Wood_Axe
+duration = 2
+[wpn_axe2]:wpn_axe
+[wpn_axe3]:wpn_axe
+[snapgun]
+precondition = arti_lootboxes.precond_snapgun
+postcondition = arti_lootboxes.use_snapgun
+sound = Plastic_Small_Pick
+duration = 5
+[skeleton_key]
+precondition = arti_lootboxes.precond_skeleton
+postcondition = arti_lootboxes.use_skeleton
+sound = Plastic_Small_Key
+sound_wood = Wood_Picks
+duration = 5
+[arcade_tokens]
+precondition = arti_lootboxes.precond_token
+postcondition = arti_lootboxes.use_token
+sound = Coins
+duration = 6

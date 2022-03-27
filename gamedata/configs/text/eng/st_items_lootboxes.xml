@@ -101,7 +101,13 @@
     <string id="st_cant_unlock">
         <text>Your picks are insufficient to open this box.</text>
     </string>
+    <string id="st_cant_unlock_snapgun">
+        <text>Tool is unable to open this box.</text>
+    </string>
 
+    <string id="st_cant_unlock_coinbox">
+        <text>Tool doesn't fit into the slot.</text>
+    </string>
     <string id="st_pick_condition">
         <text>Pickset condition:</text>
     </string>

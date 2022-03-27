@@ -53,14 +53,14 @@
 	</string>
 	<string id="st_lootbox_coinbox_descr">
 		<text>
-			A sealed box with a red emblem of a rat on top. Instead of a keyhole, it has a slot for coins of some kind. It is far too big for ruble coins. What could possibly open this?\n
+			A sealed box with a strange symbol on top. The box is extremely overbuilt and heavy. Instead of a keyhole, it has a slot for coins of some kind. It is far too big for ruble coins. What could possibly open this? \n
 		</text>
 	</string>
 	<string id="st_tokens">
-		<text>Arcade Tokens</text>
+		<text>Strange Tokens</text>
 	</string>
-	<string id="st_tokens_desc">
-		<text>Large silver coins engraved with a rat. These have no monetary value, although they do make for a fun curiosity. The language on the coins superficially resembles Cyrillic.\n</text>
+	<string id="st_tokens_descr">
+		<text>Large silver coins engraved with a strange symbol. These have no monetary value, although they do make for a fun curiosity. The language on the coins superficially resembles Cyrillic, or maybe Japanese.\n</text>
 	</string>
 	<string id="st_lootbox_snipercase">
 		<text>Competition Rifle Case</text>

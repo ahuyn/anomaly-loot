@@ -142,12 +142,13 @@
 	</string>
 	
 
-	<string id="st_lootbox_note_mechanic">
-		<text>Note in a shotgun locker</text>
+	<string id="st_lootbox_note_chuckecheese">
+		<text>Note in a strange box</text>
 	</string>
-	<string id="st_lootbox_note_mechanic_descr">
+	<string id="st_lootbox_note_chuckecheese_descr">
 		<text>
-			d
+			Thank you for spending your day at Dr. Arti's Fun Zone (TM)! Enjoy* a complimentary selection of our finest souvenirs! We hope to see you again soon! \n \n \n \n \n
+			* Dr. Arti and Dr. Arti's associates are not responsible for any injuries, side effects, consequences, or permanent alterations to reality resulting from inappropriate usage of or exposure to our souvenirs, including but not limited to: nosebleeds, lacerations, bruises, radiation poisoning, chemical poisoning, burns, frostbite, cellular replacement, contracting smallpox, Ebola, parasites, sleeping sickness, dysentery, Solanum, COVID-19, COVID-99, rectal cancer, loss, gain, or mutation of body parts, loss or acquisition of additional senses, indigestion, constipation, apotheosis, alcoholism, drug addiction, involuntary feminization or masculinization, night terrors, day terrors, manifestation of entities Abrahamic or otherwise, involuntary transportation to parallel dimensions, involuntary introduction of entities from parallel dimensions, sudden feelings of dread or euphoria, anxiety induced from awareness of living in a simulation, or diarrhea. Please contact our customer support line at 0x12182fa31-51249 or mail inquiries to P.O. Box 25251, Ganymede NJ for more information.
 		</text>
 	</string>
 

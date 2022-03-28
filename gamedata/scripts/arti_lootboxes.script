@@ -558,6 +558,7 @@ end
 
 -- Weapon data is stored as weapon_section,flags_ammotype_cond
 function give_weapon(weapon, attachment_data)
+    if weapon == "wpn_toz194" then weapon = "wpn_wincheaster1300" end
     local table = str_explode(attachment_data, "_")
     local se_obj = alife_create(weapon,db.actor:position(),db.actor:level_vertex_id(),db.actor:game_vertex_id(),db.actor:id(),false)
     local data = utils_stpk.get_weapon_data(se_obj)
@@ -635,6 +636,7 @@ function open_lootbox_timer(id, give)
             -- quantity will be the id of the schmuck this pda belongs to
             pda_custom.register_pda(tonumber(quantity), section, id)
         else
+            if section == "leatherman" then section = "leatherman_tool" end
             local amt = tonumber(quantity) or 1
             for j=1,amt do
                 local se_itm = alife_create_item(section, db.actor, item_prop_table)

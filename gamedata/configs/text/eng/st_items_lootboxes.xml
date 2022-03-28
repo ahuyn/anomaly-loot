@@ -178,25 +178,11 @@
 	<string id="st_skelekey_descr">
 		<text>A strange key that looks like it was exposed to an anomalous field. The blade is bent unnaturally, while the teeth glow ominously and look to be constantly changing shape and size.\n \n</text>
 	</string>
-	<string id="st_lockpick_set_starter">
-		<text>Basic set of lockpicks</text>
-	</string>
-	<string id="st_lockpick_set_starter_descr">
-		<text>A compact case containing a few torsion wrenches and room for ten lockpicks. Lockpicks are normally used by honest people to get back in their houses after accidentally locking themselves out, or by dishonest folk to break into homes and containers. In the Zone, lockpicks like these are used by the latter party to break into containers that do not belong to them. The lockpicks like these should be able to get through any lock, but are susceptible to wear and breakage. Frequent replacement of the lockpicks will be necessary if you plan to use this often.\n \n
-		</text>
-	</string>
 	<string id="st_lockpick_set">
 		<text>Standard set of lockpicks</text>
 	</string>
 	<string id="st_lockpick_set_descr">
 		<text>A professionally-assembled lockpick set with capacity for twenty lockpicks and supplementary high-precision tools for defeating complex locks. Sets such as these are commonly carried in most technician workshops, and can open most locks with a reasonable amount of effort. However, be mindful that lockpicks wear out very easily and require frequent replacement.\n \n
-		</text>
-	</string>
-	<string id="st_lockpick_set_advanced">
-		<text>Advanced set of lockpicks</text>
-	</string>
-	<string id="st_lockpick_set_advanced_descr">
-		<text>Set of lockpicks coupled with a small x-ray imaging device that maps out the internal mechanism of the lock and displays it on a small LCD screen. Such a device presents a mostly accurate representation of the inner workings of a lock, including positions and depth of the lock pins. While the reading accuracy is not perfect, the additional information provided reduces the effort to open locks and thus increases longevity of your picks.
 		</text>
 	</string>
 
@@ -205,7 +191,7 @@
 	</string>
 	<string id="st_snapgun_descr">
 		<text>A specialized device used to quickly open locks. The snap gun operates by striking all the pins at once in a simple tumbler lock, quickly aligning them with the shear line and allowing the tumbler to rotate. The benefit of such a device is that it can defeat most simple locks with little effort and has a long operational lifetime, but is quite heavy and hopeless with any slightly more complicated lock.\n \n
-			%c[d_cyan] • %c[ui_gray_2] effective strength: 20%\n
+			%c[d_cyan] • %c[ui_gray_2] effective strength: 25%\n
 		</text>
 	</string>
 
@@ -250,9 +236,7 @@
 		</text>
 	</string>
 	<string id="ui_mcm_lootboxes_lootquality">
-		<text>
-			Loot quality
-		</text>
+		<text>Loot quality</text>
 	</string>
 	<string id="ui_mcm_lootboxes_lootquality_desc">
 		<text>

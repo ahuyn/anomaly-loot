@@ -17,11 +17,11 @@
 		</text>
 	</string>
 	<string id="st_lootbox_ammocase">
-		<text>Munitions Case</text>
+		<text>Ammo Case</text>
 	</string>
 	<string id="st_lootbox_ammocase_descr">
 		<text>
-			Waterproof container used to store weapon magazines and ammunition. Common with hunters and wealthy citizens. A good find in the Zone - usually, tourists bring these cases in along with a good amount of high-quality ammunition, and the climate control ensures that the ammo inside is clean and dry. Most ammunition in the Zone is old, damaged, or worse, handloaded by inexperienced smiths with subpar equipment, and as such good rounds are uncommon and quite valuable.\n
+			Waterproof container used to store weapon magazines and ammunition. Common with hunters and wealthy citizens. A good find in the Zone - usually, tourists bring these cases in along with a good amount of high-quality ammunition, and the climate control ensures that the ammo inside is clean and dry. Most ammunition in the Zone is old, damaged, or worse, handloaded by inexperienced smiths with subpar equipment, and as such good rounds are uncommon and quite valuable.\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_foodbox">
@@ -29,7 +29,7 @@
 	</string>
 	<string id="st_lootbox_foodbox_descr">
 		<text>
-			Insulated metal box designed to hold perishables. Uncommon in the Zone and used mostly by SSU personnel to carry food. There is unusual demand for these boxes due to their ability to keep alcohol cold.\n
+			Insulated metal box designed to hold perishables. Uncommon in the Zone and used mostly by SSU personnel to carry food. There is unusual demand for these boxes due to their ability to keep alcohol cold.\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_junkbox">
@@ -37,7 +37,7 @@
 	</string>
 	<string id="st_lootbox_junkbox_descr">
 		<text>
-			A big container with a lot of junk inside. A crappy lock holds it closed. Maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here...\n
+			A big container with a lot of junk inside. A crappy lock holds it closed. Maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here...\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_devicecase">
@@ -45,7 +45,7 @@
 	</string>
 	<string id="st_lootbox_device_descr">
 		<text>
-			Waterproof and EMP-resistant case used by the Ecologists to transport equipment and samples. After one too many incidents involving 'dropping' field equipment in anomalies, the Ministry of Science has mandated the usage of specialized cases to carry equipment in the field. These cases contain a wide variety of advanced electronic devices and are also used by hired Mercenaries to store their sensitive equipment and extra armor. There is a special compartment for storing field samples as well.\n
+			Waterproof and EMP-resistant case used by the Ecologists to transport equipment and samples. After one too many incidents involving 'dropping' field equipment in anomalies, the Ministry of Science has mandated the usage of specialized cases to carry equipment in the field. These cases contain a wide variety of advanced electronic devices and are also used by hired Mercenaries to store their sensitive equipment and extra armor. There is a special compartment for storing field samples as well.\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_coinbox">
@@ -53,21 +53,30 @@
 	</string>
 	<string id="st_lootbox_coinbox_descr">
 		<text>
-			A sealed box with a strange symbol on top. The box is extremely overbuilt and heavy. Instead of a keyhole, it has a slot for coins of some kind. It is far too big for ruble coins. What could possibly open this? \n
+			A sealed box with a strange symbol on top. The box is extremely overbuilt and heavy. Instead of a keyhole, it has a slot for coins of some kind. It is far too big for ruble coins. What could possibly open this? \n \n
 		</text>
 	</string>
 	<string id="st_tokens">
 		<text>Strange Tokens</text>
 	</string>
 	<string id="st_tokens_descr">
-		<text>Large silver coins engraved with a strange symbol. These have no monetary value, although they do make for a fun curiosity. The language on the coins superficially resembles Cyrillic, or maybe Japanese.\n</text>
+		<text>Large silver coins engraved with a strange symbol. These have no monetary value, although they do make for a fun curiosity. The language on the coins superficially resembles Cyrillic, or maybe Japanese.\n \n</text>
 	</string>
-	<string id="st_lootbox_snipercase">
-		<text>Competition Rifle Case</text>
+	<string id="st_lootbox_ammocase_bad">
+		<text>Old Ammo Box</text>
 	</string>
-	<string id="st_lootbox_snipercase_descr">
+	<string id="st_lootbox_ammocase_bad_descr">
 		<text>
-			Light and slim rifle case. Often used by hunters or competition shooters to store their rifles. Too often tourists come with fancy sporting or military rifles hoping to bag a trophy or two to show home, but many of them are relieved of such conspicuous equipment by their 'fellow' stalkers. Either way, a very good find - if you can get past the lock, that is.
+			Steel box used to hold ammo. Common military surplus item and a great deal of them were left behind during the initial excursions into the Exclusion Zone. Shaking the box produces a great deal of rattling. Secured with a simple lock.\n \n
+		</text>
+	</string>
+	
+	<string id="st_lootbox_tacklebox">
+		<text>Padlocked Tackle Box</text>
+	</string>
+	<string id="st_lootbox_tacklebox_descr">
+		<text>
+			Repurposed tackle box used to hold items. No fish exist in the Zone (at least, the Ecologists hope so) so there's a good chance you'll find something more useful than bait and tackle in here. \n \n 
 		</text>
 	</string>
 </string_table>

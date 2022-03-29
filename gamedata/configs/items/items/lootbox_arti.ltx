@@ -12,6 +12,7 @@ difficulty                                             = 2
 contents                                               = bad
 box_group                                              = low
 loot_type                                              = grab
+items_range                                            = 3, 10
 ; unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
 
 [lootbox_11]:lootbox_1 ; locked toolbox, alt appearance
@@ -33,7 +34,7 @@ difficulty                                             = 4
 contents                                               = good
 loot_type                                              = grab
 box_group                                              = mid
-items_range                                            = 8, 12
+items_range                                            = 4, 12
 ; unique_contents                                        = shovel_old,1,af_electra_moonlight,1,skeleton_key,1,lootbox_note_digger,1,bolt,4
 
 
@@ -52,7 +53,7 @@ contents                                               = secure
 loot_type                                              = grab
 weapon_condition                                       = 60
 box_group                                              = secure
-items_range                                            = 8, 14
+items_range                                            = 6, 12
 ; unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
 ; lootbox_docs_sheet_5,1,lootbox_docs_notebook_1,1,stimpack_scientic,1
 [lootbox_32]:lootbox_3 ; secure container epsilon, don't use
@@ -106,7 +107,7 @@ contents                                               = briefcase
 loot_type                                              = grab
 weapon_condition                                       = 50
 box_group                                              = briefcase
-items_range                                            = 8, 12
+items_range                                            = 4, 12
 ; unique_contents                                        = money,15000,itm_pda_rare,2,cocaine,1,lootbox_note_bandit,1
 
 [lootbox_51]:lootbox_5 ;BRIEFCASE 2
@@ -140,7 +141,6 @@ items_range                                            = 8, 12
 [lootbox_61]:lootbox_6 ;survival box camo
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 3
-box_group                                              = 6
 ; unique_contents                                        = ied_new,2,money,5000,novice_outfit,1,cs_novice_outfit,1,lootbox_note_orders,1
 
 [lootbox_7]:lootbox ; shotty box
@@ -159,16 +159,20 @@ contents                                               = shotguns_case
 loot_type                                              = weapon
 can_smash                                              = true
 box_group                                              = wpn_shotgun
-unique_contents = wpn_toz34_mark4,0_0_70,ammo_12x70_buck,2,lootbox_note_tourist,1
+[lootbox_72]:lootbox_7
+weapon_condition                                       = 20
+cost				                                   = 12149
+inv_grid_x			                                   = 0
+inv_grid_y			                                   = 5
 
 [lootbox_71]:lootbox ; ak box
 description			                                   = st_lootbox_large_surplus_descr
 inv_name			                                   = st_lootbox_large_surplus
 inv_name_short			                               = st_lootbox_large_surplus
-inv_grid_width			                               = 3
+inv_grid_width			                               = 2
 inv_grid_height			                               = 1
-inv_grid_x			                                   = 0
-inv_grid_y			                                   = 5
+inv_grid_x			                                   = 11
+inv_grid_y			                                   = 9
 cost				                                   = 25021
 inv_weight			                                   = 10
 weapon_condition                                       = 40

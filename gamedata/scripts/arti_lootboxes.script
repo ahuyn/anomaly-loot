@@ -279,7 +279,7 @@ function build_template(template, section, max, bias)
             contents_cache[section] = pool
         end
         -- build
-        max = (not max or max < 0) and 10 or max
+        max = (max and max > 0) and max or 10
         bias = bias or 1
         bias = bias * get_config("lootquality")
         print_dbg("Adding %s items, bias %s", max, bias)
@@ -291,9 +291,10 @@ function build_template(template, section, max, bias)
             item = random_entry(content_pool)
             print_dbg("Rolled item %s, chance is %s", item.section, item.chance)
             local curr_amt = template[item.section] or 0
-            if curr_amt < item.limit and roll(item.chance * bias) then
+            if curr_amt < item.limit and item.size <= max and roll(item.chance * bias) then
                 table_upsert(template, item.section, 1)
                 max = clamp(max - item.size, 0, max)
+                print_dbg("Added %s, (size %s), %s left", item.section, item.size, max)
             end
             iters = iters + 1
         end
@@ -418,7 +419,7 @@ function populate_lootbox(box_id, box_section)
             local min, max = unpack(str_explode_num(SYS_GetParam(0, box_section, "items_range"), ","))
             local to_roll = rand(min, max)
             -- bias skews the drop rate for rare stuff up if less items spawn
-            local bias = 1 + ( 2 * clamp(max - to_roll, 1, 999) / clamp(max - min, 1, 999) )
+            local bias = 1 + ( 2 * clamp(max - to_roll, 0, 999) / clamp(max - min, 1, 999) )
             build_template(box_template, loot_sec, to_roll, bias)
             local loot_template = process_template(box_template, box_section)
             loot_str = loot_str .. create_lootstring(loot_template)

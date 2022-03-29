@@ -1,4 +1,20 @@
 
+[lootbox_tacklebox]:lootbox
+description			                                   = st_lootbox_tacklebox_descr
+inv_name			                                   = st_lootbox_tacklebox
+inv_name_short			                               = st_lootbox_tacklebox
+inv_grid_width			                               = 2
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 15
+inv_grid_y			                                   = 9
+cost				                                   = 3741
+inv_weight			                                   = 1
+difficulty                                             = 3
+contents                                               = good
+loot_type                                              = grab
+box_group                                              = mid
+items_range                                            = 3, 9
+
 [lootbox_food]:lootbox ; food and more importantly, booze
 description			                                   = st_lootbox_foodbox_descr
 inv_name			                                   = st_lootbox_foodbox
@@ -12,7 +28,7 @@ inv_weight			                                   = 1
 difficulty                                             = 5
 contents                                               = foodcase
 box_group                                              = mid
-items_range                                            = 8, 12
+items_range                                            = 6, 12
 
 [lootbox_junkbox]:lootbox ; random crap
 description			                                   = st_lootbox_junkbox_descr
@@ -56,7 +72,7 @@ inv_grid_x			                                   = 0
 inv_grid_y			                                   = 9
 items_range                                            = 1, 1
 cost				                                   = 10521
-inv_weight			                                   = 1
+inv_weight			                                   = 13
 difficulty                                             = 9
 contents                                               = ammocase
 box_group                                              = ammocase
@@ -64,6 +80,21 @@ items_range                                            = 1, 1
 [lootbox_ammocase2]:lootbox_ammocase
 inv_grid_x			                                   = 2
 inv_grid_y			                                   = 9
+
+[lootbox_ammocase_bad]:lootbox
+description			                                   = st_lootbox_ammocase_bad_descr
+inv_name			                                   = st_lootbox_ammocase_bad
+inv_name_short			                               = st_lootbox_ammocase_bad
+inv_grid_width			                               = 2
+inv_grid_height			                               = 1
+inv_grid_x			                                   = 1
+inv_grid_y			                                   = 9
+cost				                                   = 4521
+inv_weight			                                   = 1
+difficulty                                             = 5
+contents                                               = ammocase_bad
+box_group                                              = good
+items_range                                            = 4, 6
 
 [lootbox_medbox]:lootbox ; meds and drugs
 description			                                   = st_lootbox_medbox_descr
@@ -97,6 +128,8 @@ difficulty                                             = 13
 contents                                               = devicecase
 box_group                                              = devicecase
 items_range                                            = 1, 3
+
+
 
 [lootbox_snipercase]:lootbox
 description			                                   = st_lootbox_snipercase_descr

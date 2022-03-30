@@ -418,8 +418,10 @@ function populate_lootbox(box_id, box_section)
             local loot_sec = SYS_GetParam(0, box_section, "contents")
             local min, max = unpack(str_explode_num(SYS_GetParam(0, box_section, "items_range"), ","))
             local to_roll = rand(min, max)
+            
+            local b_min, b_max = unpack(str_explode_num(SYS_GetParam(0, box_section, "bias_range"), ",")) or 1, 2
             -- bias skews the drop rate for rare stuff up if less items spawn
-            local bias = 1 + ( 2 * clamp(max - to_roll, 0, 999) / clamp(max - min, 1, 999) )
+            local bias = b_min + ( (b_max - b_min) * clamp(max - to_roll, 0, 999) / clamp(max - min, 1, 999) )
             build_template(box_template, loot_sec, to_roll, bias)
             local loot_template = process_template(box_template, box_section)
             loot_str = loot_str .. create_lootstring(loot_template)

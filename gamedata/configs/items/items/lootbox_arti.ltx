@@ -13,12 +13,12 @@ contents                                               = bad
 box_group                                              = low
 loot_type                                              = grab
 items_range                                            = 3, 10
-; unique_contents                                        = itm_basickit,1,lootbox_note_mikhail,1
 
-[lootbox_11]:lootbox_1 ; locked toolbox, alt appearance
+[lootbox_11]:lootbox_1 ; locked toolbox, alt appearance, less items but better quality
 inv_grid_x			                                   = 2
 inv_grid_y			                                   = 0
-; unique_contents                                        = af_glass,1,picture_woman,1,lootbox_note_dad,1
+bias_range                                             = 1.5, 3.5
+items_range                                            = 2, 8
 
 [lootbox_2]:lootbox ; lockbox
 description			                                   = st_lootbox_small_ok_descr
@@ -51,7 +51,7 @@ inv_weight			                                   = 1
 difficulty                                             = 12
 contents                                               = secure
 loot_type                                              = grab
-weapon_condition                                       = 60
+weapon_condition                                       = 40
 box_group                                              = secure
 items_range                                            = 6, 12
 ; unique_contents                                        = skeleton_key,1,lootbox_note_tarkov,1,itm_pda_rare,1,
@@ -60,13 +60,13 @@ items_range                                            = 6, 12
 inv_grid_x			                                   = 3
 inv_grid_y			                                   = 5
 contents = test
-[lootbox_31]:lootbox_3 ; secure container epsilon, don't use
 box_group = 0
+[lootbox_31]:lootbox_3
 inv_grid_x			                                   = 10
 inv_grid_y			                                   = 3
-description			                                   = st_lootbox_small_good2_descr
-inv_name			                                   = st_lootbox_small_good
-inv_name_short			                               = st_lootbox_small_good
+weapon_condition                                       = 60
+items_range                                            = 6, 10
+
 
 [lootbox_4]:lootbox ; arti box
 description			                                   = st_lootbox_small_artifact_descr
@@ -82,12 +82,15 @@ difficulty                                             = 15
 contents                                               = box_artifacts
 loot_type                                              = grab
 box_group                                              = artifact
+bias_range                                             = 1, 2
 items_range                                            = 1, 3
 ; unique_contents                                        = lootbox_note_spooky,1,powder_poltergeist,4,spooky,1
 
 [lootbox_41]:lootbox_4 ; arti box, dull metal
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 1
+bias_range                                             = 0.75, 1.5
+items_range                                            = 1, 4
 ; unique_contents                                        = lootbox_note_transmute,1,af_empty,2
 
 
@@ -117,7 +120,7 @@ inv_grid_y			                                   = 5
 [lootbox_52]:lootbox_5 ;BRIEFCASE 2
 inv_grid_x			                                   = 4
 inv_grid_y			                                   = 7
-; unique_contents = lootbox_note_spankbank,1,porn,5,porn2,5
+contents                                               = briefcase_docs
 
 
 [lootbox_6]:lootbox ;survival box
@@ -141,7 +144,9 @@ items_range                                            = 8, 12
 [lootbox_61]:lootbox_6 ;survival box camo
 inv_grid_x			                                   = 8
 inv_grid_y			                                   = 3
-; unique_contents                                        = ied_new,2,money,5000,novice_outfit,1,cs_novice_outfit,1,lootbox_note_orders,1
+items_range                                            = 6, 10
+bias_range                                             = 1.5, 4
+
 
 [lootbox_7]:lootbox ; shotty box
 description			                                   = st_lootbox_large_shotgun_descr
@@ -221,5 +226,4 @@ contents                                               = monoloot
 box_group                                              = monoloot
 loot_type                                              = grab
 items_range                                            = 10, 15
-; unique_contents = af_death_lamp,1,lootbox_note_deathlamp,1
 

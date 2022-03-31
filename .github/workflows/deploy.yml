@@ -30,7 +30,7 @@ jobs:
         run: echo "::set-output name=today::$(date +'%Y.%m.%d')"
 
       - name: Zip folder
-        run: zip -r $RELEASE_NAME.zip gamedata README "Integration Guide"
+        run: zip -r $RELEASE_NAME.zip gamedata README "Integration Guide" eft_valuables
         env: 
           RELEASE_NAME: ${{ github.event.repository.name }}.${{ steps.date.outputs.today }}
       

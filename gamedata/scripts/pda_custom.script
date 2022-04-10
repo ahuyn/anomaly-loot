@@ -40,7 +40,7 @@ function cache_local_schmuck()
 		local check = db.OnlineStalkers[math.random(#db.OnlineStalkers)]
 		if check and check ~= 0 and not schmucks[check] then
 			local schmuck = get_object_by_id(check)
-			if ui_pda_npc_tab.can_own_pda(schmuck) then
+			if schmuck and ui_pda_npc_tab.can_own_pda(schmuck) then
 				cache_schmuck(schmuck)
 				schmuck_id = check
 			end

@@ -808,6 +808,9 @@ end
 
 
 function on_game_start()
+    if not lootbox_contents.uniques then
+        lootbox_contents.uniques = {}
+    end
 	if (USE_MARSHAL) then 
 		RegisterScriptCallback("save_state",save_state)
 		RegisterScriptCallback("load_state",load_state)

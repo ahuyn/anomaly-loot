@@ -448,40 +448,14 @@ end
 
 function on_item_drag_dropped(from, to, slot_from, slot_to)
 	eval_open_box(from, to)
-	-- local item_from = from:section()
-	-- local item_to = to:section()
-    -- -- only two are valid - item_from is lockpick and item_to is lockpick set, or item_from is set and item_to is lockbox
-    -- print_dbg("Drag %s (Open type is %s, open power is %s) on %s (CR %s).", item_from, open_type, open_power, item_to, challenge_rating)
-    -- if open_type and challenge_rating ~= nil then
-    --     if not open_power then
-    --         open_power = pickset_binder.get_power(from:id())
-    --     end
-    --     if challenge_rating > open_power then
-    --         send_tip(db.actor, gc("st_cant_unlock"), nil, "swiss_knife", 6000)
-    --     else
-    --         open_lootbox(to, open_type)
-    --         if expire == "degrade" then
-    --             pickset_binder.modify(from:id(), challenge_rating * -1)
-    --         elseif expire == "destroy" then
-    --             alife_release(from)
-    --         end
-    --     end
-    -- elseif string.find(item_from, "wpn_axe") and SYS_GetParam(1, item_to, "can_smash") then
-    --     -- smesh
-    --     if (from:condition() > 0.25) then
-    --         from:set_condition(clamp(from:condition() - 0.25, 0, 1))
-    --     else
-    --         alife_release_id(from:id())
-    --     end
-    --     open_lootbox(to, 2)
-    -- end
 end
 
 -- check precondition and apply logic to box opening
 function eval_open_box(tool, box)
     local tool_sec = tool:section()
     if not ini_tools:section_exist(tool_sec) then return end
-    if SYS_GetParam(2, box:section(), "difficulty") < 1 then return end
+    local diff = SYS_GetParam(2, box:section(), "difficulty") or 0
+    if diff < 1 then return end
     local precond = ini_tools:r_string_ex(tool_sec, "precondition") or "arti_lootboxes.no_precond"
     precond = str_explode(precond,"%.")
     -- evaluate precondition, if successful open lootbox and run postcond

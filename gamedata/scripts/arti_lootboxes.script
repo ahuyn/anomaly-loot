@@ -447,7 +447,9 @@ end
 
 
 function on_item_drag_dropped(from, to, slot_from, slot_to)
-	eval_open_box(from, to)
+	if not (slot_from == EDDListType.iActorBag and slot_to == EDDListType.iActorBag) then
+        return
+    end	eval_open_box(from, to)
 end
 
 -- check precondition and apply logic to box opening

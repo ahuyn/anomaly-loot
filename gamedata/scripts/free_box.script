@@ -1,0 +1,7 @@
+function open_lootbox_free(obj)
+    arti_lootboxes.open_lootbox(obj, "lockpick_set")
+end
+
+function check_lootbox_free(obj)
+    return "open"
+end

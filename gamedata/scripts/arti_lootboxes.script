@@ -633,6 +633,7 @@ function open_lootbox_timer(id, give)
             end
         end
     end
+    xr_effects.enable_ui(db.actor, nil)
     send_tip(db.actor, str, nil, "swiss_knife", 6000)
     if give then
         lootbox_contents[id] = nil

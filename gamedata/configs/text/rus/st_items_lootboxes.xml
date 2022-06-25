@@ -107,6 +107,9 @@
     <string id="st_pick_split">
         <text>разделить отмычки </text>
     </string>
+	<string id="st_empty_pickset">
+        <text>вытащить отмычки из набора</text>
+    </string>
     <string id="st_try_pick">
         <text>взломать замок</text>
     </string>
@@ -367,7 +370,9 @@
 	<string id="ui_mcm_lootboxes_deathchance">
 		<text>Шанс нахождения контейнеров и отмычек на телах мертвых сталкеров</text>
 	</string>
-	
+	<string id="ui_mcm_lootboxes_lootquality">
+		<text>Качество добычи</text>
+	</string>
 	<string id="ui_mcm_lootboxes_animation">
 		<text>Анимация вскрытия контейнера</text>
 	</string>

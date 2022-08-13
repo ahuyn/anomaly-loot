@@ -21,6 +21,7 @@ function lootbox_binder:update(delta)
         local weight = calc_weight(obj)
         obj:set_weight(weight)
         weights[id] = weight
+        obj:set_condition(0.98)
     end
 end
 
@@ -39,6 +40,7 @@ function lootbox_binder:net_spawn(se_abstract)
     local id = self.object:id()
     if weights[id] then
         self.object:set_weight(weights[id])
+        self.object:set_condition(0.98)
     end
     return true
 end

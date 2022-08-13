@@ -81,6 +81,11 @@ function roll(odds)
     end
 end
 
+-- roll a cond between min and 2x min, clamped at 99
+function roll_cond(min)
+    return rand(min, clamp(2*min, 0, 99))
+end
+
 -- return random entry from integer-indexed table
 function random_entry(t)
     t = t or {}
@@ -145,6 +150,16 @@ function sec_is_weapon(section)
         return not_wpn[class] == nil
     else return false
     end
+end
+
+-- get box difficulty
+-- comes with opening tool as well
+function get_box_diff(box, sec, tool)
+    sec = box and box:section() or sec
+    print_dbg("Checking diff for %s", sec)
+    if sec then
+        return SYS_GetParam(2, sec, "difficulty") or 0
+    else return 0 end
 end
 
 function init()
@@ -213,7 +228,7 @@ function append_weapon(template, section, min, add_ammo)
     end
     if string.find(section, "knife") or string.find(section, "axe") then
         print_dbg("Appending melee weapon")
-        table_upsert(template, section, "0_0_"..rand(min,99))
+        table_upsert(template, section, "0_0_"..roll_cond(min))
         return
     end
     local loot_str = ""
@@ -238,7 +253,7 @@ function append_weapon(template, section, min, add_ammo)
     ammo_type = ammos and ct and rand(0,ct-1) or 0
     ammo_section = ammo_type and ammos[ammo_type+1]
 
-    local condition = rand(min, 99)
+    local condition = roll_cond(min)
     print_dbg("Appending weapon of type %s", section)
     table_upsert(template, section, flag.. "_"..ammo_type.."_"..condition)
     if add_ammo and ammos and ct and ct > 0 then 
@@ -449,14 +464,15 @@ end
 function on_item_drag_dropped(from, to, slot_from, slot_to)
 	if not (slot_from == EDDListType.iActorBag and slot_to == EDDListType.iActorBag) then
         return
-    end	eval_open_box(from, to)
+    end	
+    eval_open_box(from, to)
 end
 
 -- check precondition and apply logic to box opening
 function eval_open_box(tool, box)
     local tool_sec = tool:section()
     if not ini_tools:section_exist(tool_sec) then return end
-    local diff = SYS_GetParam(2, box:section(), "difficulty") or 0
+    local diff = get_box_diff(box, nil, tool)
     if diff < 1 then return end
     local precond = ini_tools:r_string_ex(tool_sec, "precondition") or "arti_lootboxes.no_precond"
     precond = str_explode(precond,"%.")
@@ -476,7 +492,7 @@ function no_precond()
 end
 
 function precond_lockpickset(tool,box)
-    local difficulty = SYS_GetParam(2, box:section(), "difficulty")
+    local difficulty = get_box_diff(box, nil, tool)
     local power = pickset_binder.get_power(tool:id()) or 0
     if difficulty > power then
         send_tip(db.actor, gc("st_cant_unlock"), nil, "swiss_knife", 6000)
@@ -486,7 +502,7 @@ function precond_lockpickset(tool,box)
     end
 end
 function use_lockpickset(tool,box)
-    local difficulty = SYS_GetParam(2, box:section(), "difficulty")
+    local difficulty = get_box_diff(box, nil, tool)
     pickset_binder.modify(tool:id(), difficulty * -1)
 end
 
@@ -503,7 +519,7 @@ function use_axe(tool, box)
 end
 
 function precond_snapgun(tool, box)
-    local difficulty = SYS_GetParam(2, box:section(), "difficulty")
+    local difficulty = get_box_diff(box, nil, tool)
     local power = SYS_GetParam(2, tool:section(), "open_power")
     if difficulty > power then
         send_tip(db.actor, gc("st_cant_unlock_snapgun"), nil, "swiss_knife", 6000)
@@ -752,12 +768,12 @@ function ui_item.build_desc_footer(obj, sec, str)
 
     local _str = ""
     
-    local difficulty = SYS_GetParam(2, sec, "difficulty")
+    local difficulty = get_box_diff(obj)
     if SYS_GetParam(1, sec, "coinbox") then
         local clr = utils_xml.get_color_con(0)
         _str = clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. "??????" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")
         return str .. _str
-    elseif difficulty ~= nil then
+    elseif difficulty > 0 then
         difficulty = 5 * difficulty
         local clr = utils_xml.get_color_con(100 - tonumber(difficulty))
         _str = clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. tostring(difficulty) .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   

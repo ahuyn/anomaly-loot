@@ -103,7 +103,6 @@ function try_bundle(obj)
 end
 
 function bundle_picks(obj)
-    
     local pick_ids = {}
     local function search(temp, item)
         local item_section = item:section()
@@ -191,8 +190,7 @@ function ui_item.build_desc_header(obj, sec, str)
 	if (not str) then return "" end
 	
 	local _str = ""
-    if "lockpick_set" == sec then
-        print_dbg("building condition for lockpick set")
+    if pickset_cond[obj:id()] then
         local con = pickset_cond[obj:id()] * 5
         local clr = utils_xml.get_color_con(con)
         _str = clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_condition") .. ": " .. clr .. tostring(con)  .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   
@@ -212,9 +210,25 @@ function on_item_drag_dropped(from, to, from_slot, to_slot)
 
     local replace_amt = SYS_GetParam(2,from_sec,"replacement")
     local max_picks = SYS_GetParam(2,to_sec,"max_picks")
-    if replace_amt and SYS_GetParam(0, to_sec, "script_binding") == "pickset_binder.bind" and pickset_cond[to:id()] < max_picks then
-        modify(to:id(), replace_amt)
-        alife_release(from)
+    local cond = pickset_cond[to:id()]
+    if cond and cond < max_picks then
+        if pickset_cond[from:id()] then
+            local to_move = math.min(max_picks - cond, pickset_cond[from:id()])
+            if to_move > 0 then
+                modify(to:id(), to_move)
+                modify(from:id(), -1 * to_move)
+            end
+        elseif replace_amt then
+            local to_move = math.min(replace_amt, max_picks - cond)
+            modify(to:id(), to_move)
+            alife_release(from)
+            if to_move < replace_amt then
+                for i=1,(replace_amt - to_move) do
+                    alife_create_item("lockpick", db.actor)
+                end
+            end
+
+        end
         send_tip(db.actor, gc("st_restore_pick"), nil, "swiss_knife", 6000)
     end
 end

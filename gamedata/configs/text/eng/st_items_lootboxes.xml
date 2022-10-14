@@ -140,13 +140,13 @@
         <text>a nice </text>
     </string>
     <string id="st_weapon_2">
-        <text>a nice </text>
-    </string>
-    <string id="st_weapon_1">
         <text>a decent </text>
     </string>
-    <string id="st_weapon_0">
+    <string id="st_weapon_1">
         <text>a crappy </text>
+    </string>
+    <string id="st_weapon_0">
+        <text>a broken </text>
     </string>
 
     <string id="st_money">

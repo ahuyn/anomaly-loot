@@ -567,7 +567,7 @@ function give_weapon(weapon, attachment_data)
     alife():register(se_obj)
     print_dbg("Granting weapon of type %s", weapon)
     local name = SYS_GetParam(0, weapon, "inv_name")
-    local quality = math.floor((cond - 50) / 25) + 1
+    local quality = clamp(math.floor(cond / 25), 0, 3)
     local message =  gc("st_weapon_"..quality).." ".. gc(name) .. "\\n"
     -- send_tip(db.actor, message, nil, "swiss_knife", 6000)
     return message

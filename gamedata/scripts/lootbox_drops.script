@@ -86,18 +86,18 @@ function create_tools()
 
     local npc = mob_trade.GetTalkingNpc()
     if IsMechanic(npc) then
-        local num_set = 0
         local num_picks = 0
-        local num_bundle = 0
+        -- local num_set = 0
+        -- local num_bundle = 0
 
         local function search(temp, item)
             local item_section = item:section()
             if item_section == "lockpick" then
                 num_picks = num_picks + 1
-            elseif item_section == "bundle_lockpick" then
-                num_bundle = num_bundle + 1
-            elseif item_section == "lockpick_set" then
-                num_set = num_set + 1
+            -- elseif item_section == "bundle_lockpick" then
+            --     num_bundle = num_bundle + 1
+            -- elseif item_section == "lockpick_set" then
+            --     num_set = num_set + 1
             end
         end
         npc:iterate_inventory(search, nil)
@@ -107,15 +107,15 @@ function create_tools()
                 alife_create_item("lockpick", npc)
             end 
         end
-        num_bundle = 5 - num_bundle
-        if num_bundle > 0 then
-            for i=1, num_bundle do
-                alife_create_item("bundle_lockpick", npc)
-            end 
-        end
-        if num_set == 0 then
-            alife_create_item("lockpick_set", npc)
-        end
+        -- num_bundle = 5 - num_bundle
+        -- if num_bundle > 0 then
+        --     for i=1, num_bundle do
+        --         alife_create_item("bundle_lockpick", npc)
+        --     end 
+        -- end
+        -- if num_set == 0 then
+        --     alife_create_item("lockpick_set", npc)
+        -- end
     end
 end
 

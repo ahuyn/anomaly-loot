@@ -67,8 +67,8 @@ auto_attach				                               = false
 snd_on_take								 		       = part
 tier                                                   = 1
 replacement = 1
-use1_functor                                           = pickset_binder.try_bundle
-use1_action_functor                                    = pickset_binder.bundle_picks
+; use1_functor                                           = pickset_binder.try_bundle
+; use1_action_functor                                    = pickset_binder.bundle_picks
 
 [bundle_lockpick]:tch_loot
 visual				                                   = dynamics\equipments\trade\ammo.ogf
@@ -139,9 +139,9 @@ allow_repair                             		       = false
 snd_on_take								 		       = outfit
 max_picks                                              = 20
 use_condition                                          = true
-use1_functor                                           = pickset_binder.menu_empty
-use1_action_functor                                    = pickset_binder.empty
-script_binding                                         = pickset_binder.bind
+; use1_functor                                           = pickset_binder.menu_empty
+; use1_action_functor                                    = pickset_binder.empty
+; script_binding                                         = pickset_binder.bind
 
 [arcade_tokens]:tch_loot
 kind			                                       = i_part
@@ -191,7 +191,22 @@ use_condition                            		       = true
 unique_contents                                        = underwear,10
 loot_type                                              = grab
 weapon_condition                                       = 40
+diff_str                                               = arti_lootboxes.build_diff
 items_range                                            = 6, 10
 bias_range                                             = 1, 3
 multiuse_full                                          = false
+open_with                                              = lockpick,skeleton_key,snapgun
 script_binding                                         = lootbox_binder.bind
+
+use1_functor         		= arti_lootboxes.str_pick
+use1_action_functor  		= arti_lootboxes.do_pick
+use1_modes         			= inventory
+use1_containers  			= actor_bag
+use2_functor         		= arti_lootboxes.str_snap
+use2_action_functor  		= arti_lootboxes.do_snap
+use2_modes         			= inventory
+use2_containers  			= actor_bag
+use3_functor         		= arti_lootboxes.str_coin
+use3_action_functor  		= arti_lootboxes.do_coin
+use3_modes         			= inventory
+use3_containers  			= actor_bag

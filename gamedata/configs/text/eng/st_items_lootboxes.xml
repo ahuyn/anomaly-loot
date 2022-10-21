@@ -104,6 +104,9 @@
     <string id="st_cant_unlock_snapgun">
         <text>Tool is unable to open this box.</text>
     </string>
+    <string id="st_cant_unlock_generic">
+        <text>Tool is incompatible with this box.</text>
+    </string>
 
     <string id="st_cant_unlock_coinbox">
         <text>Tool doesn't fit into the slot.</text>
@@ -155,12 +158,29 @@
     <string id="st_check_peek">
         <text>[DEBUG] peek</text>
     </string>
+	
+	<string id="st_rip_axe">
+        <text>The axe has broken while smashing the box open.</text>
+    </string>
+
+	<string id="st_unlock_pick">
+        <text>open with picks</text>
+    </string>
+	<string id="st_unlock_snap">
+        <text>open with snapgun</text>
+    </string>
+
+	<string id="st_unlock_coin">
+        <text>insert coin</text>
+    </string>
 
 	<string id="st_lockpick">
 		<text>Lockpick</text>
 	</string>
 	<string id="st_lockpick_descr">
-		<text>Individual lockpick. Not too good by itself, but can be used to replace worn or broken lockpicks in a lockpick set. You can bundle some of these together to save space. To use, drag this lockpick onto a lockpick set.\n \n
+		<text>Individual lockpick. Rare and fragile thing that tends to break easily. Can be used to open locks on certain boxes, but they tend to break rather quickly. Multiple picks may be required to open certain types of boxes. \n \n 
+			The maximum amount of picks that can be applied to any lock is ten. \n \n
+			%c[d_cyan] • %c[ui_gray_2] effective strength: 10%\n
 		</text>
 	</string>
 
@@ -168,7 +188,7 @@
 		<text>Lockpick bundle</text>
 	</string>
 	<string id="st_lockpick_bundle_descr">
-		<text>A bundle of five lockpicks. There's enough here to pick a lock, but you still need a torsion wrench from a lockpick set. You can replace multiple picks in one go with this bundle. To use, drag this bundle onto a lockpick set.\n \n
+		<text>A bundle of five lockpicks. What a nice find!\n \n
 		</text>
 	</string>
     
@@ -179,10 +199,11 @@
 		<text>A strange key that looks like it was exposed to an anomalous field. The blade is bent unnaturally, while the teeth glow ominously and look to be constantly changing shape and size.\n \n</text>
 	</string>
 	<string id="st_lockpick_set">
-		<text>Standard set of lockpicks</text>
+		<text>Locksmith's tools</text>
 	</string>
 	<string id="st_lockpick_set_descr">
-		<text>A professionally-assembled lockpick set with capacity for twenty lockpicks and supplementary high-precision tools for defeating complex locks. Sets such as these are commonly carried in most technician workshops, and can open most locks with a reasonable amount of effort. However, be mindful that lockpicks wear out very easily and require frequent replacement.\n \n
+		<text>Professionally assembled set of fine tools used by locksmiths. Someone has taken out all the lockpicks, unfortunately. Still, the torsion wrenches will beat screwdrivers when it comes to turning locks. \n \n
+			%c[d_cyan] • %c[ui_gray_2] reduces lock difficulty by 10%\n
 		</text>
 	</string>
 
@@ -191,7 +212,7 @@
 	</string>
 	<string id="st_snapgun_descr">
 		<text>A specialized device used to quickly open locks. The snap gun operates by striking all the pins at once in a simple tumbler lock, quickly aligning them with the shear line and allowing the tumbler to rotate. The benefit of such a device is that it can defeat most simple locks with little effort and has a long operational lifetime, but is quite heavy and hopeless with any slightly more complicated lock.\n \n
-			%c[d_cyan] • %c[ui_gray_2] effective strength: 25%\n
+			%c[d_cyan] • %c[ui_gray_2] effective strength: 30%\n
 		</text>
 	</string>
 

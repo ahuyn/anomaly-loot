@@ -152,14 +152,14 @@ function sec_is_weapon(section)
     end
 end
 
--- get box difficulty
--- comes with opening tool as well
-function get_box_diff(box, sec, tool)
-    sec = box and box:section() or sec
-    print_dbg("Checking diff for %s", sec)
-    if sec then
-        return SYS_GetParam(2, sec, "difficulty") or 0
-    else return 0 end
+function is_box(obj, sec)
+    sec = obj and obj:section() or sec
+    return SYS_GetParam(0, sec, "open_with") ~= nil
+end
+
+function is_tool(obj, sec)
+    sec = obj and obj:section() or sec
+    return ini_tools:section_exist(sec)
 end
 
 function init()
@@ -464,63 +464,110 @@ end
 function on_item_drag_dropped(from, to, slot_from, slot_to)
 	if not (slot_from == EDDListType.iActorBag and slot_to == EDDListType.iActorBag) then
         return
-    end	
-    eval_open_box(from, to)
+    end
+    try_open_box(from, to)
 end
 
--- check precondition and apply logic to box opening
-function eval_open_box(tool, box)
+-- check if actor can even open the box
+function check_open_box(tool, box)
     local tool_sec = tool:section()
-    if not ini_tools:section_exist(tool_sec) then return end
-    local diff = get_box_diff(box, nil, tool)
-    if diff < 1 then return end
+    -- not a tool
+    local open_type = ini_tools:r_string_ex(tool_sec, "open_type") or "nope"
+    -- not a box
+    local box_open_type = parse_list(ini_lootbox, box:section(), "open_with", true)
+    print_dbg("Checking tool %s (open type %s) against box %s", tool_sec, open_type, box:section())
+    if not box_open_type[open_type] then return false end
     local precond = ini_tools:r_string_ex(tool_sec, "precondition") or "arti_lootboxes.no_precond"
     precond = str_explode(precond,"%.")
-    -- evaluate precondition, if successful open lootbox and run postcond
-    precond_func = _G[precond[1]][precond[2]] or no_precond
-    if precond_func(tool, box) then
-        open_lootbox(box, tool_sec)
-        local postcond = ini_tools:r_string_ex(tool_sec, "postcondition") or "arti_lootboxes.no_precond"
-        postcond = str_explode(postcond,"%.")
-        func = _G[postcond[1]][postcond[2]] or no_precond
-        func(tool, box)
+    if _G[precond[1]] and _G[precond[1]][precond[2]] then
+        return _G[precond[1]][precond[2]](tool, box) 
+    else return false end
+end
+
+-- attempt to use the tool on the box and open it
+function try_open_box(tool, box)
+    -- tool/box validation here
+    if not is_box(box) or not is_tool(tool) then return false end
+    if check_open_box(tool, box) then
+        open_lootbox(box, tool:section())
+        post_open_box(tool, box)
+    else
+        -- tool not compatible/insufficient
+        send_tip(db.actor, gc("st_cant_unlock_generic"), nil, "swiss_knife", 6000)
     end
 end
 
-function no_precond()
-    return false
+-- check postcondition
+function post_open_box(tool, box)
+    local tool_sec = tool:section()
+    local postcond = ini_tools:r_string_ex(tool_sec, "postcondition") or "arti_lootboxes.no_precond"
+    postcond = str_explode(postcond,"%.")
+    if _G[postcond[1]] and _G[postcond[1]][postcond[2]] then
+        _G[postcond[1]][postcond[2]](tool, box)
+    end    
 end
 
-function precond_lockpickset(tool,box)
-    local difficulty = get_box_diff(box, nil, tool)
-    local power = pickset_binder.get_power(tool:id()) or 0
-    if difficulty > power then
+function no_precond()
+    return true
+end
+
+-- for patchers
+function get_required_picks(box, tool)
+    local diff = SYS_GetParam(2, box, "difficulty") or 1
+    if db.actor:object("lockpick_set") then diff = clamp(diff - 1, 1, 10) end
+    return diff
+end
+
+-- lockpicks, check if difficulty amount of picks are present
+function precond_lockpick(tool,box)
+    local difficulty = get_required_picks(box:section(), tool:section())
+    local pick_sec = tool:section()
+    local amt = 0
+    local function search(temp, item)
+        if item:section() == pick_sec then
+            amt = amt + 1
+        end
+    end
+    db.actor:iterate_inventory(search)
+    amt = amt > 10 and 10 or amt
+    printf("Box: %s, diff %s, picks: %s",box:section(), difficulty, amt)
+    if difficulty > amt then
         send_tip(db.actor, gc("st_cant_unlock"), nil, "swiss_knife", 6000)
         return false
     else
         return true
     end
 end
-function use_lockpickset(tool,box)
-    local difficulty = get_box_diff(box, nil, tool)
-    pickset_binder.modify(tool:id(), difficulty * -1)
+
+-- consume X picks
+function use_lockpick(tool,box)
+    local difficulty = get_required_picks(box:section(), tool:section())
+    local pick_sec = tool:section()
+    local ids = {}
+    local amt = 0
+    local function search(temp, item)
+        if item:section() == pick_sec and amt < difficulty then
+            alife_release_id(item:id())
+            amt = amt + 1
+        end
+    end
+    db.actor:iterate_inventory(search)
 end
 
-function precond_axe(tool, box)
-    return SYS_GetParam(1, box:section(), "can_smash") or false
-end
 function use_axe(tool, box)
     -- smesh
     if (tool:condition() > 0.25) then
         tool:set_condition(clamp(tool:condition() - 0.25, 0, 1))
     else
+        -- blin, axe broke
+        send_tip(db.actor, gc("st_rip_axe"), nil, "swiss_knife", 6000)
         alife_release_id(tool:id())
     end
 end
 
 function precond_snapgun(tool, box)
-    local difficulty = get_box_diff(box, nil, tool)
-    local power = SYS_GetParam(2, tool:section(), "open_power")
+    local difficulty = get_required_picks(box:section(), tool:section())
+    local power = ini_tools:r_float_ex(tool:section(), "open_power")
     if difficulty > power then
         send_tip(db.actor, gc("st_cant_unlock_snapgun"), nil, "swiss_knife", 6000)
         return false
@@ -528,28 +575,46 @@ function precond_snapgun(tool, box)
         return true
     end
 end
-function use_snapgun(tool, box)
-    -- nothing required lul
-end
 
-function precond_skeleton(tool, box)
-    return not SYS_GetParam(1, box:section(), "coinbox")
-end
-function use_skeleton(tool, box)
+function release_tool(tool, box)
     alife_release(tool)
 end
 
-function precond_token(tool, box)
+function str_pick(box)
+    local tool = db.actor:object("lockpick")
+    if tool and check_open_box(tool, box) then
+        return "st_unlock_pick"
+    end
+end
 
-    local can_open = SYS_GetParam(1, box:section(), "coinbox")
-    if not can_open then
-        send_tip(db.actor, gc("st_cant_unlock_coinbox"), nil, "swiss_knife", 6000)
-        return false
-    else return true end
+function do_pick(box)
+    local tool = db.actor:object("lockpick")
+    try_open_box(tool, box)
 end
-function use_token(tool, box)
-    alife_release(tool)
+
+function str_snap(box)
+    local tool = db.actor:object("snapgun")
+    if tool and check_open_box(tool, box) then
+        return "st_unlock_snap"
+    end
 end
+
+function do_snap(box)
+    local pick = db.actor:object("snapgun")
+    try_open_box(pick, box)
+end
+function str_coin(box)
+    local tool = db.actor:object("arcade_tokens")
+    if coin and check_open_box(tool, box) then
+        return "st_unlock_coin"
+    end
+end
+
+function do_coin(box)
+    local tool = db.actor:object("arcade_tokens")
+    try_open_box(tool, box)
+end
+
 
 -- Weapon data is stored as weapon_section,flags_ammotype_cond
 function give_weapon(weapon, attachment_data)
@@ -575,39 +640,37 @@ function give_weapon(weapon, attachment_data)
 end
 
 function open_lootbox(box, tool_sec)
-    
 	local id = box:id()
-
-	--printf("try_spawn_treasure [%s]",caches[id])
-
 	if not (lootbox_contents[id]) then
         print_dbg("Lootbox contents not found. Populating.")
 		populate_lootbox(id, box:section())
 	end
-
     -- play cool animation, with cool sound
     if get_config("animation") then
         local sound = ini_tools:r_string_ex(tool_sec, "sound") or "Plastic_Small_Pick"
-        if SYS_GetParam(1, box:section(), "can_smash") and ini_tools:r_string_ex(tool_sec, "sound_wood") then
-            sound = ini_tools:r_string_ex(tool_sec, "sound_wood")
-        end
         local delay = ini_tools:r_float_ex(tool_sec, "duration") or 5
         xr_effects.disable_ui_only(db.actor, nil)
-        print_dbg("COOL ANIMATION AND SOUNDS")
         utils_obj.play_sound(sound)
         print_dbg("Start open box with id "..id)
         RemoveTimeEvent("lootbox","box_open " .. id)
-        CreateTimeEvent("lootbox","box_open " .. id, delay, open_lootbox_timer, id, true)
+        CreateTimeEvent("lootbox","box_open " .. id, delay, 
+        function(id, give)        
+            xr_effects.enable_ui_lite(db.actor, nil)
+            open_lootbox_timer(id, give)
+            return true
+        end, id, true)
     else
         RemoveTimeEvent("lootbox","box_open " .. id)
-        CreateTimeEvent("lootbox","box_open " .. id, 0.1, open_lootbox_timer, id, true)
+        CreateTimeEvent("lootbox","box_open " .. id, 0.1, 
+        function(id, give)
+            open_lootbox_timer(id, give)
+            return true
+        end, id, true)
     end
 
 end
 
 function open_lootbox_timer(id, give)
-    xr_effects.enable_ui_lite(db.actor, nil)
-
     if not lootbox_contents[id] then return false end
     print_dbg("Opening box with id "..id)
 	local spawned_items = parse_lootstring(lootbox_contents[id])
@@ -639,17 +702,14 @@ function open_lootbox_timer(id, give)
             if string.find(section, "__") then section = str_explode(section, "__")[1] end
             local item_name = ui_item.get_sec_name(section) or "of something"
             if string.find(section, "ammo") then
-                if amt > 1 then
-                    str = str..  amt.. " ".. gc("st_loot_ammos") .. " "..gc(item_name).. "\\n"
-                else
-                    str = str..  amt.. " ".. gc("st_loot_ammo") .. " "..gc(item_name).. "\\n"
-                end
+                local str_ammos = amt > 1 and "st_loot_ammos" or "st_loot_ammo"
+                str = str..  amt.. " ".. gc(str_ammos) .. " "..gc(item_name).. "\\n"
+                
             else
                 str = str..  amt.. " "..gc(item_name).. "\\n"
             end
         end
     end
-    xr_effects.enable_ui(db.actor, nil)
     send_tip(db.actor, str, nil, "swiss_knife", 6000)
     if give then
         lootbox_contents[id] = nil
@@ -663,7 +723,6 @@ function open_lootbox_timer(id, give)
         lootbox_contents[id] = nil
         alife_release_id(id)
     end
-    return true
 end
 
 -- given a group id, return a lootbox section from that group, if applicable
@@ -707,9 +766,9 @@ function spawn_lootbox(box)
         -- 70% one pick, 25% bundle, 5% skelekey 
         if roll == 20 then
             section = "skeleton_key"
-        elseif roll > 16 then
-            section = "bundle_lockpick"
-        elseif roll > 10 then
+        -- elseif roll > 16 then
+        --     section = "bundle_lockpick"
+        else
             section = "lockpick"
         end
         local se_obj = alife_create(section,box:position(),box:level_vertex_id(),box:game_vertex_id(),box:id(),false)
@@ -761,36 +820,44 @@ function treasure_manager.try_spawn_treasure(box)
     SpawnTreasure(box)
 end
 
+-- string stuff
+
+function build_diff(box_sec)
+    local difficulty = get_required_picks(box_sec) * 10
+    local clr = utils_xml.get_color_con(100 - tonumber(difficulty))
+    return clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. tostring(difficulty) .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   
+end
+
+function build_coins(box_sec)
+    local clr = utils_xml.get_color_con(0)
+    return clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. "??????" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")
+end
+
+function build_monoloot(box_sec)
+    local clr = utils_xml.get_color_con(0)
+    return clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr  .. "9001%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")  
+end
+
+-- get custom display of difficulty
+function build_string(box_sec)
+    local precond = SYS_GetParam(0, box_sec, "diff_str") or "arti_lootboxes.build_diff"
+    printf("Precond for %s is %s", box_sec, precond)
+    precond = str_explode(precond,"%.")
+    if _G[precond[1]] and _G[precond[1]][precond[2]] then
+        return _G[precond[1]][precond[2]](box_sec) 
+    else return "" end
+end
+
+
 BuildFooter = ui_item.build_desc_footer
 function ui_item.build_desc_footer(obj, sec, str)
     str = str or gc(ini_sys:r_string_ex(sec,"description"))
 	if (not str) then return "" end
-
-    local _str = ""
-    
-    local difficulty = get_box_diff(obj)
-    if SYS_GetParam(1, sec, "coinbox") then
-        local clr = utils_xml.get_color_con(0)
-        _str = clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. "??????" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")
-        return str .. _str
-    elseif difficulty > 0 then
-        difficulty = 5 * difficulty
-        local clr = utils_xml.get_color_con(100 - tonumber(difficulty))
-        _str = clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. tostring(difficulty) .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   
-        return str .. _str
+    if is_box(nil, sec) then
+        return str .. build_string(sec)
     else
         return BuildFooter(obj, sec, str)
     end
-end
-    
-function check_peek(obj)
-    if DEV_DEBUG then
-        return gc("st_check_peek")
-    end
-end
-
-function peek(obj)
-
 end
 
 CreateReleaseItem = death_manager.create_release_item

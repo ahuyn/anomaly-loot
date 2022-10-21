@@ -1,32 +1,38 @@
 ; Control how box-opening items behave
 ; precondition = check if box can be opened by tool
 ; postcondition = what to do AFTER box is opened
-[lockpick_set]
-precondition = arti_lootboxes.precond_lockpickset
-postcondition = arti_lootboxes.use_lockpickset
+[lockpick]
+open_type = lockpick
+precondition = arti_lootboxes.precond_lockpick
+postcondition = arti_lootboxes.use_lockpick
 sound = Plastic_Small_Pick
 sound_wood = Wood_Picks
 duration = 5
 [wpn_axe]
-precondition = arti_lootboxes.precond_axe
+open_type = smash
+precondition = arti_lootboxes.no_precond
 postcondition = arti_lootboxes.use_axe
 sound = Wood_Axe
 duration = 2
 [wpn_axe2]:wpn_axe
 [wpn_axe3]:wpn_axe
 [snapgun]
+open_type = snapgun
+open_power = 3
 precondition = arti_lootboxes.precond_snapgun
-postcondition = arti_lootboxes.use_snapgun
+postcondition = arti_lootboxes.no_precond
 sound = Plastic_Small_Pick
 duration = 5
 [skeleton_key]
-precondition = arti_lootboxes.precond_skeleton
-postcondition = arti_lootboxes.use_skeleton
+open_type = skeleton_key
+precondition = arti_lootboxes.no_precond
+postcondition = arti_lootboxes.release_tool
 sound = Plastic_Small_Key
 sound_wood = Wood_Picks
 duration = 5
 [arcade_tokens]
-precondition = arti_lootboxes.precond_token
-postcondition = arti_lootboxes.use_token
+open_type = token
+precondition = arti_lootboxes.no_precond
+postcondition = arti_lootboxes.release_tool
 sound = Coins
 duration = 6

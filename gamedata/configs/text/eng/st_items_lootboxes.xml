@@ -89,7 +89,7 @@
 	</string>
 	<string id="st_lootbox_large_monolith_descr">
 		<text>
-            Heavy ornate box with the symbol of the Monolith embossed onto the lid. These boxes are purportedly brought into existence by the Wish Granter itself, and fulfill the wishes of the Monolith for gear and supplies. The lock is nigh-impossible to open by mortal means, and the case is practically impregnable. Such a rare find, however, is likely to catch the eye of a trader or collector.\n \n
+            Heavy ornate box with the symbol of the Monolith embossed onto the lid. These boxes are purportedly brought into existence by the Wish Granter itself, and fulfill the wishes of the Monolith for gear and supplies. The lock is anomalously tampered with - some sort of gravitational anomaly keeps the pins held in place. Such a rare find, however, is likely to catch the eye of a trader or collector.\n \n
 		</text>
 	</string>
     <string id="st_box_difficulty">
@@ -98,14 +98,17 @@
     <string id="st_lootbox_get">
         <text>Found </text>
     </string>
+    <string id="st_no_picks">
+        <text>No lockpicks available.</text>
+    </string>
     <string id="st_cant_unlock">
-        <text>Your picks are insufficient to open this box.</text>
+        <text>Insufficient lockpicks to open this box.</text>
     </string>
     <string id="st_cant_unlock_snapgun">
         <text>Tool is unable to open this box.</text>
     </string>
-    <string id="st_cant_unlock_generic">
-        <text>Tool is incompatible with this box.</text>
+    <string id="st_incompatible">
+        <text>Lock is too complex to open with tool.</text>
     </string>
 
     <string id="st_cant_unlock_coinbox">
@@ -115,23 +118,17 @@
         <text>Pickset condition:</text>
     </string>
 
-    <string id="st_restore_pick">
-        <text>Successfully replaced lockpicks.</text>
+    <string id="st_tech_open">
+        <text>Cost to open</text>
     </string>
-	
-    <string id="st_pick_bundle">
-        <text>bundle picks</text>
+    <string id="st_tech_open_q">
+        <text>Break into the box?</text>
+    </string>
+    <string id="st_tech_open_fail">
+        <text>What the hell kind of box is this? \n There is no way I can open it.</text>
     </string>
     <string id="st_pick_split">
         <text>separate picks </text>
-    </string>
-	
-    <string id="st_empty_pickset">
-        <text>remove picks</text>
-    </string>
-
-    <string id="st_try_pick">
-        <text>pick lock</text>
     </string>
     <string id="st_loot_ammo">
         <text>box of </text>
@@ -164,14 +161,14 @@
     </string>
 
 	<string id="st_unlock_pick">
-        <text>open with picks</text>
+        <text>pick lock</text>
     </string>
 	<string id="st_unlock_snap">
         <text>open with snapgun</text>
     </string>
 
 	<string id="st_unlock_coin">
-        <text>insert coin</text>
+        <text>insert coin?</text>
     </string>
 
 	<string id="st_lockpick">
@@ -179,8 +176,10 @@
 	</string>
 	<string id="st_lockpick_descr">
 		<text>Individual lockpick. Rare and fragile thing that tends to break easily. Can be used to open locks on certain boxes, but they tend to break rather quickly. Multiple picks may be required to open certain types of boxes. \n \n 
-			The maximum amount of picks that can be applied to any lock is ten. \n \n
+			To use, either drag and drop this item onto a locked box or right click the locked box. The maximum amount of picks that can be applied to any lock is ten. \n \n
 			%c[d_cyan] • %c[ui_gray_2] effective strength: 10%\n
+			%c[d_cyan] • %c[ui_gray_2] up to ten can be consumed\n
+			%c[d_cyan] • %c[ui_gray_2] breaks on use\n
 		</text>
 	</string>
 
@@ -188,7 +187,7 @@
 		<text>Lockpick bundle</text>
 	</string>
 	<string id="st_lockpick_bundle_descr">
-		<text>A bundle of five lockpicks. What a nice find!\n \n
+		<text>A bundle of three lockpicks. What a nice find!\n \n
 		</text>
 	</string>
     

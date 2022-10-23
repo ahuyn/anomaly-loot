@@ -137,6 +137,12 @@ function table_upsert(t, k, v)
     end
 end
 
+-- coerce the input into the section, or nil
+local function get_sec(obj)
+    if not obj then return end
+    return type(obj) == "string" and obj or (type(obj.id) == "function" and obj:section() or nil)
+end
+
 local not_wpn = {
     ["WP_BINOC"] = true,
     ["WP_SCOPE"] = true,
@@ -465,88 +471,115 @@ function on_item_drag_dropped(from, to, slot_from, slot_to)
 	if not (slot_from == EDDListType.iActorBag and slot_to == EDDListType.iActorBag) then
         return
     end
-    try_open_box(from, to)
+    try_open_box(to, from)
+end
+
+function check_open_compatibility(box, tool)
+    box = get_sec(box)
+    tool = get_sec(tool)
+    local open_type = ini_tools:r_string_ex(tool, "open_type") or "nope"
+    -- not a box
+    local box_open_type = parse_list(ini_lootbox, box, "open_with", true)
+    print_dbg("Checking tool %s (open type %s) against box %s", tool, open_type, box)
+    return box_open_type[open_type]
 end
 
 -- check if actor can even open the box
-function check_open_box(tool, box)
-    local tool_sec = tool:section()
+-- returns a table of result and reason (reason is passed to actor)
+-- preconds need the same!
+function check_open_box(box, tool)
+    -- coerce into section
+    box_sec = get_sec(box)
+    tool_sec = get_sec(tool)
     -- not a tool
-    local open_type = ini_tools:r_string_ex(tool_sec, "open_type") or "nope"
-    -- not a box
-    local box_open_type = parse_list(ini_lootbox, box:section(), "open_with", true)
-    print_dbg("Checking tool %s (open type %s) against box %s", tool_sec, open_type, box:section())
-    if not box_open_type[open_type] then return false end
+    if not check_open_compatibility(box_sec, tool_sec) then 
+        return {
+            result = false,
+            reason = "st_incompatible"}
+    end
     local precond = ini_tools:r_string_ex(tool_sec, "precondition") or "arti_lootboxes.no_precond"
     precond = str_explode(precond,"%.")
     if _G[precond[1]] and _G[precond[1]][precond[2]] then
-        return _G[precond[1]][precond[2]](tool, box) 
-    else return false end
+        return _G[precond[1]][precond[2]](box, tool) 
+    else 
+        return {
+            result = false,
+            reason = "st_incompatible"} 
+    end
 end
 
 -- attempt to use the tool on the box and open it
-function try_open_box(tool, box)
+function try_open_box(box, tool)
     -- tool/box validation here
     if not is_box(box) or not is_tool(tool) then return false end
-    if check_open_box(tool, box) then
-        open_lootbox(box, tool:section())
-        post_open_box(tool, box)
+    local res = check_open_box(box, tool)
+    if res.result then
+        open_lootbox(box, tool)
+        post_open_box(box, tool)
     else
         -- tool not compatible/insufficient
-        send_tip(db.actor, gc("st_cant_unlock_generic"), nil, "swiss_knife", 6000)
+        send_tip(db.actor, gc(res.reason), nil, "swiss_knife", 6000)
     end
 end
 
 -- check postcondition
-function post_open_box(tool, box)
-    local tool_sec = tool:section()
+function post_open_box(box, tool)
+    tool_sec = get_sec(tool)
     local postcond = ini_tools:r_string_ex(tool_sec, "postcondition") or "arti_lootboxes.no_precond"
     postcond = str_explode(postcond,"%.")
     if _G[postcond[1]] and _G[postcond[1]][postcond[2]] then
-        _G[postcond[1]][postcond[2]](tool, box)
+        _G[postcond[1]][postcond[2]](box, tool)
     end    
 end
 
 function no_precond()
-    return true
+    return {
+        result = true
+    }
 end
 
 -- for patchers
-function get_required_picks(box, tool)
+function get_difficulty(box, tool)
+    box = get_sec(box)
+    tool = get_sec(tool)
     local diff = SYS_GetParam(2, box, "difficulty") or 1
     if db.actor:object("lockpick_set") then diff = clamp(diff - 1, 1, 10) end
     return diff
 end
 
 -- lockpicks, check if difficulty amount of picks are present
-function precond_lockpick(tool,box)
-    local difficulty = get_required_picks(box:section(), tool:section())
-    local pick_sec = tool:section()
+function precond_lockpick(box, tool)
+    box_sec = get_sec(box)
+    tool_sec = get_sec(tool)
+    local difficulty = get_difficulty(box_sec, tool_sec)
     local amt = 0
     local function search(temp, item)
-        if item:section() == pick_sec then
+        if item:section() == tool_sec then
             amt = amt + 1
         end
     end
     db.actor:iterate_inventory(search)
+    if amt == 0 then return {
+        result = false,
+        reason = "st_no_picks"
+    } end
     amt = amt > 10 and 10 or amt
-    printf("Box: %s, diff %s, picks: %s",box:section(), difficulty, amt)
-    if difficulty > amt then
-        send_tip(db.actor, gc("st_cant_unlock"), nil, "swiss_knife", 6000)
-        return false
+    if difficulty > amt then return {
+        result = false,
+        reason = "st_cant_unlock"}
     else
-        return true
+        return {result = true}
     end
 end
 
 -- consume X picks
-function use_lockpick(tool,box)
-    local difficulty = get_required_picks(box:section(), tool:section())
-    local pick_sec = tool:section()
-    local ids = {}
+function use_lockpick(box, tool)
+    box_sec = get_sec(box)
+    tool_sec = get_sec(tool)
+    local difficulty = get_difficulty(box_sec, tool_sec)
     local amt = 0
     local function search(temp, item)
-        if item:section() == pick_sec and amt < difficulty then
+        if item:section() == tool_sec and amt < difficulty then
             alife_release_id(item:id())
             amt = amt + 1
         end
@@ -554,7 +587,7 @@ function use_lockpick(tool,box)
     db.actor:iterate_inventory(search)
 end
 
-function use_axe(tool, box)
+function use_axe(box, tool)
     -- smesh
     if (tool:condition() > 0.25) then
         tool:set_condition(clamp(tool:condition() - 0.25, 0, 1))
@@ -565,54 +598,58 @@ function use_axe(tool, box)
     end
 end
 
-function precond_snapgun(tool, box)
-    local difficulty = get_required_picks(box:section(), tool:section())
-    local power = ini_tools:r_float_ex(tool:section(), "open_power")
+function precond_snapgun(box, tool)
+    box_sec = get_sec(box)
+    tool_sec = get_sec(tool)
+    local difficulty = get_difficulty(box_sec, tool_sec)
+    local power = ini_tools:r_float_ex(tool_sec, "open_power")
     if difficulty > power then
-        send_tip(db.actor, gc("st_cant_unlock_snapgun"), nil, "swiss_knife", 6000)
-        return false
+        return {
+            result = false,
+            reason = "st_cant_unlock_snapgun"
+        }
     else
-        return true
+        return {
+            result = true
+        }
     end
 end
 
-function release_tool(tool, box)
-    alife_release(tool)
+function release_tool(box, tool)
+    alife_release_id(tool:id())
 end
 
 function str_pick(box)
     local tool = db.actor:object("lockpick")
-    if tool and check_open_box(tool, box) then
+    if tool and check_open_compatibility(box, "lockpick") then
         return "st_unlock_pick"
     end
 end
 
 function do_pick(box)
-    local tool = db.actor:object("lockpick")
-    try_open_box(tool, box)
+    try_open_box(box, db.actor:object("lockpick"))
 end
 
 function str_snap(box)
     local tool = db.actor:object("snapgun")
-    if tool and check_open_box(tool, box) then
+    if tool and check_open_compatibility(box, tool) then
         return "st_unlock_snap"
     end
 end
 
 function do_snap(box)
-    local pick = db.actor:object("snapgun")
-    try_open_box(pick, box)
+    try_open_box(box, db.actor:object("snapgun"))
 end
+
 function str_coin(box)
     local tool = db.actor:object("arcade_tokens")
-    if coin and check_open_box(tool, box) then
+    if tool and check_open_box(box, tool).result then
         return "st_unlock_coin"
     end
 end
 
 function do_coin(box)
-    local tool = db.actor:object("arcade_tokens")
-    try_open_box(tool, box)
+    try_open_box(box, db.actor:object("arcade_tokens"))
 end
 
 
@@ -647,6 +684,7 @@ function open_lootbox(box, tool_sec)
 	end
     -- play cool animation, with cool sound
     if get_config("animation") then
+
         local sound = ini_tools:r_string_ex(tool_sec, "sound") or "Plastic_Small_Pick"
         local delay = ini_tools:r_float_ex(tool_sec, "duration") or 5
         xr_effects.disable_ui_only(db.actor, nil)
@@ -823,7 +861,7 @@ end
 -- string stuff
 
 function build_diff(box_sec)
-    local difficulty = get_required_picks(box_sec) * 10
+    local difficulty = get_difficulty(box_sec) * 10
     local clr = utils_xml.get_color_con(100 - tonumber(difficulty))
     return clr .. " " .. gc("st_dot").. " " .. utils_xml.get_color("ui_gray_1") .. gc("st_box_difficulty") .. " " .. clr .. tostring(difficulty) .. "%" .. "\\n \\n" .. utils_xml.get_color("ui_gray_1")   
 end
@@ -841,7 +879,6 @@ end
 -- get custom display of difficulty
 function build_string(box_sec)
     local precond = SYS_GetParam(0, box_sec, "diff_str") or "arti_lootboxes.build_diff"
-    printf("Precond for %s is %s", box_sec, precond)
     precond = str_explode(precond,"%.")
     if _G[precond[1]] and _G[precond[1]][precond[2]] then
         return _G[precond[1]][precond[2]](box_sec) 

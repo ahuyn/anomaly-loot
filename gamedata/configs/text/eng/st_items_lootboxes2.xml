@@ -5,7 +5,7 @@
 	</string>
 	<string id="st_lootbox_toolbox_descr">
 		<text>
-			Toolset with a keyed lock on the handle. Commonly found with mechanics, who use such boxes as organized means to carry tools and other maintenance equipment. Due to how the tools are held in this type of container, it cannot contain anything besides repair items, spare parts, and maybe a stale pack of smokes. Good tools such as these are in high demand from most mechanics, and as such this is secured with a decent quality lock. \n
+			Toolset with a keyed lock on the handle. Commonly found with mechanics, who use such boxes as organized means to carry tools and other maintenance equipment. Due to how the tools are held in this type of container, it cannot contain anything besides repair items, spare parts, and maybe a stale pack of smokes. Good tools such as these are in high demand from most mechanics, and as such this is secured with a decent quality lock. \n \n
 		</text>
 	</string>
 	<string id="st_lootbox_medbox">
@@ -13,7 +13,7 @@
 	</string>
 	<string id="st_lootbox_medbox_descr">
 		<text>
-			Sterile multi-compartment case designed to hold a large amount of first aid, with an integral lock. An aftermarket lock of extremely high quality has been used to secure the case closed. Usually found in a doctor's office, and definitely worth a lot of money to any medic. Of course, having a lot of medical items on hand is never a bad thing...\n
+			Sterile multi-compartment case designed to hold a large amount of first aid, with an integral lock. An aftermarket lock of extremely high quality has been used to secure the case closed. Usually found in a doctor's office, and definitely worth a lot of money to any medic. Of course, having a lot of medical items on hand is never a bad thing... \n \n
 		</text>
 	</string>
 	<string id="st_lootbox_ammocase">
@@ -21,7 +21,7 @@
 	</string>
 	<string id="st_lootbox_ammocase_descr">
 		<text>
-			Waterproof container used to store weapon magazines and ammunition. Common with hunters and wealthy citizens. A good find in the Zone - usually, tourists bring these cases in along with a good amount of high-quality ammunition, and the climate control ensures that the ammo inside is clean and dry. Most ammunition in the Zone is old, damaged, or worse, handloaded by inexperienced smiths with subpar equipment, and as such good rounds are uncommon and quite valuable.\n \n
+			Waterproof container used to store weapon magazines and ammunition. Common with hunters and wealthy citizens. A good find in the Zone - usually, tourists bring these cases in along with a good amount of high-quality ammunition, and the climate control ensures that the ammo inside is clean and dry. Most ammunition in the Zone is old, damaged, or worse, handloaded by inexperienced smiths with subpar equipment, and as such good rounds are uncommon and quite valuable. \n \n
 		</text>
 	</string>
 	<string id="st_lootbox_foodbox">
@@ -29,7 +29,7 @@
 	</string>
 	<string id="st_lootbox_foodbox_descr">
 		<text>
-			Insulated metal box designed to hold perishables. Uncommon in the Zone and used mostly by SSU personnel to carry food. There is unusual demand for these boxes due to their ability to keep alcohol cold.\n \n
+			Insulated and radiation-resistant metal box designed to hold perishables. Uncommon in the Zone and used mostly by SSU personnel to carry food into the field. There is high demand for these boxes due to their ability to keep alcohol cold. \n \n
 		</text>
 	</string>
 	<string id="st_lootbox_junkbox">
@@ -37,15 +37,15 @@
 	</string>
 	<string id="st_lootbox_junkbox_descr">
 		<text>
-			A big container with a lot of junk inside. A crappy lock holds it closed. Maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here...\n \n
+			A big container with a lot of junk inside. A crappy lock holds it closed. Maybe this was a spare parts bin or some hoarder's treasure. There's gotta be something useful in here... \n \n
 		</text>
 	</string>
 	<string id="st_lootbox_devicecase">
-		<text>Field Equipment Case</text>
+		<text>Ecologist Field Case</text>
 	</string>
 	<string id="st_lootbox_device_descr">
 		<text>
-			Waterproof and EMP-resistant case used by the Ecologists to transport equipment and samples. After one too many incidents involving 'dropping' field equipment in anomalies, the Ministry of Science has mandated the usage of specialized cases to carry equipment in the field. These cases contain a wide variety of advanced electronic devices and are also used by hired Mercenaries to store their sensitive equipment and extra armor. There is a special compartment for storing field samples as well.\n \n
+			Waterproof and EMP-resistant case used by the Ecologists to transport equipment and samples. After one too many incidents involving 'dropping' field equipment in anomalies, the Ministry of Science has mandated the usage of specialized cases to carry equipment in the field. These cases contain a wide variety of advanced electronic devices and are also used by hired Mercenaries to store their sensitive equipment and extra armor. There is a special sterile compartment for storing field samples as well.\n \n
 		</text>
 	</string>
 	<string id="st_lootbox_coinbox">

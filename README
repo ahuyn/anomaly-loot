@@ -1,63 +1,75 @@
+# Intro
+
 Adds lootboxes to the game.
 
 Lootboxes have a chance to spawn in stashes and on dead stalkers. Each lootbox will generally describe its contents, but it is randomized.
 
-To open lootboxes, you need to use a lockpick set. Lockpick sets are sold by mechanics. Drag and drop the lockpick set onto the lootbox to open it. Each lootbox has a difficulty rating - this is the condition of the lockpick set that will be consumed when the box is opened. To repair the lockpick set, drag lockpicks onto the set that can be acquired from traders or from drops in the world.
-
-Quick box opening tutorial:
-1. You found a box. Hooray!
-2. Buy a lockpick set from the mechanic.
-3. Note the difficulty on the box. For example, say the box difficulty is 10%.
-4. Drag your lockpick set over the box.
-5. Enjoy your loot!
-6. To fix your lockpick set up, drag and drop lockpicks or lockpick bundles onto your lockpick set.
-
-No conflicts with anything, but not really balanced with Artefact Renovation. I have a tweak to address this. 
+In order to open the box, drag lockpicks over the box. Boxes have a difficulty corresponding to amount of lockpicks required to open.
 
 New game not required, as everything is handled dynamically. MCM support present. If you want to uninstall get rid of all the boxes and picks you have.
 
 Other mod makers can integrate with lootboxes, adding items they have created into lootboxes. Consult custom_loot for usage information.
 
-Changelog
+# Changelog
+2.1
+- Lockpick set no longer required as intermediary item. Lockpicks can be used immediately to open boxes.
+- As a consequence of this, lockpick set is now a rare drop that has a different effect. Lockpick bundle is now a loot-only item.
+- Lockpick cost increased.
+- Technicians can open boxes for a cost.
 2.0 - Major changes
-    - Note: Some old boxes might break. Don't worry, it won't crash your game.
-    - System for determining loot overhauled majorly. Expect much more random spead of items now.
-    - Box drops expanded greatly for each level.
-    - Box contents expanded greatly.
-    - Boxes can drop in underground levels.
-    - Several new boxes added.
-        - Toolbox
-        - Munitions Case
-        - Food Storage Box
-        - Scavenger's Junkbox
-        - Medical Storage Case
-        - Field Equipment Case
-        - Competition Rifle Case
-    - Box weight now based on contents. Condition is re-added to boxes purely to enable item picker, allowing you to pick which box to open.
-    - PDA spawning improved. Now the PDA is based on where you find the box, instead of where you open it.
-    - Support for multiple unique drops instead of being instanced to one per box type. It is now possible to add your own custom uniques.
-    - Loot quantity off stalkers and randomly in stashes has been adjusted.
-    - Money from lootboxes now drops in usable stacks. Make it rain!
+- Note: Some old boxes might break. Don't worry, it won't crash your game.
+- System for determining loot overhauled majorly. Expect much more random spead of items now.
+- Box drops expanded greatly for each level.
+- Box contents expanded greatly.
+- Boxes can drop in underground levels.
+- Several new boxes added.
+    - Toolbox
+    - Munitions Case
+    - Food Storage Box
+    - Scavenger's Junkbox
+    - Medical Storage Case
+    - Field Equipment Case
+    - Competition Rifle Case
+- Box weight now based on contents. Condition is re-added to boxes purely to enable item picker, allowing you to pick which box to open.
+- PDA spawning improved. Now the PDA is based on where you find the box, instead of where you open it.
+- Support for multiple unique drops instead of being instanced to one per box type. It is now possible to add your own custom uniques.
+- Loot quantity off stalkers and randomly in stashes has been adjusted.
+- Money from lootboxes now drops in usable stacks. Make it rain!
 
 1.2 - Major changes:
-    - Documents are made to be much more valuable. Documents sell for much higher overall, and certain factions will pay more for each document type.
-    - Lootbox content balance pass. Partial items now spawn and overall quantity of items reduced. Repair items, weapon and outfit parts, tools, and other items added to the lootbox pool.
-    - Internal refactoring to add new systems for determining loot drops.
-    - Lootboxes rebalanced to follow a smoother progression. Survival caches are easier to break into and offer less high value loot, briefcases increased in difficulty.
-    - Added a snapgun as a rare drop. Snapguns will open low condition boxes for free.
+- Documents are made to be much more valuable. Documents sell for much higher overall, and certain factions will pay more for each document type.
+- Lootbox content balance pass. Partial items now spawn and overall quantity of items reduced. Repair items, weapon and outfit parts, tools, and other items added to the lootbox pool.
+- Internal refactoring to add new systems for determining loot drops.
+- Lootboxes rebalanced to follow a smoother progression. Survival caches are easier to break into and offer less high value loot, briefcases increased in difficulty.
+- Added a snapgun as a rare drop. Snapguns will open low condition boxes for free.
+
 1.1.8 - Revised documents with new descriptions and scaled sale price depending on faction.
+
 1.1.7 - Expanded API for custom items, now allowing for custom boxes and loot pools.
+
 1.1.6 - Reduced amount of loot in boxes (guarantee of one). Added weapon attachments and misc drugs to loot pool. Added API for custom items.
+
 1.1.5 - Added lockpick sets to a binder, because I can't figure out what's causing the bug otherwise
+
 1.1.4.2 - Nerfed artifacts boxes (sorry Maid!). Adjusted drop rate of skeleton keys in lootboxes. Adjusted drop rates.
+
 1.1.4.1 - Fix for weapon crates again having skewed drop chances.
-1.1.4 - Regulated amount of ammo dropped to not have a ridiculous distribution, increased difficulty of rifle crate and removed medical packages from dropping until I figure out how to greatly reduce their chances.
+
+1.1.4 - Regulated amount of ammo dropped to not have a ridiculous distribution, 
+increased difficulty of rifle crate and removed medical packages from dropping until I figure out how to greatly reduce their chances.
+
 1.1.3.2 - Fix for weapon crates having skewed drop chances.
+
 1.1.3.1 - Tidied the drop message.
+
 1.1.3 - Fix rare boxes not dropping. RUS translation thanks to mrstarman59
+
 1.1.3 - Fix cost of lockpick bundle. Adjusted low-end box contents and made skeleton keys rarer. Fix for DX8 plebeians (thanks Cr3pis)
+
 1.1.2 - Fix for missing section, made skeleton keys little more rare in lockboxes.
+
 1.1.1 - Right-click box open feature available (with lockpick in inventory). Animations toggleable.
+
 1.1 - Fixes for PDA crash, possible weapons crash, and looting stashes in places that don't have lootboxes. Block eating of picks when pickset is full condition.
 
 Special credits:

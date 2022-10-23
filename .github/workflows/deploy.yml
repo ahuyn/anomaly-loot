@@ -37,7 +37,7 @@ jobs:
           cp -r anomaly-dependencies/inv_upgrades/gamedata .
 
       - name: Zip folder
-        run: zip -r $RELEASE_NAME.zip gamedata README "Integration Guide" eft_valuables
+        run: zip -r $RELEASE_NAME.zip gamedata README "Integration Guide" eft_valuables skill_expansion
         env: 
           RELEASE_NAME: ${{ github.event.repository.name }}.${{ steps.date.outputs.today }}
       

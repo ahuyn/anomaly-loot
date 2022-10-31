@@ -23,7 +23,6 @@ function add_pool_to_box(item_pool, box_contents, size, limit, chance)
     item_ref.size = size or 1
     item_ref.limit = limit or 1
     item_ref.chance = chance or 0.5
-    printf("Added item pool %s to box pool %s", item_pool, box_contents)
     table.insert(contents_custom[box_contents], item_ref)
 end
 
@@ -37,6 +36,5 @@ function item_to_item_pool(item, pool, chance, quantity)
     ref.section = item
     ref.amount = quantity or 1
     ref.chance = chance or 0.5
-    printf("Added item %s to pool %s", item, pool)
     table.insert(pools_custom[pool], ref)
 end

@@ -14,7 +14,6 @@ function on_get_item_cost(kind, obj, profile, calculated_cost, ret)
     
     cost = SYS_GetParam(2, sec, "cost")
     if tbl[talking_npc_faction] then
-        printf("%s has bonus sale value", sec)
         cost = cost * 1.5
     end
     return cost * discount
@@ -86,18 +85,18 @@ function create_tools()
 
     local npc = mob_trade.GetTalkingNpc()
     if IsMechanic(npc) then
-        local num_set = 0
         local num_picks = 0
-        local num_bundle = 0
+        -- local num_set = 0
+        -- local num_bundle = 0
 
         local function search(temp, item)
             local item_section = item:section()
             if item_section == "lockpick" then
                 num_picks = num_picks + 1
-            elseif item_section == "bundle_lockpick" then
-                num_bundle = num_bundle + 1
-            elseif item_section == "lockpick_set" then
-                num_set = num_set + 1
+            -- elseif item_section == "bundle_lockpick" then
+            --     num_bundle = num_bundle + 1
+            -- elseif item_section == "lockpick_set" then
+            --     num_set = num_set + 1
             end
         end
         npc:iterate_inventory(search, nil)
@@ -107,37 +106,75 @@ function create_tools()
                 alife_create_item("lockpick", npc)
             end 
         end
-        num_bundle = 5 - num_bundle
-        if num_bundle > 0 then
-            for i=1, num_bundle do
-                alife_create_item("bundle_lockpick", npc)
-            end 
-        end
-        if num_set == 0 then
-            alife_create_item("lockpick_set", npc)
-        end
+        -- num_bundle = 5 - num_bundle
+        -- if num_bundle > 0 then
+        --     for i=1, num_bundle do
+        --         alife_create_item("bundle_lockpick", npc)
+        --     end 
+        -- end
+        -- if num_set == 0 then
+        --     alife_create_item("lockpick_set", npc)
+        -- end
     end
 end
 
--- CanRepair = inventory_upgrades.can_repair_item
--- function inventory_upgrades.can_repair_item(sec)
+CanRepair = inventory_upgrades.can_repair_item
+function inventory_upgrades.can_repair_item(sec)
+    if arti_lootboxes.is_box(nil, sec) then return true
+    else return CanRepair(sec) end
+end
 
--- end
+QuestionRepair = inventory_upgrades.question_repair_item
+function inventory_upgrades.question_repair_item( item_name, item_condition, can, mechanic ) --( string, float, bool, string )
+    if arti_lootboxes.is_box(nil, item_name) then
+        if not arti_lootboxes.check_open_compatibility(item_name, "lockpick") then 
+            return game.translate_string("st_tech_open_fail")
+        end
+        local price = inventory_upgrades_mp.how_much_repair( item_name, item_condition )
+        if db.actor:money() < price then
+            return game.translate_string("st_tech_open")..": "..price.." RU\\n"..game.translate_string("ui_inv_not_enought_money")..": "..price-db.actor:money().." RU"
+        else
+            return game.translate_string("st_tech_open").." "..price.." RU. "..game.translate_string("st_tech_open_q")
+        end
+    else
+        return QuestionRepair(item_name, item_condition, can, mechanic)
+    end
+end
 
--- QRepair = inventory_upgrades.question_repair_item 
--- function inventory_upgrades.question_repair_item(sec)
-
--- end
+HowMuch = inventory_upgrades_mp.how_much_repair 
+function inventory_upgrades_mp.how_much_repair( item_name, item_condition )
+    if arti_lootboxes.is_box(nil, item_name) then
+        if not arti_lootboxes.check_open_compatibility(item_name, "lockpick") then return 999999
+        else
+            local cof = game_difficulties.get_eco_factor("repair") or 1.67
+            return ini_sys:r_u32(item_name, "cost") * cof * 0.6
+        end
+    else return HowMuch(item_name, item_condition)
+    end
+end
 
 -- RModeRepair = ui_inventory.UIInventory.RMode_OnRepair
 
 -- function ui_inventory.UIInventory.RMode_OnRepair(self)
--- end
-
--- RModeRepairYes = ui_inventory.UIInventory.RMode_RepairYes
--- function ui_inventory.UIInventory.RMode_RepairYes(self)
 
 -- end
+
+RModeRepairYes = ui_inventory.UIInventory.RMode_RepairYes
+function ui_inventory.UIInventory:RMode_RepairYes()
+	self:Print(nil, "RMode_RepairYes")
+	if (not self.upgr.id) then
+		return
+	end
+	
+	local obj = level.object_by_id(self.upgr.id)
+	if (not obj) then
+		return
+	end
+    RModeRepairYes(self)
+    if arti_lootboxes.is_box(obj) then
+        arti_lootboxes.open_lootbox_timer(self.upgr.id, true) 
+    end
+end
 
 function on_game_start()
 

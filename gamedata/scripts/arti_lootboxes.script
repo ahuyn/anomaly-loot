@@ -676,7 +676,7 @@ function give_weapon(weapon, attachment_data)
 
 end
 
-function open_lootbox(box, tool_sec)
+function open_lootbox(box, tool)
 	local id = box:id()
 	if not (lootbox_contents[id]) then
         print_dbg("Lootbox contents not found. Populating.")
@@ -684,7 +684,7 @@ function open_lootbox(box, tool_sec)
 	end
     -- play cool animation, with cool sound
     if get_config("animation") then
-
+        tool_sec = get_sec(tool)
         local sound = ini_tools:r_string_ex(tool_sec, "sound") or "Plastic_Small_Pick"
         local delay = ini_tools:r_float_ex(tool_sec, "duration") or 5
         xr_effects.disable_ui_only(db.actor, nil)

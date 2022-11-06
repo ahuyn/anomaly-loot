@@ -48,6 +48,14 @@
 			Waterproof and EMP-resistant case used by the Ecologists to transport equipment and samples. After one too many incidents involving 'dropping' field equipment in anomalies, the Ministry of Science has mandated the usage of specialized cases to carry equipment in the field. These cases contain a wide variety of advanced electronic devices and are also used by hired Mercenaries to store their sensitive equipment and extra armor. There is a special sterile compartment for storing field samples as well.\n \n
 		</text>
 	</string>
+	<string id="st_lootbox_snipercase">
+		<text>Sniper Rifle Case</text>
+	</string>
+	<string id="st_lootbox_snipercase_descr">
+		<text>
+			Specialized case for carrying sniper rifles. Extra-long to accommodate barrel length and is designed to be both weather and humidity resistant. \n \n
+		</text>
+	</string>
 	<string id="st_lootbox_coinbox">
 		<text>Coin Operated Box</text>
 	</string>

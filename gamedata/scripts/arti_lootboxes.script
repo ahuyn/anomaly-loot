@@ -825,7 +825,7 @@ function spawn_stalker_loot(npc)
         if map_tiers[community] == nil then community = "stalker" end
         local table = map_tiers[community]
         local to_drop = nil
-        
+        local iters = 0
         while not to_drop do
             local m = random_entry(map_tiers[community])
             if not m.chance then m.chance = 0.5 end

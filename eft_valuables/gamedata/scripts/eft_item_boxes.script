@@ -1,8 +1,0 @@
-function on_game_start()
-    custom_loot.add_pool_to_box("eft_loot_devices_low", "good", 1, 3, 0.5)
-    custom_loot.add_pool_to_box("eft_loot_devices_high", "secure", 1, 3, 0.5)
-    custom_loot.add_pool_to_box("eft_loot_dogtags", "secure", 0, 1, 0.5)
-    custom_loot.add_pool_to_box("eft_loot_items", "bad", 1, 3, 0.5)
-    custom_loot.item_to_item_pool("eft_intel_folder", "docs_high", 0.5)
-
-end

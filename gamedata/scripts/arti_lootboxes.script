@@ -50,9 +50,10 @@ local function server_entity_on_unregister(se_obj)
     end
     -- if a unique box is deleted, add it back to the pool
     if lootbox_contents.uniques[se_obj.id] then
+		lootbox_contents.uniques[se_obj.id] = nil
+        if not uniques_cache[se_obj:section_name()] then return end
         local unique = lootbox_contents.uniques[se_obj.id]
         uniques_cache[se_obj:section_name()][unique] = true
-		lootbox_contents.uniques[se_obj.id] = nil
         
 	end
 end

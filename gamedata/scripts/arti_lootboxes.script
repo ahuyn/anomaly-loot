@@ -49,11 +49,13 @@ local function server_entity_on_unregister(se_obj)
         lootbox_contents.uniques = {}
     end
     -- if a unique box is deleted, add it back to the pool
-    if lootbox_contents.uniques[se_obj.id] then
+    if se_obj and lootbox_contents.uniques[se_obj.id] then
 		lootbox_contents.uniques[se_obj.id] = nil
         if not uniques_cache[se_obj:section_name()] then return end
         local unique = lootbox_contents.uniques[se_obj.id]
-        uniques_cache[se_obj:section_name()][unique] = true
+        if unique and se_obj:section_name() then
+            uniques_cache[se_obj:section_name()][unique] = true
+        end
         
 	end
 end
@@ -400,7 +402,6 @@ end
 -- attempt to populate a unique. if it fails, we can provide normal contents
 function try_populate_unique(box_id, box_section)
     u = uniques_cache[box_section]
-    local next = next
     if not u or next(u) == nil then return "" end
     if rand(10) ~= 10 then return "" end
     local unique_sec = random_key_table(u)

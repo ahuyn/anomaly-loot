@@ -38,6 +38,9 @@ end
 
 local function load_state(mdata) 
 	lootbox_contents = mdata.lootbox_contents or {}
+    if not lootbox_contents.uniques then
+        lootbox_contents.uniques = {}
+    end
 end
 
 -- unregister boxes that are deleted
@@ -408,6 +411,7 @@ function try_populate_unique(box_id, box_section)
     local unique_contents = ini_uniques:r_string_ex(unique_sec, "contents")
     print_dbg("Putting custom contents %s into box %s", unique_contents, box_section)
 
+    if not lootbox_contents.uniques then lootbox_contents.uniques = {} end
     lootbox_contents.uniques[box_id] = unique_sec
     lootbox_contents[box_id] = unique_contents
     if (box_section == "lootbox_4") then
@@ -753,7 +757,8 @@ function open_lootbox_timer(id, give)
     send_tip(db.actor, str, nil, "swiss_knife", 6000)
     if give then
         lootbox_contents[id] = nil
-        -- manage uniques - once player opens, remove unique from appearing again
+        -- manage uniques - once player opens, remove unique from appearing again    
+        if not lootbox_contents.uniques then lootbox_contents.uniques = {} end
         if lootbox_contents.uniques[id] then
             local unique_sec = lootbox_contents.uniques[id]
             lootbox_contents.uniques[id] = nil
@@ -907,9 +912,6 @@ end
 
 
 function on_game_start()
-    if not lootbox_contents.uniques then
-        lootbox_contents.uniques = {}
-    end
 	if (USE_MARSHAL) then 
 		RegisterScriptCallback("save_state",save_state)
 		RegisterScriptCallback("load_state",load_state)

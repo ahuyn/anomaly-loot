@@ -693,7 +693,11 @@ function open_lootbox(box, tool)
         tool_sec = get_sec(tool)
         local sound = ini_tools:r_string_ex(tool_sec, "sound") or "Plastic_Small_Pick"
         local delay = ini_tools:r_float_ex(tool_sec, "duration") or 5
-        xr_effects.disable_ui_only(db.actor, nil)
+
+        CreateTimeEvent("lootbox", "disable_ui", 0, function()
+            xr_effects.disable_ui_only(db.actor, nil)
+            return true
+        end)        
         utils_obj.play_sound(sound)
         print_dbg("Start open box with id "..id)
         RemoveTimeEvent("lootbox","box_open " .. id)

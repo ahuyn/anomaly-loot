@@ -16,7 +16,7 @@ function on_get_item_cost(kind, obj, profile, calculated_cost, ret)
     if tbl[talking_npc_faction] then
         cost = cost * 1.5
     end
-    return cost * discount
+    ret.new_cost = cost
 end
 
 

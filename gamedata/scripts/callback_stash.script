@@ -1,0 +1,14 @@
+AddScriptCallback("stash_on_loot")
+
+
+SpawnTreasure = treasure_manager.try_spawn_treasure
+
+function treasure_manager.try_spawn_treasure(box)
+    local id = box:id()
+
+	if not (treasure_manager.caches[id]) then
+		return
+	end
+    SendScriptCallback("stash_on_loot", box)
+    SpawnTreasure(box)
+end

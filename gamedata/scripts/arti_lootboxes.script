@@ -682,6 +682,8 @@ function give_weapon(weapon, attachment_data)
 
 end
 
+local sound
+
 function open_lootbox(box, tool)
 	local id = box:id()
 	if not (lootbox_contents[id]) then
@@ -691,29 +693,29 @@ function open_lootbox(box, tool)
     -- play cool animation, with cool sound
     if get_config("animation") then
         tool_sec = get_sec(tool)
-        local sound = ini_tools:r_string_ex(tool_sec, "sound") or "Plastic_Small_Pick"
+        sound = ini_tools:r_string_ex(tool_sec, "sound") or "Plastic_Small_Pick"
         local delay = ini_tools:r_float_ex(tool_sec, "duration") or 5
+        xr_effects.disable_ui_only(db.actor, nil)
 
-        CreateTimeEvent("lootbox", "disable_ui", 0, function()
-            xr_effects.disable_ui_only(db.actor, nil)
-            return true
-        end)        
+        -- CreateTimeEvent("lootbox", "disable_ui", 0, function()
+        --     return true
+        -- end)        
         utils_obj.play_sound(sound)
         print_dbg("Start open box with id "..id)
         RemoveTimeEvent("lootbox","box_open " .. id)
         CreateTimeEvent("lootbox","box_open " .. id, delay, 
-        function(id, give)        
+        function()        
             xr_effects.enable_ui_lite(db.actor, nil)
-            open_lootbox_timer(id, give)
+            open_lootbox_timer(id, true)
             return true
-        end, id, true)
+        end)
     else
         RemoveTimeEvent("lootbox","box_open " .. id)
         CreateTimeEvent("lootbox","box_open " .. id, 0.1, 
-        function(id, give)
-            open_lootbox_timer(id, give)
+        function()
+            open_lootbox_timer(id, true)
             return true
-        end, id, true)
+        end)
     end
 
 end
@@ -855,18 +857,22 @@ function spawn_stalker_loot(npc)
 end
 
 -- monkey patch loot managers
-SpawnTreasure = treasure_manager.try_spawn_treasure
+-- SpawnTreasure = treasure_manager.try_spawn_treasure
 
-function treasure_manager.try_spawn_treasure(box)
-    local id = box:id()
+-- function treasure_manager.try_spawn_treasure(box)
+--     local id = box:id()
 
-	--printf("try_spawn_treasure [%s]",caches[id])
-    -- no spawn if the cache is already looted
-	if not (treasure_manager.caches[id]) then
-		return
-	end
+-- 	--printf("try_spawn_treasure [%s]",caches[id])
+--     -- no spawn if the cache is already looted
+-- 	if not (treasure_manager.caches[id]) then
+-- 		return
+-- 	end
+--     spawn_lootbox(box)
+--     SpawnTreasure(box)
+-- end
+
+function stash_on_loot(box)
     spawn_lootbox(box)
-    SpawnTreasure(box)
 end
 
 -- string stuff
@@ -924,5 +930,6 @@ function on_game_start()
     RegisterScriptCallback("ActorMenu_on_item_drag_drop",on_item_drag_dropped)
 	RegisterScriptCallback("server_entity_on_unregister", server_entity_on_unregister)
 	RegisterScriptCallback("actor_on_item_take",spook_player)
+	RegisterScriptCallback("stash_on_loot",stash_on_loot)
     init()
 end
